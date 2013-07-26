@@ -15,7 +15,7 @@ use:
 <div class="content">
     <h2>Latest posts</h2>
     {% for post in page.pagination.items %}
-        <h4><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date|date('Y-m-d') }}</span></h4>
+        <h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date|date('Y-m-d') }}</span></h3>
         {{ post.blocks.content|raw }}
         <hr class="rule rule--ornament" />
     {% endfor %}
