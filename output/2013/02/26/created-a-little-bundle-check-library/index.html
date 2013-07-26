@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+    <title>Created a little bundle check library - blog.willem-jan.net - Just some rambling about (web)development</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script type="text/javascript" src="/js/prism.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <header class="block padded">
+            <span class="alpha">blog.willem-jan.net</span>
+        </header>
+
+        <div class="page">
+
+            <div class="sidebar">
+
+                <ul class="main">
+                    <li><a href="/">Home</a></li>
+                                        <li><a href="/blog">Archive</a></li>
+                </ul>
+
+                <div class="intro">
+                <h3>Short intro</h3>
+                <p>I'm Willem-Jan, which is also my name on IRC. My GitHub handle is <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>. Confused already?</p>
+                </div>
+            </div>
+
+                <article class="content">
+        <span class="date">2013-02-26</span>
+        <h1>Created a little bundle check library</h1>
+        <p>A few days back, I saw <a href="https://twitter.com/lsmith/status/283840720228470784">this tweet</a> of Lukas Smith.</p>
+
+<blockquote>
+  <p>has anyone written a #composerphp script to check which installed Bundles are not enabled in the applications #Symfony2 kernel?</p>
+</blockquote>
+
+<p>At first I just skipped it, thinking ‘Nope, next tweet’. But then I realized, it can’t be that hard, why don’t I build it?</p>
+
+<p>So I started to work on it, and this time I actually finished it (probably because it didn’t take 2 weeks to build).
+It was a nice little project, got to know Composer a bit better, got some more experience with UnitTesting (still need to write more tests though), had another go with Travis and submitted my first package to packagist.</p>
+
+<p>I hope this gets met going again to actually make time to work on OSS (like Vespolina!).</p>
+
+<p>Github: <a href="https://github.com/wjzijderveld/CheckBundles">https://github.com/wjzijderveld/CheckBundles</a><br />
+Packagist: <a href="https://packagist.org/packages/wjzijderveld/check-bundles">https://packagist.org/packages/wjzijderveld/check-bundles</a></p>
+
+    </article>
+
+    <div class="content">
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'blogwillemjannet'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+        </div>
+
+        <footer class="block padded">
+            &copy; 2013 Willem-Jan Zijderveld - all rights reserved
+        </footer>
+    </div>
+</body>
+</html>

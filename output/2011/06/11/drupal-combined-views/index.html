@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+    <title>Drupal and combined views - blog.willem-jan.net - Just some rambling about (web)development</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script type="text/javascript" src="/js/prism.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <header class="block padded">
+            <span class="alpha">blog.willem-jan.net</span>
+        </header>
+
+        <div class="page">
+
+            <div class="sidebar">
+
+                <ul class="main">
+                    <li><a href="/">Home</a></li>
+                                        <li><a href="/blog">Archive</a></li>
+                </ul>
+
+                <div class="intro">
+                <h3>Short intro</h3>
+                <p>I'm Willem-Jan, which is also my name on IRC. My GitHub handle is <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>. Confused already?</p>
+                </div>
+            </div>
+
+                <article class="content">
+        <span class="date">2011-06-11</span>
+        <h1>Drupal and combined views</h1>
+        <p>This week I started to work with Drupal 7, hadn’t worked with Drupal before, so was excited to explore the possibilities.</p>
+
+<p>One of the goals was to familiarize  myself with Drupal and see if it is suited to create simple websites within a short time.</p>
+
+<p>Somebody else started the project, so there were some blocks already created and a big piece of the theme was already build. I started with the thing I thought was most challenging, never expecting that to be pretty difficult.</p>
+
+<p>The goal was about 2 entities, Services and Cases. Each Case having one service, and every Service having multiple Cases. I tried to create a page with 2 blocks, the first just plain text, the second a listing of Services. The challenge was to display the Cases for each Service in that same listing. Pretty soon I found that I required the module Views for that.</p>
+
+<p>At first I tried with a module References, I created the 2 Entities, and added the Field Service to the Cases entity as a Node Reference</p>
+
+<p>I did manage to join the two entities with a Relationship and grouping, but that didn’t got me very far. For every Case it would also repeat the Service description. After a lot of time in the Drupal IRC channel, I found that the problem was in the fact that I required more then 1 field from the Service Entity to be shown.</p>
+
+<p>After a lot of help in the IRC channel, I found the following solution:</p>
+
+<p>Just create 2 Views, one simple view with the Nodes of type Service. And a View with Nodes of type Cases, in that View I used a Contextual Filter for</p>
+
+<p>In the template for the Description Field (in my case, can be any Field template), I called the function <code>views_embed_view</code>, that function does as the name says, it embeds another view. The first parameter is the machine_name of the view, the second paramater is the machine_name of the display in the view (You can find that under Advanced -> Other).</p>
+
+<p>The third paramater Ihas some magic to it, because it accepts mixed data, but for me the following worked: <code>array(‘nid’ =&gt; $row-&gt;nid)</code>.</p>
+
+<p>So the solution was to embed an View in a View, although there are modules that should do this, I haven’t found another way then modifying the template and using code.</p>
+
+<p>I could write some sort of tutorial, a step by step explanation, just ask. For now this summary will do:</p>
+
+<p>Used modules:</p>
+
+<ul>
+<li><a href="http://drupal.org/project/views">Views</a></li>
+<li><a href="http://drupal.org/project/references">References</a></li>
+</ul>
+
+<p>Created 2 Views, use <code>views_embed_view</code> to embed the second view into the first one.</p>
+
+<p>Also I have to say, the help I got on IRC was amazing, I probably was as unclear as a newbie can be, but they kept on asking question until they knew what I required.
+Thanks RumpledElf and damiankloip (and some others that made a suggestion)!</p>
+
+<p>Join <a href="irc://irc.freenode.org/drupal">#drupal</a> on <a href="http://www.freenode.org">freenode.org</a></p>
+
+    </article>
+
+    <div class="content">
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'blogwillemjannet'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+        </div>
+
+        <footer class="block padded">
+            &copy; 2013 Willem-Jan Zijderveld - all rights reserved
+        </footer>
+    </div>
+</body>
+</html>

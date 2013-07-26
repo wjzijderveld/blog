@@ -1,0 +1,15 @@
+{
+    "name": "willemjan/blog",
+    "description": "My personal blog, generated with sculpin",
+    "require": {
+        "sculpin/sculpin": "2.0.x-dev"
+    },
+    "license": "http://creativecommons.org/licenses/by-nd/3.0/",
+    "authors": [
+        {
+            "name": "Willem-Jan Zijderveld",
+            "email": "wjzijderveld@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}

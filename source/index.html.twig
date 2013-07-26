@@ -1,0 +1,22 @@
+---
+layout: default
+title:
+generator: pagination
+pagination:
+  max_per_page: 5
+use:
+  - posts
+---
+<div class="content">
+    <h1>Welcome on my blog</h1>
+    <p>On this blog I try to regularly talk about my experiences with development. To be honest, I tried this before, more then once... But this time it will be different!</p>
+    <p>This time I'm going to make a list of stuff I want to talk about, and I'm setting a weekly reminder in my agenda to write a blogpost and/or think about more subjects.</p>
+</div>
+<div class="content">
+    <h2>Latest posts</h2>
+    {% for post in page.pagination.items %}
+        <h4><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date|date('Y-m-d') }}</span></h4>
+        {{ post.blocks.content|raw }}
+        <hr class="rule rule--ornament" />
+    {% endfor %}
+</div>

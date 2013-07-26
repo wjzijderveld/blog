@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+    <title>{% if page.title %}{{ page.title  }} - {% endif %}blog.willem-jan.net - Just some rambling about (web)development</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <script type="text/javascript" src="/js/prism.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+
+        <header class="block padded">
+            <span class="alpha">blog.willem-jan.net</span>
+        </header>
+
+        <div class="page">
+
+            <div class="sidebar">
+
+                <ul class="main">
+                    <li><a href="{{ site.url }}/">Home</a></li>
+                    {#<li><a href="{{ site.url }}/">About me</a></li>#}
+                    <li><a href="{{ site.url }}/blog">Archive</a></li>
+                </ul>
+
+                <div class="intro">
+                <h3>Short intro</h3>
+                <p>I'm Willem-Jan, which is also my name on IRC. My GitHub handle is <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>. Confused already?</p>
+                </div>
+            </div>
+
+            {% block content_wrapper %}
+                {% block content %}{% endblock %}
+            {% endblock %}
+
+        </div>
+
+        <footer class="block padded">
+            &copy; 2013 Willem-Jan Zijderveld - all rights reserved
+        </footer>
+    </div>
+</body>
+</html>
