@@ -3267,47 +3267,51 @@ footer {
   margin-left: 320px;
   margin-bottom: 24px;
 }
+/* line 155, ../../sass/style.scss */
+.content.long {
+  min-height: 480px;
+}
 
-/* line 156, ../../sass/style.scss */
+/* line 160, ../../sass/style.scss */
 .sidebar {
   float: left;
   width: 296px;
   margin-right: 24px;
 }
 
-/* line 162, ../../sass/style.scss */
+/* line 166, ../../sass/style.scss */
 ul.main {
   margin: 0 0 24px 0;
   overflow: auto;
 }
-/* line 166, ../../sass/style.scss */
+/* line 170, ../../sass/style.scss */
 ul.main li {
   list-style: none;
   border-top: 1px solid #C0C0C0;
 }
-/* line 169, ../../sass/style.scss */
+/* line 173, ../../sass/style.scss */
 ul.main li a {
   padding: 0 24px;
   display: block;
   line-height: 3.5em;
 }
-/* line 173, ../../sass/style.scss */
+/* line 177, ../../sass/style.scss */
 ul.main li a:hover {
   background: #ECECEC;
 }
-/* line 178, ../../sass/style.scss */
+/* line 182, ../../sass/style.scss */
 ul.main li:first-child {
   border-left: 0;
 }
 
-/* line 189, ../../sass/style.scss */
+/* line 193, ../../sass/style.scss */
 .date {
   font-size: 0.75em;
   margin-left: 24px;
   color: gray;
 }
 
-/* line 196, ../../sass/style.scss */
+/* line 200, ../../sass/style.scss */
 article .date {
   float: right;
   font-size: 1em;

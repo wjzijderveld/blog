@@ -151,6 +151,10 @@ footer {
     overflow: hidden;
     margin-left: 320px;
     margin-bottom: 24px;
+
+    &.long {
+        min-height: 480px;
+    }
 }
 
 .sidebar {
