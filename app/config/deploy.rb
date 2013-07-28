@@ -9,9 +9,12 @@ role :app, "vps1891.directvps.nl"                          # This may be the sam
 # role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
 # ole :db,  "your slave db-server here"
 
+set :keep_releases, 2
 # if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+after "deploy:restart", "deploy:cleanup"
 
+set :shared_children, []
+set :public_children, []
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
