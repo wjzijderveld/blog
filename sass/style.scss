@@ -104,6 +104,11 @@ a {
     }
 }
 
+::selection {
+    background-color: #A0A0A0;
+    color: #FFF;
+}
+
 h3, h4, h5, h6 {
     font-weight: normal;
     //margin-bottom: 0;
