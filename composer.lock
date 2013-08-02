@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b8a03820bc534c951a6243a6b3180868",
+    "hash": "48b45933a6699921c78b71c4d92df01f",
     "packages": [
         {
             "name": "composer/composer",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/composer.git",
-                "reference": "6a1262e675b5c1c2c7b1cc58a14028f67885b880"
+                "reference": "7912253df619a924e7091a022d20a77ad2d3939b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/composer/zipball/6a1262e675b5c1c2c7b1cc58a14028f67885b880",
-                "reference": "6a1262e675b5c1c2c7b1cc58a14028f67885b880",
+                "url": "https://api.github.com/repos/composer/composer/zipball/7912253df619a924e7091a022d20a77ad2d3939b",
+                "reference": "7912253df619a924e7091a022d20a77ad2d3939b",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "dependency",
                 "package"
             ],
-            "time": "2013-07-10 12:20:08"
+            "time": "2013-07-31 18:33:20"
         },
         {
             "name": "dflydev/ant-path-matcher",
@@ -1301,12 +1301,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ClassLoader.git",
-                "reference": "4f3f111b0d9846cc22229f7e1f35f55419889fbb"
+                "reference": "5c9ded1bcaaa253db403ceee0da14f8be9bdd5a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/4f3f111b0d9846cc22229f7e1f35f55419889fbb",
-                "reference": "4f3f111b0d9846cc22229f7e1f35f55419889fbb",
+                "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/5c9ded1bcaaa253db403ceee0da14f8be9bdd5a1",
+                "reference": "5c9ded1bcaaa253db403ceee0da14f8be9bdd5a1",
                 "shasum": ""
             },
             "require": {
@@ -1342,7 +1342,7 @@
             ],
             "description": "Symfony ClassLoader Component",
             "homepage": "http://symfony.com",
-            "time": "2013-07-21 20:19:01"
+            "time": "2013-07-24 05:36:23"
         },
         {
             "name": "symfony/config",
@@ -1399,12 +1399,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "470446b34c029c7cd1933a55c9bdd887b9f5ec0d"
+                "reference": "ec9c10334496b2e3e4a18935c2b1682f515eabb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/470446b34c029c7cd1933a55c9bdd887b9f5ec0d",
-                "reference": "470446b34c029c7cd1933a55c9bdd887b9f5ec0d",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/ec9c10334496b2e3e4a18935c2b1682f515eabb3",
+                "reference": "ec9c10334496b2e3e4a18935c2b1682f515eabb3",
                 "shasum": ""
             },
             "require": {
@@ -1443,7 +1443,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2013-07-21 20:19:01"
+            "time": "2013-07-31 13:28:38"
         },
         {
             "name": "symfony/debug",
@@ -1452,12 +1452,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Debug.git",
-                "reference": "f1c1b48cfee238f21a6b11b8efec12cb59f55353"
+                "reference": "a0c8c08341a7a572f4e9c71555e70c7b032557f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Debug/zipball/f1c1b48cfee238f21a6b11b8efec12cb59f55353",
-                "reference": "f1c1b48cfee238f21a6b11b8efec12cb59f55353",
+                "url": "https://api.github.com/repos/symfony/Debug/zipball/a0c8c08341a7a572f4e9c71555e70c7b032557f8",
+                "reference": "a0c8c08341a7a572f4e9c71555e70c7b032557f8",
                 "shasum": ""
             },
             "require": {
@@ -1499,7 +1499,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
-            "time": "2013-07-08 13:37:01"
+            "time": "2013-07-28 20:44:44"
         },
         {
             "name": "symfony/dependency-injection",
@@ -1508,12 +1508,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/DependencyInjection.git",
-                "reference": "ccaef06529bd56ab07f8f5966ca1de1640aed8dc"
+                "reference": "c88c668b422e76052f767e14001b43ddaa2f8a44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/ccaef06529bd56ab07f8f5966ca1de1640aed8dc",
-                "reference": "ccaef06529bd56ab07f8f5966ca1de1640aed8dc",
+                "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/c88c668b422e76052f767e14001b43ddaa2f8a44",
+                "reference": "c88c668b422e76052f767e14001b43ddaa2f8a44",
                 "shasum": ""
             },
             "require": {
@@ -1555,7 +1555,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "http://symfony.com",
-            "time": "2013-07-21 20:19:01"
+            "time": "2013-07-27 05:01:52"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -1762,12 +1762,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "17b54ff1785a270e120a6786195cac383e2219ac"
+                "reference": "af660c51bb90dfe8e060f89b6c43d50a8c223d26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/17b54ff1785a270e120a6786195cac383e2219ac",
-                "reference": "17b54ff1785a270e120a6786195cac383e2219ac",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/af660c51bb90dfe8e060f89b6c43d50a8c223d26",
+                "reference": "af660c51bb90dfe8e060f89b6c43d50a8c223d26",
                 "shasum": ""
             },
             "require": {
@@ -1823,7 +1823,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-07-21 20:19:01"
+            "time": "2013-07-27 05:01:52"
         },
         {
             "name": "symfony/process",
@@ -1970,16 +1970,16 @@
         },
         {
             "name": "webignition/internet-media-type",
-            "version": "0.4.2",
+            "version": "0.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/internet-media-type.git",
-                "reference": "0.4.2"
+                "reference": "0.4.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/internet-media-type/zipball/0.4.2",
-                "reference": "0.4.2",
+                "url": "https://api.github.com/repos/webignition/internet-media-type/zipball/0.4.3",
+                "reference": "0.4.3",
                 "shasum": ""
             },
             "require": {
@@ -2012,7 +2012,7 @@
                 "media type",
                 "media-type"
             ],
-            "time": "2013-07-15 15:39:24"
+            "time": "2013-07-29 09:56:33"
         },
         {
             "name": "webignition/quoted-string",
@@ -2095,6 +2095,144 @@
                 "string"
             ],
             "time": "2013-03-18 14:32:24"
+        },
+        {
+            "name": "zendframework/zend-escaper",
+            "version": "dev-develop",
+            "target-dir": "Zend/Escaper",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendEscaper.git",
+                "reference": "159ea56e242b527ecbf4f05a5c62ce47dd355a4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendEscaper/zipball/159ea56e242b527ecbf4f05a5c62ce47dd355a4a",
+                "reference": "159ea56e242b527ecbf4f05a5c62ce47dd355a4a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Escaper\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "escaper",
+                "zf2"
+            ],
+            "time": "2013-05-01 21:55:27"
+        },
+        {
+            "name": "zendframework/zend-feed",
+            "version": "dev-develop",
+            "target-dir": "Zend/Feed",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendFeed.git",
+                "reference": "ad7b8e6bb5a51fe57cd5f77c7083ee6bc0df55e6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendFeed/zipball/ad7b8e6bb5a51fe57cd5f77c7083ee6bc0df55e6",
+                "reference": "ad7b8e6bb5a51fe57cd5f77c7083ee6bc0df55e6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-escaper": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-http": "Zend\\Http for PubSubHubbub, and optionally for use with Zend\\Feed\\Reader",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager component, for default/recommended ExtensionManager implementations",
+                "zendframework/zend-validator": "Zend\\Validator component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Feed\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides functionality for consuming RSS and Atom feeds",
+            "keywords": [
+                "feed",
+                "zf2"
+            ],
+            "time": "2013-06-28 17:00:59"
+        },
+        {
+            "name": "zendframework/zend-stdlib",
+            "version": "dev-develop",
+            "target-dir": "Zend/Stdlib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendStdlib.git",
+                "reference": "d23ca1ad7fc6438f7038443dcfb1a3213953c5b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/d23ca1ad7fc6438f7038443dcfb1a3213953c5b9",
+                "reference": "d23ca1ad7fc6438f7038443dcfb1a3213953c5b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-serializer": "self.version",
+                "zendframework/zend-servicemanager": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+                "zendframework/zend-serializer": "Zend\\Serializer component",
+                "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Stdlib\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "stdlib",
+                "zf2"
+            ],
+            "time": "2013-07-03 18:00:11"
         }
     ],
     "packages-dev": [

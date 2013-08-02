@@ -1,2 +1,5 @@
 sculpin:
   output_dir: output
+
+sculpin_pagination:
+  max_per_page: 10

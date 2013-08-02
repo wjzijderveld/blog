@@ -2,7 +2,8 @@
     "name": "willemjan/blog",
     "description": "My personal blog, generated with sculpin",
     "require": {
-        "sculpin/sculpin": "2.0.x-dev"
+        "sculpin/sculpin": "2.0.x-dev",
+        "zendframework/zend-feed": "~2.3"
     },
     "license": "http://creativecommons.org/licenses/by-nd/3.0/",
     "authors": [
