@@ -19,4 +19,14 @@ use:
         {{ post.blocks.content|raw }}
         <hr class="rule rule--ornament" />
     {% endfor %}
+    {% if page.pagination.previous_page or page.pagination.next_page %}
+    <div>
+        {% if page.pagination.previous_page %}
+            <a href="{{ site.url }}{{ page.pagination.previous_page.url }}" class="previous">Previous page</a>
+        {% endif %}
+        {% if page.pagination.next_page %}
+            <a href="{{ site.url }}{{ page.pagination.next_page.url }}" class="next">Next page</a>
+        {% endif %}
+    </div>
+    {% endif %}
 </div>
