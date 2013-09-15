@@ -31,7 +31,7 @@ happy a got invite for an interview, but I'm afraid some companies would
 just ignore a #}
 
 I'm hoping to find a job were I can work with Symfony, were I can use TDD
-and other QA techniques and tools. A job were I can put my hard and soul
+and other QA techniques and tools. A job were I can put my hearth and soul
 in exploring the possibilities of new techniques and implementing those
 techniques. And if that includes working on and with OpenSource, that would
 be awesome!

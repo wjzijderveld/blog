@@ -23,7 +23,7 @@ use:
             <h3>{{ month }} {{ year }}</h3>
         {% endif %}
         <div>
-            <a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+            <span class="date">{{ post.date | date("l jS") }}</span>&nbsp;<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
         </div>
     {% endfor %}
 
