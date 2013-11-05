@@ -758,7 +758,7 @@ textarea:focus {
  * and over in your markup.
  */
 /* line 10, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/generic/_clearfix.scss */
-.cf:after, .block:after, .content:after, ul.main:after, .intro:after {
+.cf:after, .nav:after, .block:after, .content:after, ul.main:after, .intro:after {
   content: "";
   display: table;
   clear: both;
@@ -3126,6 +3126,320 @@ label,
 }
 
 /*------------------------------------*\
+    $GRIDS
+\*------------------------------------*/
+/**
+ * Fluid and nestable grid system, e.g.:
+ *
+   <div class="grid">
+
+       <div class="grid__item  one-third">
+           <p>One third grid</p>
+       </div><!--
+
+    --><div class="grid__item  two-thirds">
+           <p>Two thirds grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-half">
+           <p>One half grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
+           <p>One quarter grid</p>
+       </div><!--
+
+    --><div class="grid__item  one-quarter">
+           <p>One quarter grid</p>
+       </div>
+
+   </div>
+ *
+ * Demo: jsfiddle.net/inuitcss/CLYUC
+ *
+ */
+/**
+ * Grid wrapper
+ */
+/* line 41, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_grids.scss */
+.grid {
+  margin-left: -24px;
+  list-style: none;
+  margin-bottom: 0;
+}
+
+/**
+ * Very infrequently occuring grid wrappers as children of grid wrappers.
+ */
+/* line 51, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_grids.scss */
+.grid > .grid {
+  margin-left: 0;
+}
+
+/**
+ * Grid
+ */
+/* line 59, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_grids.scss */
+.grid__item {
+  display: inline-block;
+  width: 100%;
+  padding-left: 24px;
+  vertical-align: top;
+}
+
+/*------------------------------------*\
+    $COLUMNS
+\*------------------------------------*/
+/**
+ * Here we can set elements in columns of text using CSS3, e.g.:
+ *
+   <p class=text-cols--2>
+ *
+ * Demo: jsfiddle.net/inuitcss/E26Yd
+ *
+ */
+/* line 14, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_columns.scss */
+.text-cols--2, .text-cols--3, .text-cols--4, .text-cols--5 {
+  -webkit-column-gap: 24px;
+  -moz-column-gap: 24px;
+  -ms-column-gap: 24px;
+  -o-column-gap: 24px;
+  column-gap: 24px;
+}
+
+/* line 17, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_columns.scss */
+.text-cols--2 {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  -ms-column-count: 2;
+  -o-column-count: 2;
+  column-count: 2;
+}
+
+/* line 18, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_columns.scss */
+.text-cols--3 {
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  -ms-column-count: 3;
+  -o-column-count: 3;
+  column-count: 3;
+}
+
+/* line 19, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_columns.scss */
+.text-cols--4 {
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  -ms-column-count: 4;
+  -o-column-count: 4;
+  column-count: 4;
+}
+
+/* line 20, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_columns.scss */
+.text-cols--5 {
+  -webkit-column-count: 5;
+  -moz-column-count: 5;
+  -ms-column-count: 5;
+  -o-column-count: 5;
+  column-count: 5;
+}
+
+/*------------------------------------*\
+    $NAV
+\*------------------------------------*/
+/**
+ * Nav abstraction as per: csswizardry.com/2011/09/the-nav-abstraction
+ * When used on an `ol` or `ul`, this class throws the list into horizontal mode
+ * e.g.:
+ *
+   <ul class=nav>
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ * Demo: jsfiddle.net/inuitcss/Vnph4
+ *
+ */
+/* line 21, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav {
+  list-style: none;
+  margin-left: 0;
+}
+/* line 29, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav > li,
+.nav > li > a {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+/**
+ * `.nav--stacked` extends `.nav` and throws the list into vertical mode, e.g.:
+ *
+   <ul class="nav  nav--stacked">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+/* line 51, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--stacked > li {
+  display: list-item;
+}
+/* line 54, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--stacked > li > a {
+  display: block;
+}
+
+/**
+ * `.nav--banner` extends `.nav` and centres the list, e.g.:
+ *
+   <ul class="nav  nav--banner">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+/* line 72, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--banner {
+  text-align: center;
+}
+
+/**
+ * Give nav links a big, blocky hit area. Extends `.nav`, e.g.:
+ *
+   <ul class="nav  nav--block">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+/* line 88, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--block {
+  line-height: 1;
+  /**
+   * Remove whitespace caused by `inline-block`.
+   */
+  letter-spacing: -0.31em;
+  word-spacing: -0.43em;
+  white-space: nowrap;
+}
+/* line 97, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--block > li {
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+/* line 101, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--block > li > a {
+  padding: 12px;
+}
+
+/**
+ * Force a nav to occupy 100% of the available width of its parent. Extends
+ * `.nav`, e.g.:
+ *
+   <ul class="nav  nav--fit">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ * Thanks to @pimpl for this idea!
+ */
+/* line 121, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--fit {
+  display: table;
+  width: 100%;
+}
+/* line 125, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--fit > li {
+  display: table-cell;
+}
+/* line 128, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--fit > li > a {
+  display: block;
+}
+
+/**
+ * Make a list of keywords. Extends `.nav`, e.g.:
+ *
+   `<ul class="nav  nav--keywords>`
+ *
+ */
+/* line 145, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--keywords > li:after {
+  content: "\002C" "\00A0";
+}
+/* line 149, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_nav.scss */
+.nav--keywords > li:last-child:after {
+  display: none;
+}
+
+/*------------------------------------*\
+    $PAGINATION
+\*------------------------------------*/
+/**
+ * Basic pagination object, extends `.nav`.
+ * Requires some funky commenting to collapse any white-space caused by the
+ * `display:inline-block;` rules.
+ *
+   <ol class="nav  pagination">
+       <li class=pagination__first>First</li>
+       <li class=pagination__prev>Previous</li>
+       <li><a href=/page/1>1</a></li>
+       <li><a href=/page/2>2</a></li>
+       <li class=current><a href=/page/3>3</a></li>
+       <li><a href=/page/4>4</a></li>
+       <li><a href=/page/5>5</a></li>
+       <li class=pagination__next><a href=/page/next>Next</a></li>
+       <li class=pagination__last><a href=/page/last>Last</a></li>
+   </ol>
+ *
+ * Demo: jsfiddle.net/inuitcss/9Y6PU
+ *
+ */
+/* line 26, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_pagination.scss */
+.pagination {
+  text-align: center;
+  /**
+   * Remove whitespace caused by `inline-block`.
+   */
+  letter-spacing: -0.31em;
+  word-spacing: -0.43em;
+}
+
+/* line 34, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_pagination.scss */
+.pagination > li {
+  padding: 12px;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* line 39, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_pagination.scss */
+.pagination > li > a {
+  padding: 12px;
+  margin: -12px;
+}
+
+/* line 43, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_pagination.scss */
+.pagination__first a:before {
+  content: "\00AB" "\00A0";
+}
+
+/* line 46, ../../../../../Library/Ruby/Gems/1.8/gems/compass-inuit-5.0.1/stylesheets/compass-inuit/objects/_pagination.scss */
+.pagination__last a:after {
+  content: "\00A0" "\00BB";
+}
+
+/*------------------------------------*\
     $RULES
 \*------------------------------------*/
 /**
@@ -3219,7 +3533,7 @@ a:hover {
 }
 
 /* line 112, ../../sass/style.scss */
-h3, h4, h5, h6 {
+h4, h5, h6 {
   font-weight: normal;
 }
 
