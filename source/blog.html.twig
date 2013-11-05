@@ -7,7 +7,7 @@ use:
 - posts
 
 ---
-<div class="content">
+<div class="content archive">
     {% set year = '0' %}
     <h2>Posts Archive</h2>
     {% for post in page.pagination.items %}
@@ -15,16 +15,16 @@ use:
         {% if year != this_year %}
             {% set month = '0' %}
             {% set year = this_year %}
+            {% if loop.index > 1 %}</div><div class="content archive">{% endif %}
+            <h3>{{ this_year }}</h3>
         {% endif %}
         {% set this_month %}{{ post.date | date("F") }}{% endset %}
         {% if month != this_month %}
             {% set month = this_month %}
-            {% if loop.index > 1 %}</div><div class="content">{% endif %}
-            <h3>{{ month }} {{ year }}</h3>
         {% endif %}
-        <div>
-            <span class="date">{{ post.date | date("l jS") }}</span>&nbsp;<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
-        </div>
+        <article>
+            <span class="date">{{ post.date | date("l, F jS") }}</span>&nbsp;<a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a>
+        </article>
     {% endfor %}
 
     <div>

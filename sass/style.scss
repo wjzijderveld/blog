@@ -207,3 +207,18 @@ article {
         font-size: 1em;
     }
 }
+
+.archive {
+    .date {
+        display: block;
+        float: left;
+        font-size: 0.75em;
+        margin-left: 0;
+        width: 175px;
+        line-height: 1.5em;
+    }
+    article > a {
+        float: left;
+        line-height: 1em;
+    }
+}

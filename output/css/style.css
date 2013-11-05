@@ -3636,3 +3636,18 @@ article .date {
   float: right;
   font-size: 1em;
 }
+
+/* line 212, ../../sass/style.scss */
+.archive .date {
+  display: block;
+  float: left;
+  font-size: 0.75em;
+  margin-left: 0;
+  width: 175px;
+  line-height: 1.5em;
+}
+/* line 220, ../../sass/style.scss */
+.archive article > a {
+  float: left;
+  line-height: 1em;
+}
