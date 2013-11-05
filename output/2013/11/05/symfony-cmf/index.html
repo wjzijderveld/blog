@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
-    <title>So little time - blog.willem-jan.net - Just some rambling about (web)development</title>
+    <title>Symfony CMF - blog.willem-jan.net - Just some rambling about (web)development</title>
     <link rel="stylesheet" href="/css/style.css"/>
     <script type="text/javascript" src="/js/prism.js"></script>
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
@@ -41,31 +41,37 @@
             </div>
 
                 <article class="content long">
-        <span class="date">2013-10-04</span>
-        <h1>So little time</h1>
-        <p>As I mentioned 2 months ago, I believe it's important to keep developing yourself. You can't just sit there and
-repeat the same trick every time. I also told that I wanted to do that by trying to find a new job, and by attending
-more conferences and user groups.</p>
+        <span class="date">2013-11-05</span>
+        <h1>Symfony CMF</h1>
+        <p>Today I got into a discussion about Symfony CMF. The discussion started with the question, if Symfony CMF isn't trying
+to create a solution for a problem that doesn't exists. That person thought CMF only solved a developers problem, but
+couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
+he had seen the admin interfaces that come with Symfony CMF and saw that it was... less from perfect (to put it nice).</p>
 
-<p>But that all isn't that easy, I couldn't attend my user group because of a agenda conflict (and missing the next one as well)
-and conferences are just to expensive to pay for by myself.</p>
+<h4>Goals of Symfony CMF</h4>
 
-<p>The work part isn't much better as well. I shouldn't complain, I still have a job! But at that job it is hard to find a
-challenge, and there is a lot of repetitive work involved. And because there is a lot of Drupal involved, OOP isn't part
-of my daily routine anymore, and that sucks.</p>
+<p>Symfony CMF aims to provide a toolbox to create your own custom CMS, not by reinventing the wheel, but by reusing
+existing code and sharing the produced code (parts of it will be used in Drupal 8). It aims to make it easier for
+developers to add CMS functionality to applications built on Symfony 2.</p>
 
-<p>While searching for a new job, I have found a company were I really want to work. The first job interview went well and
-they are open to further conversation, but the sad part is, that they don't have a spot at this moment and they don't
-know on what term they will.
-And that's a pretty difficult time for me, I really want that job, but I'm not sure if I should wait for it. At this point
-I'm not even sure if I actually would get hired, so is it worth the risk?</p>
+<h4>PHPCR</h4>
 
-<p>And with all this, it's hard to keep myself busy on the level were I want to be (and grow from there), At work there isn't
-much room for it, and at home I can't spend the time at it that I would like (my wife would like some attention now and then :-) ).
-So I try to put some time in a JAVA project I started 6 months ago, at least I'm working on a OO project.</p>
+<p>To do that, they looked at other solutions, solutions not limited to PHP, to structure content. This because a CMS has
+mostly unstructured data, and forcing this into a RDBMS isn't always a good fit. <a href="https://en.wikipedia.org/wiki/Graph_database">Graph database</a> are a better
+fit. They found <a href="http://jcp.org/en/jsr/detail?id=283">JCR</a>, a Java specification that deals with content. They ported that to PHP and called it PHPCR;
+PHP Content Repository. With PHPCR, there is an API to interface with your content repository.</p>
 
-<p>Any tips how to deal with such a time would be greatly appreciated! Sometimes I have the feeling I'm just not patient enough,
-that I should just wait, and be grateful I have a job.</p>
+<h4>What is doesn't solve</h4>
+
+<p>Althought Symfony CMF does provide some basic admin interfaces (with Sonata Admin), it isn't meant as an end product.
+For most customers and editors, those screens just won't be enough. But there is nothing to stop you from developing
+your own admin screens that does fit you customers needs.</p>
+
+<p>Symfony CMF isn't a solution aimed at the end-user, that is still you job as a developer, to implement a solution that
+helps your end-user and the editors. Symfony CMF just helps you to not get a panic attack when somebody tells you to add
+content management to your Symfony2 application.</p>
+
+<p>For more information about Symfony CMF, check the <a href="http://cmf.symfony.com/slides/bigpicture.html">bigger picture slides</a></p>
 
     </article>
 

@@ -36,7 +36,7 @@
 
                 <div class="intro">
                 <h3>Short intro</h3>
-                <p>I'm Willem-Jan. My GitHub and IRC handle is <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
+                <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
                 </div>
             </div>
 
@@ -47,6 +47,52 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="/2013/07/26/new-blog">A new blog</a><span class="date">2013-07-26</span></h3>
+        <p>Okay, so I started a new blog again.
+This time I have the plan to force myself to write a post at least every 2 weeks,
+but when possible every week. It's going to be hard, especially in the beginning.
+But I think it's good for me to write down what I'm doing.</p>
+
+<p>As this is the first post, I'll write about the software I used to build this.
+It's called <a href="https://sculpin.io">Sculpin</a>, and it's a static site generator
+written in PHP. It allows you to create a design with <a href="http://twig.sensiolabs.org">Twig</a> templates and
+then write posts in any markup language you like (I'm using Markdown).</p>
+
+<p>I like the fact that I can easily write a post now while being offline and
+just deploy the project when I get online. The lack of a database is just
+a nice elimination of another thing that can go wrong.</p>
+
+<p>And for syntax highlighting I now use <a href="http://prismjs.com/">Prism.js</a>. A nice javascript library.
+Sculpin supports Markdown Extra, so I can do the following:</p>
+
+<pre><code>~~~language-markup
+&lt;div id="foo"&gt;
+    &lt;span class="bar"&gt;foobar&lt;/span&gt;
+&lt;/div&gt;
+~~~
+</code></pre>
+
+<p>And that will produce:</p>
+
+<pre><code class="language-markup">&lt;div id="foo"&gt;
+    &lt;span class="bar"&gt;foobar&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>PHP Example:</p>
+
+<pre><code class="language-php">&lt;?php
+    $kernel = new AppKernel();
+    $kernel-&gt;handle(Request::createFromGlobals());
+    $kernel-&gt;terminate();
+?&gt;
+</code></pre>
+
+<p>And of course there are more languages it can highlight.</p>
+
+<p>I only haven't figured out how I can use the <a href="http://prismjs.com/plugins/line-numbers/">line-numbers</a> plugin within Markdown.</p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="/2013/02/26/created-a-little-bundle-check-library">Created a little bundle check library</a><span class="date">2013-02-26</span></h3>
         <p>A few days back, I saw <a href="https://twitter.com/lsmith/status/283840720228470784">this tweet</a> of Lukas Smith.</p>
 
