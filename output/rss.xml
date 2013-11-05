@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss>
+    <channel>
+        <title>blog.willem-jan.net</title>
+        <link>http://blog.willem-jan.net</link>
+        <description>On this blog I try to regularly talk about my experiences with development.</description>
+        <language>en</language>
+                <item>
+            <description><![CDATA[<p>Today I got into a discussion about <a href="http://cmf.symfony.com">Symfony CMF</a>. The discussion started with the question, if Symfony CMF isn't trying
+to create a solution for a problem that doesn't exists. That person thought CMF only solved a developers problem, but
+couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
+he had seen the admin interfaces that come with Symfony CMF and saw that it was... less from perfect (to put it nice).</p>
+
+<h4>Goals of Symfony CMF</h4>
+
+<p>Symfony CMF aims to provide a toolbox to create your own custom CMS, not by reinventing the wheel, but by reusing
+existing code and sharing the produced code (parts of it will be used in Drupal 8). It aims to make it easier for
+developers to add CMS functionality to applications built on Symfony 2.</p>
+
+<h4>PHPCR</h4>
+
+<p>To do that, they looked at other solutions, solutions not limited to PHP, to structure content. This because a CMS has
+mostly unstructured data, and forcing this into a RDBMS isn't always a good fit. <a href="https://en.wikipedia.org/wiki/Graph_database">Graph database</a> are a better
+fit. They found <a href="http://jcp.org/en/jsr/detail?id=283">JCR</a>, a Java specification that deals with content. They ported that to PHP and called it <a href="https://github.com/phpcr/" title="PHPCR Github">PHPCR</a>;
+PHP Content Repository. With PHPCR, there is an API to interface with your content repository.</p>
+
+<h4>What is doesn't solve</h4>
+
+<p>Althought Symfony CMF does provide some basic admin interfaces (with Sonata Admin), it isn't meant as an end product.
+For most customers and editors, those screens just won't be enough. But there is nothing to stop you from developing
+your own admin screens that does fit you customers needs.</p>
+
+<p>Symfony CMF isn't a solution aimed at the end-user, that is still you job as a developer, to implement a solution that
+helps your end-user and the editors. Symfony CMF just helps you to not get a panic attack when somebody tells you to add
+content management to your Symfony2 application.</p>
+
+<p>For more information about Symfony CMF, check the <a href="http://cmf.symfony.com/slides/bigpicture.html">bigger picture slides</a></p>
+]]></description>
+            <pubDate>2013-11-05T00:00:00+01:00</pubDate>
+            <guid>http://blog.willem-jan.net/2013/11/05/symfony-cmf</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>As I mentioned 2 months ago, I believe it's important to keep developing yourself. You can't just sit there and
+repeat the same trick every time. I also told that I wanted to do that by trying to find a new job, and by attending
+more conferences and user groups.</p>
+
+<p>But that all isn't that easy, I couldn't attend my user group because of a agenda conflict (and missing the next one as well)
+and conferences are just to expensive to pay for by myself.</p>
+
+<p>The work part isn't much better as well. I shouldn't complain, I still have a job! But at that job it is hard to find a
+challenge, and there is a lot of repetitive work involved. And because there is a lot of Drupal involved, OOP isn't part
+of my daily routine anymore, and that sucks.</p>
+
+<p>While searching for a new job, I have found a company were I really want to work. The first job interview went well and
+they are open to further conversation, but the sad part is, that they don't have a spot at this moment and they don't
+know on what term they will.
+And that's a pretty difficult time for me, I really want that job, but I'm not sure if I should wait for it. At this point
+I'm not even sure if I actually would get hired, so is it worth the risk?</p>
+
+<p>And with all this, it's hard to keep myself busy on the level were I want to be (and grow from there), At work there isn't
+much room for it, and at home I can't spend the time at it that I would like (my wife would like some attention now and then :-) ).
+So I try to put some time in a JAVA project I started 6 months ago, at least I'm working on a OO project.</p>
+
+<p>Any tips how to deal with such a time would be greatly appreciated! Sometimes I have the feeling I'm just not patient enough,
+that I should just wait, and be grateful I have a job.</p>
+]]></description>
+            <pubDate>2013-10-04T00:00:00+02:00</pubDate>
+            <guid>http://blog.willem-jan.net/2013/10/04/so-little-time</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>About 2 months ago, when <a href="http://010php.nl">010php</a> started, I started playing with the idea of giving talks myself. At first
+I was pretty anxious to actually execute that plan. I talked with some people that I had the idea and they all encouraged
+me to do it. So I started writing down some ideas I already had. But until last week, I didn't actually had a talk planned
+anywhere.</p>
+
+<p>But last Tuesday, <a href="http://twitter.com/the_linie">Lineke</a> asked me if I would give a uncon talk at <a href="http://pfcongres.nl">PFcongres 2013</a>,
+I don't think she new I was already playing with the idea, but she was very convincing and I said I would do my best to prepare
+something.</p>
+
+<p>Because of limited time, I started to prepare the evening before the conference, at that point I hadn't even decided what
+subject I would choose for the talk... I decided on PHPCR and luckily the preperation went fairly well and I even rehearsed
+it once!</p>
+
+<p>So yesterday the conference was there, and on my way in the train I even managed to talk myself into a calmer state. Don't
+get me wrong, I was still nervous as hell... just a bit less then before. I spoke to Linke en we planned my talk at 12.10.
+After that I just went to the talks, trying not to think about it to much anymore. At <a href="http://joind.in/talk/view/8955">the talk just before my uncon slot</a>,
+I got a bit nervous when Joshua already mentioned he didn't now if he would be done in time. Should I leave the talk early
+to be on time? Should I just leave with everybody else? Eventually I decided that I would leave 5 minutes before my talk
+started. That gave me some time to visit a restroom (to much coffee...), and still be on time for my talk. This meant I
+walked out while Joshua was still answering some questions (sorry for that), but it made me feel a bit better.</p>
+
+<p>Giving the talk went pretty well, of course I forgot to bring a VGA connector, but I could use Lineke's (thanks!). I pretty
+much gave my talk as intended (only forgot to tell 1 thing), and got some good questions, so apparently people weren't bored
+to death :)
+Just before the end of my talk I noticed myself saying <em>Uhh</em> between pretty much every sentence, so I learned something
+<strong>while</strong> giving the talk!</p>
+
+<p>After the talk Lineke already gave me some feedback (she noticed the <em>Uhh</em>'s as well) and I spoke some people that had
+seen it.
+Another important thing I learned, is that a topic like PHPCR is very hard to explain, and nearly impossible to explain in
+10-15 minutes, so next time I would probably want a 50min slot and I need to rethink how I can explain the subject to people
+that have no clue about it. On a sidenote: you can still comment on my talk, so <strong>please</strong> <a href="https://joind.in/talk/view/9216">leave feedback</a>!</p>
+
+<p>All with all was it a great experience and I'm certain I will do it again. Maybe I'll even submit a actual talk to a conference
+next year.</p>
+]]></description>
+            <pubDate>2013-09-15T00:00:00+02:00</pubDate>
+            <guid>http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>As I mentioned in <a href="/2012/06/02/working-on-opensource/">Working on an OpenSource project</a>,
+I'm somewhat involved with <a href="http://www.vespolina.org">Vespolina</a>.
+Last weekend we had our first hackweekend, <a href="https://github.com/inspiran">Daniel</a>
+and I sat together, and <a href="https://github.com/iampersistent">Richard</a> and
+<a href="https://github.com/cordoval">Luis</a> joined us remote. On friday evening
+we had a conference call where <a href="https://github.com/hacfi">Philipp</a> also
+joined us. In that conference call we talked a bit about what we wanted
+to do that weekend.</p>
+
+<p>The biggest change that we did that weekend, was merging some of the libraries
+together in 1 lirbary. This to make it easier for people to start working
+with Vespolina, and the make development easier, because maintaining around
+40 repositories isn't trivial. Eventually the following libraries got merged
+into <a href="https://github.com/vespolina/commerce">a single library</a>.</p>
+
+<ul>
+<li>Billing</li>
+<li>Invoice</li>
+<li>Order</li>
+<li>Partner</li>
+<li>Pricing</li>
+<li>Product</li>
+</ul>
+
+<p>So essentially everything that was already done with the CommerceBundle,
+but now for the libraries.</p>
+
+<p>And I continued working on the new website and a bit on the documentation. The
+website is almost finished, just needs some more content and probably some minor
+bugfixes. But the documentation still needs lots of work.</p>
+
+<p>In the coming weeks, I hope to continue working on writing documentation
+and focus on writing more tests. The combination is probably a good way
+to learn Vespolina better and hopefully lead to better documentation and tests.</p>
+]]></description>
+            <pubDate>2013-08-16T00:00:00+02:00</pubDate>
+            <guid>http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>About six months ago, I came to the conclusion that I needed to start thinking
+about my future. The company I currently work at isn't growing as fast as
+I am, so I started looking around to see how I could keep improving myself
+and if that would be possible within this company. I learned a lot in the
+years I work at the company, and always had a good time. So leaving the
+company wasn't something I enjoyed thinking about. But after a while I came
+to the conclusion I need to choose for myself, not for the company.</p>
+
+<p>So I started looking around for the possibilities, trying to find out what
+options I had in the Netherlands (because... that's were I live). Talked
+to some people, tried to attend more conferences and user groups. At the
+same time I started to contribute more to OpenSource. The more people I spoke
+to and the more I saw and heared how other people were working, the more I
+had the feeling I should be doing something else, there was so much I wanted
+to do but wasn't able to at this moment.</p>
+
+<p></p>
+
+<p>I'm hoping to find a job were I can work with Symfony, were I can use TDD
+and other QA techniques and tools. A job were I can put my hearth and soul
+in exploring the possibilities of new techniques and implementing those
+techniques. And if that includes working on and with OpenSource, that would
+be awesome!</p>
+]]></description>
+            <pubDate>2013-08-02T00:00:00+02:00</pubDate>
+            <guid>http://blog.willem-jan.net/2013/08/02/keep-improving</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>Okay, so I started a new blog again.
+This time I have the plan to force myself to write a post at least every 2 weeks,
+but when possible every week. It's going to be hard, especially in the beginning.
+But I think it's good for me to write down what I'm doing.</p>
+
+<p>As this is the first post, I'll write about the software I used to build this.
+It's called <a href="https://sculpin.io">Sculpin</a>, and it's a static site generator
+written in PHP. It allows you to create a design with <a href="http://twig.sensiolabs.org">Twig</a> templates and
+then write posts in any markup language you like (I'm using Markdown).</p>
+
+<p>I like the fact that I can easily write a post now while being offline and
+just deploy the project when I get online. The lack of a database is just
+a nice elimination of another thing that can go wrong.</p>
+
+<p>And for syntax highlighting I now use <a href="http://prismjs.com/">Prism.js</a>. A nice javascript library.
+Sculpin supports Markdown Extra, so I can do the following:</p>
+
+<pre><code>~~~language-markup
+&lt;div id="foo"&gt;
+    &lt;span class="bar"&gt;foobar&lt;/span&gt;
+&lt;/div&gt;
+~~~
+</code></pre>
+
+<p>And that will produce:</p>
+
+<pre><code class="language-markup">&lt;div id="foo"&gt;
+    &lt;span class="bar"&gt;foobar&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p>PHP Example:</p>
+
+<pre><code class="language-php">&lt;?php
+    $kernel = new AppKernel();
+    $kernel-&gt;handle(Request::createFromGlobals());
+    $kernel-&gt;terminate();
+?&gt;
+</code></pre>
+
+<p>And of course there are more languages it can highlight.</p>
+
+<p>I only haven't figured out how I can use the <a href="http://prismjs.com/plugins/line-numbers/">line-numbers</a> plugin within Markdown.</p>
+]]></description>
+            <pubDate>2013-07-26T00:00:00+02:00</pubDate>
+            <guid>http://blog.willem-jan.net/2013/07/26/new-blog</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>A few days back, I saw <a href="https://twitter.com/lsmith/status/283840720228470784">this tweet</a> of Lukas Smith.</p>
+
+<blockquote>
+  <p>has anyone written a #composerphp script to check which installed Bundles are not enabled in the applications #Symfony2 kernel?</p>
+</blockquote>
+
+<p>At first I just skipped it, thinking ‘Nope, next tweet’. But then I realized, it can’t be that hard, why don’t I build it?</p>
+
+<p>So I started to work on it, and this time I actually finished it (probably because it didn’t take 2 weeks to build).
+It was a nice little project, got to know Composer a bit better, got some more experience with UnitTesting (still need to write more tests though), had another go with Travis and submitted my first package to packagist.</p>
+
+<p>I hope this gets met going again to actually make time to work on OSS (like Vespolina!).</p>
+
+<p>Github: <a href="https://github.com/wjzijderveld/CheckBundles">https://github.com/wjzijderveld/CheckBundles</a><br />
+Packagist: <a href="https://packagist.org/packages/wjzijderveld/check-bundles">https://packagist.org/packages/wjzijderveld/check-bundles</a></p>
+]]></description>
+            <pubDate>2013-02-26T00:00:00+01:00</pubDate>
+            <guid>http://blog.willem-jan.net/2013/02/26/created-a-little-bundle-check-library</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>At the company I work at, we have a custom e-commerce
+platform that’s in a need of replacement. The codebase is more then 6 years
+old and by now, there are more exceptions that rules. The lack of actual MVC
+implementation, an ORM or even a DBAL, made maintenance… not very pleasant.</p>
+
+<p>Although we can’t just replace the platform, we did start looking at other
+options to create a stable base for future development. For new features that
+included a large bit of backend, we already created a new Symfony2 application.
+That helped, but didn’t solve the spagetti frontend code. For some new frontend
+features, we created a REST service in the Symfony2 application, and used
+that in the old frontend application.</p>
+
+<p>But to be able to create a new solid base for a new frontend we started looking
+out for options. A completely custom Symfony2 application would simply cost to
+much for the customer, a almost ready package as Magento is also an option, but
+we weren’t really excited by the news of Ebay buying Magento.</p>
+
+<p>We also looked at some Symfony2 Open Source projects, like Sylius and Vespolina.
+Both projects weren’t very far when I started looking. But because Vespolina
+started more as a Framework, I started to follow that project more closely.
+After a few conversations on IRC with inspiran and iampersistent, I decided
+to try and contribute to the project. At that point I had no idea if we ever
+would be able to use Vespolina at our company, but I liked to project and just
+wanted to help with an Open Source project.</p>
+
+<p>I started with the Vespolina PartnerBundle. A bundle that would be responsible for creating and maintaining parterns in the application. A partner could be a lot more than a customer. It could also be a supplier, a company or a shop employee. The idea is, that the PartnerBundle could even be used in a CRM application.</p>
+
+<p>We now are a few months further, and Vespolina is going steady. Unfortunately, I have little time to spare, so I can’t work on Vespolina as much as I like. At the company we haven’t made a decision about the platform, so I can’t spend time on Vespolina there.</p>
+
+<p>I hope to create some time in the coming weeks. Really need to get going on the forms.</p>
+]]></description>
+            <pubDate>2012-06-02T00:00:00+02:00</pubDate>
+            <guid>http://blog.willem-jan.net/2012/06/02/working-on-opensource</guid>
+        </item>
+                <item>
+            <description><![CDATA[<p>This week I started to work with Drupal 7, hadn’t worked with Drupal before, so was excited to explore the possibilities.</p>
+
+<p>One of the goals was to familiarize  myself with Drupal and see if it is suited to create simple websites within a short time.</p>
+
+<p>Somebody else started the project, so there were some blocks already created and a big piece of the theme was already build. I started with the thing I thought was most challenging, never expecting that to be pretty difficult.</p>
+
+<p>The goal was about 2 entities, Services and Cases. Each Case having one service, and every Service having multiple Cases. I tried to create a page with 2 blocks, the first just plain text, the second a listing of Services. The challenge was to display the Cases for each Service in that same listing. Pretty soon I found that I required the module Views for that.</p>
+
+<p>At first I tried with a module References, I created the 2 Entities, and added the Field Service to the Cases entity as a Node Reference</p>
+
+<p>I did manage to join the two entities with a Relationship and grouping, but that didn’t got me very far. For every Case it would also repeat the Service description. After a lot of time in the Drupal IRC channel, I found that the problem was in the fact that I required more then 1 field from the Service Entity to be shown.</p>
+
+<p>After a lot of help in the IRC channel, I found the following solution:</p>
+
+<p>Just create 2 Views, one simple view with the Nodes of type Service. And a View with Nodes of type Cases, in that View I used a Contextual Filter for</p>
+
+<p>In the template for the Description Field (in my case, can be any Field template), I called the function <code>views_embed_view</code>, that function does as the name says, it embeds another view. The first parameter is the machine_name of the view, the second paramater is the machine_name of the display in the view (You can find that under Advanced -> Other).</p>
+
+<p>The third paramater Ihas some magic to it, because it accepts mixed data, but for me the following worked: <code>array(‘nid’ =&gt; $row-&gt;nid)</code>.</p>
+
+<p>So the solution was to embed an View in a View, although there are modules that should do this, I haven’t found another way then modifying the template and using code.</p>
+
+<p>I could write some sort of tutorial, a step by step explanation, just ask. For now this summary will do:</p>
+
+<p>Used modules:</p>
+
+<ul>
+<li><a href="http://drupal.org/project/views">Views</a></li>
+<li><a href="http://drupal.org/project/references">References</a></li>
+</ul>
+
+<p>Created 2 Views, use <code>views_embed_view</code> to embed the second view into the first one.</p>
+
+<p>Also I have to say, the help I got on IRC was amazing, I probably was as unclear as a newbie can be, but they kept on asking question until they knew what I required.
+Thanks RumpledElf and damiankloip (and some others that made a suggestion)!</p>
+
+<p>Join <a href="irc://irc.freenode.org/drupal">#drupal</a> on <a href="http://www.freenode.org">freenode.org</a></p>
+]]></description>
+            <pubDate>2011-06-11T00:00:00+02:00</pubDate>
+            <guid>http://blog.willem-jan.net/2011/06/11/drupal-combined-views</guid>
+        </item>
+            </channel>
+</rss>

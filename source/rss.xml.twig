@@ -1,0 +1,23 @@
+---
+permalink: rss.xml
+generator:
+- pagination
+use:
+- posts
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss>
+    <channel>
+        <title>{{ site.title }}</title>
+        <link>{{ site.url }}</link>
+        <description>On this blog I try to regularly talk about my experiences with development.</description>
+        <language>en</language>
+        {% for post in page.pagination.items %}
+        <item>
+            <description><![CDATA[{{ post.blocks.content|raw }}]]></description>
+            <pubDate>{{ post.date|date('c') }}</pubDate>
+            <guid>{{ site.url }}{{ post.url }}</guid>
+        </item>
+        {% endfor %}
+    </channel>
+</rss>
