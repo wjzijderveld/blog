@@ -104,6 +104,10 @@ a {
     }
 }
 
+ins {
+    border: 0;
+}
+
 ::selection {
     background-color: #A0A0A0;
     color: #FFF;
@@ -137,13 +141,18 @@ footer {
     font-size: 0.75em;
 }
 
+.padded {
+    padding: 24px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
 .block {
     display: block;
     @extend .cf;
     background: rgba(255, 255, 255, 0.85);
-    &.padded {
-        padding: 24px;
-    }
 }
 
 .page {
@@ -154,7 +163,7 @@ footer {
     @extend .block;
     @extend .padded;
     overflow: hidden;
-    margin-left: 320px;
+    margin-left: 340px;
     margin-bottom: 24px;
 
     &.long {
@@ -164,7 +173,7 @@ footer {
 
 .sidebar {
     float: left;
-    width: 296px;
+    width: 316px;
     margin-right: 24px;
 }
 
@@ -199,6 +208,13 @@ ul.main {
     font-size: 0.75em;
     margin-left: 24px;
     color: $infoColor;
+}
+
+.textads {
+    // margin-top: 24px;
+    .ins {
+        margin: 0 auto;
+    }
 }
 
 article {
