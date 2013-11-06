@@ -6,6 +6,7 @@
         <description>On this blog I try to regularly talk about my experiences with development.</description>
         <language>en</language>
                 <item>
+            <title>Symfony CMF</title>
             <description><![CDATA[<p>Today I got into a discussion about <a href="http://cmf.symfony.com">Symfony CMF</a>. The discussion started with the question, if Symfony CMF isn't trying
 to create a solution for a problem that doesn't exists. That person thought CMF only solved a developers problem, but
 couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
@@ -38,8 +39,10 @@ content management to your Symfony2 application.</p>
 ]]></description>
             <pubDate>2013-11-05T00:00:00+01:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/11/05/symfony-cmf</guid>
+            <link>http://blog.willem-jan.net/2013/11/05/symfony-cmf</link>
         </item>
                 <item>
+            <title>So little time</title>
             <description><![CDATA[<p>As I mentioned 2 months ago, I believe it's important to keep developing yourself. You can't just sit there and
 repeat the same trick every time. I also told that I wanted to do that by trying to find a new job, and by attending
 more conferences and user groups.</p>
@@ -66,8 +69,10 @@ that I should just wait, and be grateful I have a job.</p>
 ]]></description>
             <pubDate>2013-10-04T00:00:00+02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/10/04/so-little-time</guid>
+            <link>http://blog.willem-jan.net/2013/10/04/so-little-time</link>
         </item>
                 <item>
+            <title>My first uncon talk</title>
             <description><![CDATA[<p>About 2 months ago, when <a href="http://010php.nl">010php</a> started, I started playing with the idea of giving talks myself. At first
 I was pretty anxious to actually execute that plan. I talked with some people that I had the idea and they all encouraged
 me to do it. So I started writing down some ideas I already had. But until last week, I didn't actually had a talk planned
@@ -106,8 +111,10 @@ next year.</p>
 ]]></description>
             <pubDate>2013-09-15T00:00:00+02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk</guid>
+            <link>http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk</link>
         </item>
                 <item>
+            <title>Vespolina hackweekend</title>
             <description><![CDATA[<p>As I mentioned in <a href="/2012/06/02/working-on-opensource/">Working on an OpenSource project</a>,
 I'm somewhat involved with <a href="http://www.vespolina.org">Vespolina</a>.
 Last weekend we had our first hackweekend, <a href="https://github.com/inspiran">Daniel</a>
@@ -145,8 +152,10 @@ to learn Vespolina better and hopefully lead to better documentation and tests.<
 ]]></description>
             <pubDate>2013-08-16T00:00:00+02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend</guid>
+            <link>http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend</link>
         </item>
                 <item>
+            <title>Keep improving</title>
             <description><![CDATA[<p>About six months ago, I came to the conclusion that I needed to start thinking
 about my future. The company I currently work at isn't growing as fast as
 I am, so I started looking around to see how I could keep improving myself
@@ -173,8 +182,10 @@ be awesome!</p>
 ]]></description>
             <pubDate>2013-08-02T00:00:00+02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/08/02/keep-improving</guid>
+            <link>http://blog.willem-jan.net/2013/08/02/keep-improving</link>
         </item>
                 <item>
+            <title>A new blog</title>
             <description><![CDATA[<p>Okay, so I started a new blog again.
 This time I have the plan to force myself to write a post at least every 2 weeks,
 but when possible every week. It's going to be hard, especially in the beginning.
@@ -221,8 +232,10 @@ Sculpin supports Markdown Extra, so I can do the following:</p>
 ]]></description>
             <pubDate>2013-07-26T00:00:00+02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/07/26/new-blog</guid>
+            <link>http://blog.willem-jan.net/2013/07/26/new-blog</link>
         </item>
                 <item>
+            <title>Created a little bundle check library</title>
             <description><![CDATA[<p>A few days back, I saw <a href="https://twitter.com/lsmith/status/283840720228470784">this tweet</a> of Lukas Smith.</p>
 
 <blockquote>
@@ -241,8 +254,10 @@ Packagist: <a href="https://packagist.org/packages/wjzijderveld/check-bundles">h
 ]]></description>
             <pubDate>2013-02-26T00:00:00+01:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/02/26/created-a-little-bundle-check-library</guid>
+            <link>http://blog.willem-jan.net/2013/02/26/created-a-little-bundle-check-library</link>
         </item>
                 <item>
+            <title>Working on an OpenSource project</title>
             <description><![CDATA[<p>At the company I work at, we have a custom e-commerce
 platform that’s in a need of replacement. The codebase is more then 6 years
 old and by now, there are more exceptions that rules. The lack of actual MVC
@@ -276,8 +291,10 @@ wanted to help with an Open Source project.</p>
 ]]></description>
             <pubDate>2012-06-02T00:00:00+02:00</pubDate>
             <guid>http://blog.willem-jan.net/2012/06/02/working-on-opensource</guid>
+            <link>http://blog.willem-jan.net/2012/06/02/working-on-opensource</link>
         </item>
                 <item>
+            <title>Drupal and combined views</title>
             <description><![CDATA[<p>This week I started to work with Drupal 7, hadn’t worked with Drupal before, so was excited to explore the possibilities.</p>
 
 <p>One of the goals was to familiarize  myself with Drupal and see if it is suited to create simple websites within a short time.</p>
@@ -318,6 +335,7 @@ Thanks RumpledElf and damiankloip (and some others that made a suggestion)!</p>
 ]]></description>
             <pubDate>2011-06-11T00:00:00+02:00</pubDate>
             <guid>http://blog.willem-jan.net/2011/06/11/drupal-combined-views</guid>
+            <link>http://blog.willem-jan.net/2011/06/11/drupal-combined-views</link>
         </item>
             </channel>
 </rss>

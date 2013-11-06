@@ -2,6 +2,8 @@
 permalink: rss.xml
 generator:
 - pagination
+pagination:
+  max_per_page: 20
 use:
 - posts
 ---
@@ -14,9 +16,11 @@ use:
         <language>en</language>
         {% for post in page.pagination.items %}
         <item>
+            <title>{{ post.title }}</title>
             <description><![CDATA[{{ post.blocks.content|raw }}]]></description>
             <pubDate>{{ post.date|date('c') }}</pubDate>
             <guid>{{ site.url }}{{ post.url }}</guid>
+            <link>{{ site.url }}{{ post.url }}</link>
         </item>
         {% endfor %}
     </channel>
