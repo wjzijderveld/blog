@@ -3642,18 +3642,22 @@ ul.main li:first-child {
   color: gray;
 }
 
-/* line 215, ../../sass/style.scss */
+/* line 213, ../../sass/style.scss */
+.textads {
+  padding: 0 8px;
+}
+/* line 216, ../../sass/style.scss */
 .textads .ins {
   margin: 0 auto;
 }
 
-/* line 221, ../../sass/style.scss */
+/* line 222, ../../sass/style.scss */
 article .date {
   float: right;
   font-size: 1em;
 }
 
-/* line 228, ../../sass/style.scss */
+/* line 229, ../../sass/style.scss */
 .archive .date {
   display: block;
   float: left;
@@ -3662,7 +3666,7 @@ article .date {
   width: 175px;
   line-height: 1.5em;
 }
-/* line 236, ../../sass/style.scss */
+/* line 237, ../../sass/style.scss */
 .archive article > a {
   float: left;
   line-height: 1em;
