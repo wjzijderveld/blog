@@ -55,10 +55,10 @@
                 <article class="content long">
         <span class="date">2013-11-16</span>
         <h1>Setup Jackalope with MySQL</h1>
-        <p>This post is the first in a serie about PHPCR with Jackalope. If you want to now more about PHPCR, I recommend watching
+        <p>This post is the first in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 <a href="http://phpcr.github.io/slides.html">the slides about PHPCR</a>.</p>
 
-<p>In this post I will walk through the first steps, setting up you Content Repository using Jackalope. In this case we
+<p>In this post I will walk through the first steps, setting up your Content Repository using Jackalope. In this case we
 will use MySQL as storage, but in a future post, we will migrate our data to a Jackrabbit server.</p>
 
 <h3>Install Jackalope</h3>
@@ -79,7 +79,7 @@ easily later on. For this I installed symfony/yaml to parse the Yaml file.</p>
 <pre><code class="language-bash">$ composer require symfony/yaml ~2.3
 </code></pre>
 
-<p>The next step, is to create your database, and configure Jackalope with the correct transport layer.</p>
+<p>The next step is to create your database and configure Jackalope with the correct transport layer.</p>
 
 <h3>Configure jackalope</h3>
 
@@ -117,7 +117,7 @@ switch ($config['jackalope']['transport']) {
 }
 </code></pre>
 
-<p>After that, we need to actual login to the repository, to be able to read and write data.</p>
+<p>After that we need to actual login to the repository to be able to read and write data.</p>
 
 <pre><code class="language-php">$credentials = new \PHPCR\SimpleCredentials($config['phpcr']['username'], $config['phpcr']['password']);
 $session = $repository-&gt;login($credentials, $config['phpcr']['workspace']);
@@ -127,7 +127,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 ));
 </code></pre>
 
-<p>No we have the config file, we can init the database.</p>
+<p>Now we have the config file we can init the database.</p>
 
 <pre><code class="language-bash">$ ./vendor/bin/jackalope jackalope:init:dbal
 </code></pre>

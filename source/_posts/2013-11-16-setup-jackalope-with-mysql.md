@@ -2,10 +2,10 @@
 title: Setup Jackalope with MySQL
 tags: [phpcr,jackalope,mysql]
 ---
-This post is the first in a serie about PHPCR with Jackalope. If you want to now more about PHPCR, I recommend watching
+This post is the first in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 [the slides about PHPCR].
 
-In this post I will walk through the first steps, setting up you Content Repository using Jackalope. In this case we
+In this post I will walk through the first steps, setting up your Content Repository using Jackalope. In this case we
 will use MySQL as storage, but in a future post, we will migrate our data to a Jackrabbit server.
 
 ### Install Jackalope
@@ -28,7 +28,7 @@ easily later on. For this I installed symfony/yaml to parse the Yaml file.
 $ composer require symfony/yaml ~2.3
 ~~~
 
-The next step, is to create your database, and configure Jackalope with the correct transport layer.
+The next step is to create your database and configure Jackalope with the correct transport layer.
 
 ### Configure jackalope
 
@@ -67,7 +67,7 @@ switch ($config['jackalope']['transport']) {
 }
 ~~~
 
-After that, we need to actual login to the repository, to be able to read and write data.
+After that we need to actual login to the repository to be able to read and write data.
 
 ~~~language-php
 $credentials = new \PHPCR\SimpleCredentials($config['phpcr']['username'], $config['phpcr']['password']);
@@ -78,7 +78,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 ));
 ~~~
 
-No we have the config file, we can init the database.
+Now we have the config file we can init the database.
 
 ~~~language-bash
 $ ./vendor/bin/jackalope jackalope:init:dbal
