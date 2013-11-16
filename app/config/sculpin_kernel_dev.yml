@@ -1,5 +1,5 @@
 imports:
-  - sculpin_kernel_prod.yml
+  - { resource: sculpin_kernel_prod.yml }
 
 sculpin:
   output_dir: output_dev

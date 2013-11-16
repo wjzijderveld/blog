@@ -59,6 +59,98 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">Setup Jackalope with MySQL</a><span class="date">2013-11-16</span></h3>
+        <p>This post is the first in a serie about PHPCR with Jackalope. If you want to now more about PHPCR, I recommend watching
+<a href="http://phpcr.github.io/slides.html">the slides about PHPCR</a>.</p>
+
+<p>In this post I will walk through the first steps, setting up you Content Repository using Jackalope. In this case we
+will use MySQL as storage, but in a future post, we will migrate our data to a Jackrabbit server.</p>
+
+<h3>Install Jackalope</h3>
+
+<p>First we will install Jackalope DoctrineDBAL. In this serie I will use <a href="http://getcomposer.org">composer</a>, and in the examples I assume it's
+installed system wide, so the <code>composer</code> command is available.</p>
+
+<pre><code class="language-bash">$ mkdir phpcr-tutorial &amp;&amp; cd phpcr-tutorial
+$ composer require jackalope/jackalope-doctrine-dbal ~1.0
+</code></pre>
+
+<p>This will also install the base Jackalope package, the PHPCR and PHPCR-Utils packages and Doctrine DBAL (and their
+dependencies).</p>
+
+<p>To already be a bit prepared for switch storage backend later on, I setup a basic configuration that allows us to switch
+easily later on. For this I installed symfony/yaml to parse the Yaml file.</p>
+
+<pre><code class="language-bash">$ composer require symfony/yaml ~2.3
+</code></pre>
+
+<p>The next step, is to create your database, and configure Jackalope with the correct transport layer.</p>
+
+<h3>Configure jackalope</h3>
+
+<p>Jackalope provides a file that gives us some powerfull CLI commands. For this to work, we need to tell Jackalope what
+repository connection we are using. Jackalope requires a cli-config.php file for that in the root of your project.
+In that file, we need to define the connection, but we can also add a HelperSet to the CLI. The HelperSet will contain
+the PHPCR session, so Jacklope CLI has something to talk to.</p>
+
+<p>Luckily Jackalope provides an <a href="https://github.com/jackalope/jackalope-doctrine-dbal/blob/master/cli-config.php.dist">example file</a>, so we see how the connection is created. (For Jackrabbit, there is a
+similar <a href="https://github.com/jackalope/jackalope-jackrabbit/blob/master/cli-config.php.dist">example file</a>)</p>
+
+<p>For this example, I created a bit of a revised version, to be prepared for the switch later. But you can choose to just
+use the example provided by Jackalope Doctrine DBAL if you like. The full file I created can be found at <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part1-setup/cli-config.php">github</a>.
+Below you will find the instantiation of the repository. Based on the config file, it's
+decided which Jackalope Repository is created. In this part we only implemented the Doctrine DBAL version.</p>
+
+<pre><code class="language-php">use \Doctrine\DBAL\DriverManager;
+switch ($config['jackalope']['transport']) {
+    case 'jackalope-doctrine-dbal':
+        $dbConnection = DriverManager::getConnection(array(
+            /* database connection variables $config['jackalope']['dbal'] */
+        ));
+
+        $factory = new \Jackalope\RepositoryFactoryDoctrineDBAL();
+        $repository = $factory-&gt;getRepository(array(
+            'jackalope.doctrine_dbal_connection' =&gt; $dbConnection
+        ));
+
+        break;
+    case 'jackalope-jackrabbit':
+        throw new \Exception('Jackrabbit bootstrap has not yet been defined');
+        break;
+    default:
+        throw new \RuntimeException(sprintf('Invalid transport "%s" given', $config['jackalope']['transport']));
+}
+</code></pre>
+
+<p>After that, we need to actual login to the repository, to be able to read and write data.</p>
+
+<pre><code class="language-php">$credentials = new \PHPCR\SimpleCredentials($config['phpcr']['username'], $config['phpcr']['password']);
+$session = $repository-&gt;login($credentials, $config['phpcr']['workspace']);
+
+$helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
+    'session' =&gt; new \PHPCR\Util\Console\Helper\PhpcrHelper($session)
+));
+</code></pre>
+
+<p>No we have the config file, we can init the database.</p>
+
+<pre><code class="language-bash">$ ./vendor/bin/jackalope jackalope:init:dbal
+</code></pre>
+
+<p>Jackalope will tell you it has initialized the database tables.</p>
+
+<h3>Testing your repository</h3>
+
+<p>You should now have a working repository. We can test this by executing our first query, which should return the rootNode</p>
+
+<pre><code class="language-bash">$ ./vendor/bin/jackalope phpcr:workspace:query "SELECT * FROM [nt:unstructured]"
+</code></pre>
+
+<p>With this query, you request all notes with type <code>nt:unstructed</code>, which in this case, is only the rootNode.
+Now we're done with the first part. In the next part, we will start with reading and writing to the repository via
+Jackalope.</p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2013/11/05/symfony-cmf">Symfony CMF</a><span class="date">2013-11-05</span></h3>
         <p>Today I got into a discussion about <a href="http://cmf.symfony.com">Symfony CMF</a>. The discussion started with the question, if Symfony CMF isn't trying
 to create a solution for a problem that doesn't exists. That person thought CMF only solved a developers problem, but
@@ -190,32 +282,6 @@ bugfixes. But the documentation still needs lots of work.</p>
 <p>In the coming weeks, I hope to continue working on writing documentation
 and focus on writing more tests. The combination is probably a good way
 to learn Vespolina better and hopefully lead to better documentation and tests.</p>
-
-        <hr class="rule rule--ornament" />
-            <h3><a href="http://blog.willem-jan.net/2013/08/02/keep-improving">Keep improving</a><span class="date">2013-08-02</span></h3>
-        <p>About six months ago, I came to the conclusion that I needed to start thinking
-about my future. The company I currently work at isn't growing as fast as
-I am, so I started looking around to see how I could keep improving myself
-and if that would be possible within this company. I learned a lot in the
-years I work at the company, and always had a good time. So leaving the
-company wasn't something I enjoyed thinking about. But after a while I came
-to the conclusion I need to choose for myself, not for the company.</p>
-
-<p>So I started looking around for the possibilities, trying to find out what
-options I had in the Netherlands (because... that's were I live). Talked
-to some people, tried to attend more conferences and user groups. At the
-same time I started to contribute more to OpenSource. The more people I spoke
-to and the more I saw and heared how other people were working, the more I
-had the feeling I should be doing something else, there was so much I wanted
-to do but wasn't able to at this moment.</p>
-
-<p></p>
-
-<p>I'm hoping to find a job were I can work with Symfony, were I can use TDD
-and other QA techniques and tools. A job were I can put my hearth and soul
-in exploring the possibilities of new techniques and implementing those
-techniques. And if that includes working on and with OpenSource, that would
-be awesome!</p>
 
         <hr class="rule rule--ornament" />
             <div>
