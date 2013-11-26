@@ -6,6 +6,7 @@
     <title>blog.willem-jan.net - Just some rambling about (web)development</title>
     <link rel="stylesheet" href="/css/style.css"/>
     <script type="text/javascript" src="/js/prism.js"></script>
+    <script type="text/javascript" src="/js/prism.hooks.js"></script>
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -59,6 +60,43 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend">Vespolina hackweekend</a><span class="date">2013-08-16</span></h3>
+        <p>As I mentioned in <a href="/2012/06/02/working-on-opensource/">Working on an OpenSource project</a>,
+I'm somewhat involved with <a href="http://www.vespolina.org">Vespolina</a>.
+Last weekend we had our first hackweekend, <a href="https://github.com/inspiran">Daniel</a>
+and I sat together, and <a href="https://github.com/iampersistent">Richard</a> and
+<a href="https://github.com/cordoval">Luis</a> joined us remote. On friday evening
+we had a conference call where <a href="https://github.com/hacfi">Philipp</a> also
+joined us. In that conference call we talked a bit about what we wanted
+to do that weekend.</p>
+
+<p>The biggest change that we did that weekend, was merging some of the libraries
+together in 1 lirbary. This to make it easier for people to start working
+with Vespolina, and the make development easier, because maintaining around
+40 repositories isn't trivial. Eventually the following libraries got merged
+into <a href="https://github.com/vespolina/commerce">a single library</a>.</p>
+
+<ul>
+<li>Billing</li>
+<li>Invoice</li>
+<li>Order</li>
+<li>Partner</li>
+<li>Pricing</li>
+<li>Product</li>
+</ul>
+
+<p>So essentially everything that was already done with the CommerceBundle,
+but now for the libraries.</p>
+
+<p>And I continued working on the new website and a bit on the documentation. The
+website is almost finished, just needs some more content and probably some minor
+bugfixes. But the documentation still needs lots of work.</p>
+
+<p>In the coming weeks, I hope to continue working on writing documentation
+and focus on writing more tests. The combination is probably a good way
+to learn Vespolina better and hopefully lead to better documentation and tests.</p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2013/08/02/keep-improving">Keep improving</a><span class="date">2013-08-02</span></h3>
         <p>About six months ago, I came to the conclusion that I needed to start thinking
 about my future. The company I currently work at isn't growing as fast as
@@ -182,49 +220,10 @@ wanted to help with an Open Source project.</p>
 <p>I hope to create some time in the coming weeks. Really need to get going on the forms.</p>
 
         <hr class="rule rule--ornament" />
-            <h3><a href="http://blog.willem-jan.net/2011/06/11/drupal-combined-views">Drupal and combined views</a><span class="date">2011-06-11</span></h3>
-        <p>This week I started to work with Drupal 7, hadn’t worked with Drupal before, so was excited to explore the possibilities.</p>
-
-<p>One of the goals was to familiarize  myself with Drupal and see if it is suited to create simple websites within a short time.</p>
-
-<p>Somebody else started the project, so there were some blocks already created and a big piece of the theme was already build. I started with the thing I thought was most challenging, never expecting that to be pretty difficult.</p>
-
-<p>The goal was about 2 entities, Services and Cases. Each Case having one service, and every Service having multiple Cases. I tried to create a page with 2 blocks, the first just plain text, the second a listing of Services. The challenge was to display the Cases for each Service in that same listing. Pretty soon I found that I required the module Views for that.</p>
-
-<p>At first I tried with a module References, I created the 2 Entities, and added the Field Service to the Cases entity as a Node Reference</p>
-
-<p>I did manage to join the two entities with a Relationship and grouping, but that didn’t got me very far. For every Case it would also repeat the Service description. After a lot of time in the Drupal IRC channel, I found that the problem was in the fact that I required more then 1 field from the Service Entity to be shown.</p>
-
-<p>After a lot of help in the IRC channel, I found the following solution:</p>
-
-<p>Just create 2 Views, one simple view with the Nodes of type Service. And a View with Nodes of type Cases, in that View I used a Contextual Filter for</p>
-
-<p>In the template for the Description Field (in my case, can be any Field template), I called the function <code>views_embed_view</code>, that function does as the name says, it embeds another view. The first parameter is the machine_name of the view, the second paramater is the machine_name of the display in the view (You can find that under Advanced -> Other).</p>
-
-<p>The third paramater Ihas some magic to it, because it accepts mixed data, but for me the following worked: <code>array(‘nid’ =&gt; $row-&gt;nid)</code>.</p>
-
-<p>So the solution was to embed an View in a View, although there are modules that should do this, I haven’t found another way then modifying the template and using code.</p>
-
-<p>I could write some sort of tutorial, a step by step explanation, just ask. For now this summary will do:</p>
-
-<p>Used modules:</p>
-
-<ul>
-<li><a href="http://drupal.org/project/views">Views</a></li>
-<li><a href="http://drupal.org/project/references">References</a></li>
-</ul>
-
-<p>Created 2 Views, use <code>views_embed_view</code> to embed the second view into the first one.</p>
-
-<p>Also I have to say, the help I got on IRC was amazing, I probably was as unclear as a newbie can be, but they kept on asking question until they knew what I required.
-Thanks RumpledElf and damiankloip (and some others that made a suggestion)!</p>
-
-<p>Join <a href="irc://irc.freenode.org/drupal">#drupal</a> on <a href="http://www.freenode.org">freenode.org</a></p>
-
-        <hr class="rule rule--ornament" />
             <div>
                     <a href="http://blog.willem-jan.net/" class="previous">Previous page</a>
-                    </div>
+                            <a href="http://blog.willem-jan.net/page/3" class="next">Next page</a>
+            </div>
     </div>            
         </div>
 
