@@ -18,9 +18,6 @@ Prism.hooks.add('after-highlight', function (env) {
         lineNumbersWrapper.className = 'line-numbers-rows';
         lineNumbersWrapper.innerHTML = lines;
 
-        console.log(env.element);
-        console.log(lineNumbersWrapper);
-
         env.element.appendChild(lineNumbersWrapper);
     }
 });
