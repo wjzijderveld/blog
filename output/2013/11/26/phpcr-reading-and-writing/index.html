@@ -5,8 +5,6 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
     <title>PHPCR: Reading and writing - blog.willem-jan.net - Just some rambling about (web)development</title>
     <link rel="stylesheet" href="/css/style.css"/>
-    <script type="text/javascript" src="/js/prism.js"></script>
-    <script type="text/javascript" src="/js/prism.hooks.js"></script>
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -54,7 +52,7 @@
             </div>
 
                 <article class="content long">
-        <span class="date">2013-11-26</span>
+        <span class="date">2013-11-27</span>
         <h1>PHPCR: Reading and writing</h1>
         <p>This post is the second in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 <a href="http://phpcr.github.io/slides.html">the slides about PHPCR</a>.</p>
@@ -125,25 +123,46 @@ Because every Node implements <code>Traversable</code>, we can simply loop over 
 }
 </code></pre>
 
-<p>All pretty straight forward.</p>
+<p>All pretty straight forward. To retrieve propertyValues, there are a few alternatives. You can, for example, use some of
+other property methods, to convert the property value to another type.</p>
 
-<p>You can also retrieve a node by it's path:</p>
+<pre><code class="language-php">$dummyNode-&gt;setProperty('floatProperty', 3.1415);
+$property = $dummyNode-&gt;getProperty('floatProperty');
+var_dump($property-&gt;getString()); // string(6) "3.1415"
+var_dump($property-&gt;getLong()); // int(3)
+var_dump($property-&gt;getBoolean()); // bool(true)
+var_dump($property-&gt;getBinary()); // resource(#) of type (stream)
+</code></pre>
+
+<p>Besides that, you can use <code>$node-&gt;getPropertyValue('propertyName')</code>. By passing the second argument, you can convert the
+value to the desired type.</p>
+
+<pre><code class="language-php">$dummyNode-&gt;getPropertyValue('floatProperty', \PHPCR\PropertyType::STRING); // string(6) "3.1415"
+</code></pre>
+
+<h3>Finding nodes</h3>
+
+<p>You can also retrieve a node by it's path or multiple nodes by an array with paths</p>
 
 <pre><code class="language-php">$dummyNode = $session-&gt;getNode('/dummy');
+$nodes = $session-&gt;getNodes(array('/', '/dummy'));
 </code></pre>
 
-<p>Or multiple by path:</p>
-
-<pre><code class="language-php">$nodes = $session-&gt;getNodes(array('/', '/dummy'));
-foreach ($nodes as $node) {
-    // As above
-}
-</code></pre>
-
-<p>But you can also retrieve a childNode by it's name:</p>
+<p>Or retrieve a childNode by it's name:</p>
 
 <pre><code class="language-php">$dummyNode = $rootNode-&gt;getNode('dummy');
+// Note that we call this on $rootNode, not on $session
 </code></pre>
+
+<p>You can even find nodes by searching with wildcards:</p>
+
+<pre><code class="language-php">$rootNode-&gt;getNodes('c*');
+</code></pre>
+
+<p>There is a lot more to learn about nodes and properties. In the following chapters some of those features will be
+explained. If you want to learn more about the possibilities, you might want to look at the <a href="https://github.com/phpcr/phpcr-api-tests">PHPCR api tests</a>.</p>
+
+<p>In the next post, we will play with Queries and the QueryObjectModel.</p>
 
     </article>
 
@@ -172,5 +191,7 @@ foreach ($nodes as $node) {
             &copy; 2013 Willem-Jan Zijderveld - all rights reserved
         </footer>
     </div>
+    <script type="text/javascript" src="/js/prism.js"></script>
+    <script type="text/javascript" src="/js/prism.hooks.js"></script>
 </body>
 </html>

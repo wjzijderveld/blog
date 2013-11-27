@@ -1,8 +1,7 @@
 ---
 title: PHPCR: Reading and writing
 tags: [phpcr,jackalope,mysql,reading,writing]
-draft: true
-date: 2013-11-27 22:30
+date: 2013-11-27 23:30
 ---
 This post is the second in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 [the slides about PHPCR].
@@ -77,39 +76,53 @@ foreach ($rootNode as $childNode) {
 }
 ~~~
 
-All pretty straight forward.
+All pretty straight forward. To retrieve propertyValues, there are a few alternatives. You can, for example, use some of
+other property methods, to convert the property value to another type.
 
-You can also retrieve a node by it's path:
+~~~language-php
+$dummyNode->setProperty('floatProperty', 3.1415);
+$property = $dummyNode->getProperty('floatProperty');
+var_dump($property->getString()); // string(6) "3.1415"
+var_dump($property->getLong()); // int(3)
+var_dump($property->getBoolean()); // bool(true)
+var_dump($property->getBinary()); // resource(#) of type (stream)
+~~~
+
+Besides that, you can use `$node->getPropertyValue('propertyName')`. By passing the second argument, you can convert the
+value to the desired type.
+~~~language-php
+$dummyNode->getPropertyValue('floatProperty', \PHPCR\PropertyType::STRING); // string(6) "3.1415"
+~~~
+
+### Finding nodes
+
+You can also retrieve a node by it's path or multiple nodes by an array with paths
 
 ~~~language-php
 $dummyNode = $session->getNode('/dummy');
-~~~
-
-Or multiple by path:
-
-~~~language-php
 $nodes = $session->getNodes(array('/', '/dummy'));
-foreach ($nodes as $node) {
-    // Do something with the node
-}
 ~~~
 
-But you can also retrieve a childNode by it's name:
+Or retrieve a childNode by it's name:
 ~~~language-php
 $dummyNode = $rootNode->getNode('dummy');
+// Note that we call this on $rootNode, not on $session
 ~~~
 
-### Other types
-
-At this point, we only used string values. But we can store other stuff as well, like integers, floats, booleans,
-binaries and more.
+You can even find nodes by searching with wildcards:
 
 ~~~language-php
-
+$rootNode->getNodes('c*');
 ~~~
+
+There is a lot more to learn about nodes and properties. In the following chapters some of those features will be
+explained. If you want to learn more about the possibilities, you might want to look at the [PHPCR api tests].
+
+In the next post, we will play with Queries and the QueryObjectModel.
 
 [the slides about PHPCR]: http://phpcr.github.io/slides.html
 [previous post]: {{site.url}}/2013/11/16/setup-jackalope-with-mysql
 [Faker]: https://github.com/fzaninotto/Faker
 [on Github]: https://github.com/wjzijderveld/phpcr-blog-serie/tree/part2-querying
 [property guesser]: https://github.com/phpcr/phpcr/blob/master/src/PHPCR/PropertyType.php#L326
+[PHPCR api tests]: https://github.com/phpcr/phpcr-api-tests
