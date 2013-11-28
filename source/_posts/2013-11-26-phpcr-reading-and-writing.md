@@ -14,7 +14,7 @@ content.
 To show the basic usage of PHPCR, we are going to load some data into our repository. For this I used [Faker].
 
 ~~~language-bash
-composer require fzaninotto/faker ~1.2
+$ composer require fzaninotto/faker ~1.2
 ~~~
 
 Because we are going to add more CLI scripts later on, I created a simple Symfony Console Application for this. I called
