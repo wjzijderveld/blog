@@ -6,7 +6,7 @@
     <title>blog.willem-jan.net - Just some rambling about (web)development</title>
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
-    <script type="text/javascript">
+        <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-5505825-8']);
         _gaq.push(['_trackPageview']);
@@ -16,7 +16,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-</head>
+    </head>
 <body>
     <div class="wrapper">
 
@@ -58,6 +58,218 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model">PHPCR: Query Object Model</a><span class="date">2013-12-09</span></h3>
+        <p>This post is the third in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
+<a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository.</p>
+
+<p>In this post, we will continue with the reading part, but this time by using queries. For this, PHPCR has multiple
+possibilities. On of them is the Query Object Model (QOM) with a Factory. At first this can seem a bit verbose, but I
+hope to make clear why that is. Besides the QOM, there is also the possibility to use JCR-SQL2 queries. A Query language
+very similar to SQL, which (in the case of Jackalope DoctrineDBAL) gets converted to the QOM. Jackalope Jackrabbit uses
+SQL2 to communicate with Jackrabbit. There are 2 other query methods (SQL1 and XPath), but I'm not showing those in this
+serie.</p>
+
+<p>For the examples I use in this post, I created <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part3-query-and-querybuilder/src/Wjzijderveld/Resources/data/fixtures.xml">a fixture file</a> to load. This is loaded in the <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part3-query-and-querybuilder/src/Wjzijderveld/Command/QOMCommand.php">new Command</a> I added.</p>
+
+<p>But before we can start with querying, we need to understand what we are querying and how we limit the results. With
+PHPCR you're not querying tables or collections in a way you might be used to with SQL or NoSQL databases. When you
+create a query you specify a <code>selector</code> (or multiple if the repository supports joins). So, when you want to query for
+all files, without knowing where they are in your tree, you simply use the following query.</p>
+
+<pre><code class="language-php">$factory = $session-&gt;getWorkspace()-&gt;getQueryManager()
+                                   -&gt;getQOMFactory();
+$source = $factory-&gt;selector('file', 'nt:file');
+$qom = $factory-&gt;createQuery($source);
+$result = $qom-&gt;execute();
+</code></pre>
+
+<p>Or with JCR-SQL2</p>
+
+<pre><code class="language-php">$result = $session-&gt;getWorkspace()-&gt;getQueryManager()
+                  -&gt;createQuery("SELECT * FROM [nt:file]",
+                                QueryInterface::JCR_SQL2);
+</code></pre>
+
+<p>Already you can see the difference in verbosity of both methods. Because of this, you will probably use JCR-SQL2 when
+building your queries. But in this post I will the QOM Factory for the most examples because (IMHO) that shows a bit
+better what parts make up a query.</p>
+
+<h2>Basic conditions</h2>
+
+<p>In the fixture file, I created some news items which we are going to query. The items have the nodeType <code>nt:unstructured</code>
+so that's the what we are quering for. For the first example we are just retrieving all items, which are placed under
+<code>/queryExamples/news</code>.</p>
+
+<p>We first need to define what selector we are going to use.</p>
+
+<pre><code class="language-php">/** @var QueryObjectModelFactoryInterface $qomFactory */
+$qomFactory = $session-&gt;getWorkspace()-&gt;getQueryManager()-&gt;getQOMFactory();
+$source = $qomFactory-&gt;selector('news', 'nt:unstructured');
+</code></pre>
+
+<p>The first parameter is the name of the selector which you get to choose yourself, you might call it an alias. The second
+is the primary nodeType we are querying for, so in this case <code>nt:unstructured</code>.</p>
+
+<p>Now we can define what columns we want to return in the results. For this example we only select the title.</p>
+
+<pre><code class="language-php">$titleColumn = $qomFactory-&gt;column('news', 'title', 'title');
+</code></pre>
+
+<p>The first parameter is the selector from which we wan't to select something. The second parameter is the property we
+want to select and the third is the name we want to use in the column, like an alias.</p>
+
+<p>Next, we create the query with a condition to limit the nodes by path. This is called the <code>DescendantNodeConstraint</code>.</p>
+
+<pre><code class="language-php">$qom = $qomFactory-&gt;createQuery(
+    $source,
+    $qomFactory-&gt;descendantNode('news', '/queryExamples/news'),
+    array(),
+    array($titleColumn)
+);
+</code></pre>
+
+<p>The first parameters defines the selector to query from, the second is the condition for the query. The next parameter
+defines the order of the results. The last parameter are the columns to select. The first parameter of the constraint
+tells which selector we want to user, the second is under what path we want to select nodes.</p>
+
+<p>Now we are ready to execute the query and loop over he results.</p>
+
+<pre><code class="language-php">$result = $qom-&gt;execute();
+foreach ($result-&gt;getRows() as $newsItem) {
+    echo $newsItem-&gt;getValue('title');
+}
+</code></pre>
+
+<p>Now we have our first results, we are going to limit our newsItem based on author. This is a simple PropertyValue
+constraint. But because we now have 2 constraints, we need to alter our constraint to an <code>AndConstraint</code> and it becomes
+very clear that the QOM Factory can get very verbose.</p>
+
+<pre><code class="language-php line-numbers">$qom = $qomFactory-&gt;createQuery(
+    // SelectorInterface
+    $qomFactory-&gt;selector('news', 'nt:unstructured'),
+    // AndInterface
+    $qomFactory-&gt;andConstraint(
+        // DescendantNodeInterface
+        $qomFactory-&gt;descendantNode('news', '/queryExamples/news'),
+        // ComparisonInterface
+        $qomFactory-&gt;comparison(
+            // PropertyValueInterface
+            $qomFactory-&gt;propertyValue('news', 'jcr:author'),
+            // 'jcr.operator.equal.to'
+            QueryObjectModelConstantsInterface::JCR_OPERATOR_EQUAL_TO,
+            // LiteralInterface
+            $qomFactory-&gt;literal('foo')
+        )
+    ) // No orderings or columns for this example
+);
+echo count($qom-&gt;execute()-&gt;getRows()); // 2
+</code></pre>
+
+<p>This seems like a lot of code for a simple query, so I'll try to explain why that is. You already can see that there
+are different kind of constraints. You don't always compare 2 properties but, as already used, you might need to test
+if the nodes are descendants of a specific node, or if the node is a direct child of a given node. Or maybe you only
+need to query nodes that have a specific property. Now everything is an object, it's way easier to walk the query to be
+able toe execute it.</p>
+
+<h2>More operands</h2>
+
+<p>The next queries have a bit more constraints, and a constraint that you might expected to work differently.
+We are going to query for nodes under <code>/queryExamples/news</code>, where the author is <strong>NOT</strong> <code>bar</code> <strong>AND</strong> where the node
+does <strong>NOT</strong> have a categories property <strong>OR</strong> where the node contains a category <code>foo</code>. Then we order the result based
+on NodeName in descending order.</p>
+
+<pre><code class="language-php line-numbers">$qom = $qomFactory-&gt;createQuery(
+    $source,
+    // First and constraint
+    $qomFactory-&gt;andConstraint(
+        // Descendant constraint
+        $qomFactory-&gt;descendantNode('news', '/queryExamples/news'),
+        // Second and constraint
+        $qomFactory-&gt;andConstraint(
+            // Compare author
+            $qomFactory-&gt;comparison(
+                $qomFactory-&gt;propertyValue('news', 'jcr:author'),
+                QueryObjectModelConstantsInterface::JCR_OPERATOR_NOT_EQUAL_TO,
+                $qomFactory-&gt;literal('bar')
+            ),
+            // Or constraint
+            $qomFactory-&gt;orConstraint(
+                // Check for missing property categories
+                $qomFactory-&gt;notConstraint(
+                    $qomFactory-&gt;propertyExistence('news', 'categories')
+                ),
+                // Or check for category foo
+                $qomFactory-&gt;comparison(
+                    $qomFactory-&gt;propertyValue('news', 'categories'),
+                    QueryObjectModelConstantsInterface::JCR_OPERATOR_EQUAL_TO,
+                    $qomFactory-&gt;literal('foo')
+                )
+            )
+        )
+    ),
+    // Order nodes based on name
+    array($qomFactory-&gt;descending($qomFactory-&gt;nodeName('news')))
+);
+</code></pre>
+
+<p>We now receive 2 rows, <code>item2</code> and <code>item1</code> in that order.</p>
+
+<h4>To keep in mind</h4>
+
+<p>Especially with Doctrine DBAL there are a few limitations with querying. So is comparing dates a bit tricky because the
+properties are stored in XML. A workaround would be to store the date as a numeric format, so it becomes a lot easier to
+compare and order it.</p>
+
+<h2>JCR-SQL2</h2>
+
+<p>Now let's have a quick look at the JCR-SQL2 variant of above query. We can just generate that from the above code with
+<code>$qom-&gt;getStatement();</code></p>
+
+<pre><code class="language-sql">SELECT * FROM [nt:unstructured] AS news
+WHERE (
+    ISDESCENDANTNODE(news, [/queryExamples/news])
+    AND (
+        news.[jcr:author] &lt;&gt; 'bar'
+        AND (
+            NOT news.categories IS NOT NULL
+            OR news.categories = 'foo'
+        )
+    )
+)
+ORDER BY NAME(news) DESC
+</code></pre>
+
+<p>As you can see, is that a lot shorter and probably more more readable then the QOM Factory version. But a JCR-SQL2 can
+get hard to read when you build it dynamicly, so it definitely isn't always the better solution.</p>
+
+<h2>Other constraints</h2>
+
+<p>We already saw quit a few constraints and I named a few others. Here is a quick overview of all the constraints that
+PHPCR defines.</p>
+
+<ul>
+<li>And <em>Combine 2 required constraints</em></li>
+<li>ChildNode <em>Check parent node</em></li>
+<li>Comparison <em>Compare 2 values, can be any operand</em></li>
+<li>DescendantNode <em>Check if path is under specified path</em></li>
+<li>FullTextSearch <em>Full text search</em></li>
+<li>Not <em>Inverse given constraint</em></li>
+<li>Or <em>Combine 2 optional constraints</em></li>
+<li>PropertyExistence <em>Check if the node has a property</em></li>
+<li>SameNode <em>Compare node with another node</em></li>
+</ul>
+
+<p><strong>NOTE</strong>
+Not all constraints are available in the Jackalope DoctrineDBAL transport, so is the SameNodeConstraint not yet
+implemented.</p>
+
+<p>We might see some of these constraints begin used in future posts. But I guess most are pretty obvious in what they do.</p>
+
+<h2>Next post</h2>
+
+<p>In the next post, I'll tell more nodeTypes and mixins. I'll do that by using versionable as an example.</p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">PHPCR: Reading and writing</a><span class="date">2013-11-27</span></h3>
         <p>This post is the second in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 <a href="http://phpcr.github.io/slides.html">the slides about PHPCR</a>.</p>
@@ -318,44 +530,6 @@ So I try to put some time in a JAVA project I started 6 months ago, at least I'm
 
 <p>Any tips how to deal with such a time would be greatly appreciated! Sometimes I have the feeling I'm just not patient enough,
 that I should just wait, and be grateful I have a job.</p>
-
-        <hr class="rule rule--ornament" />
-            <h3><a href="http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk">My first uncon talk</a><span class="date">2013-09-15</span></h3>
-        <p>About 2 months ago, when <a href="http://010php.nl">010php</a> started, I started playing with the idea of giving talks myself. At first
-I was pretty anxious to actually execute that plan. I talked with some people that I had the idea and they all encouraged
-me to do it. So I started writing down some ideas I already had. But until last week, I didn't actually had a talk planned
-anywhere.</p>
-
-<p>But last Tuesday, <a href="http://twitter.com/the_linie">Lineke</a> asked me if I would give a uncon talk at <a href="http://pfcongres.nl">PFcongres 2013</a>,
-I don't think she new I was already playing with the idea, but she was very convincing and I said I would do my best to prepare
-something.</p>
-
-<p>Because of limited time, I started to prepare the evening before the conference, at that point I hadn't even decided what
-subject I would choose for the talk... I decided on PHPCR and luckily the preperation went fairly well and I even rehearsed
-it once!</p>
-
-<p>So yesterday the conference was there, and on my way in the train I even managed to talk myself into a calmer state. Don't
-get me wrong, I was still nervous as hell... just a bit less then before. I spoke to Linke en we planned my talk at 12.10.
-After that I just went to the talks, trying not to think about it to much anymore. At <a href="http://joind.in/talk/view/8955">the talk just before my uncon slot</a>,
-I got a bit nervous when Joshua already mentioned he didn't now if he would be done in time. Should I leave the talk early
-to be on time? Should I just leave with everybody else? Eventually I decided that I would leave 5 minutes before my talk
-started. That gave me some time to visit a restroom (to much coffee...), and still be on time for my talk. This meant I
-walked out while Joshua was still answering some questions (sorry for that), but it made me feel a bit better.</p>
-
-<p>Giving the talk went pretty well, of course I forgot to bring a VGA connector, but I could use Lineke's (thanks!). I pretty
-much gave my talk as intended (only forgot to tell 1 thing), and got some good questions, so apparently people weren't bored
-to death :)
-Just before the end of my talk I noticed myself saying <em>Uhh</em> between pretty much every sentence, so I learned something
-<strong>while</strong> giving the talk!</p>
-
-<p>After the talk Lineke already gave me some feedback (she noticed the <em>Uhh</em>'s as well) and I spoke some people that had
-seen it.
-Another important thing I learned, is that a topic like PHPCR is very hard to explain, and nearly impossible to explain in
-10-15 minutes, so next time I would probably want a 50min slot and I need to rethink how I can explain the subject to people
-that have no clue about it. On a sidenote: you can still comment on my talk, so <strong>please</strong> <a href="https://joind.in/talk/view/9216">leave feedback</a>!</p>
-
-<p>All with all was it a great experience and I'm certain I will do it again. Maybe I'll even submit a actual talk to a conference
-next year.</p>
 
         <hr class="rule rule--ornament" />
             <div>

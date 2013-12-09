@@ -6,7 +6,7 @@
     <title>blog.willem-jan.net - Just some rambling about (web)development</title>
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
-    <script type="text/javascript">
+        <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-5505825-8']);
         _gaq.push(['_trackPageview']);
@@ -16,7 +16,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
-</head>
+    </head>
 <body>
     <div class="wrapper">
 
@@ -58,6 +58,44 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk">My first uncon talk</a><span class="date">2013-09-15</span></h3>
+        <p>About 2 months ago, when <a href="http://010php.nl">010php</a> started, I started playing with the idea of giving talks myself. At first
+I was pretty anxious to actually execute that plan. I talked with some people that I had the idea and they all encouraged
+me to do it. So I started writing down some ideas I already had. But until last week, I didn't actually had a talk planned
+anywhere.</p>
+
+<p>But last Tuesday, <a href="http://twitter.com/the_linie">Lineke</a> asked me if I would give a uncon talk at <a href="http://pfcongres.nl">PFcongres 2013</a>,
+I don't think she new I was already playing with the idea, but she was very convincing and I said I would do my best to prepare
+something.</p>
+
+<p>Because of limited time, I started to prepare the evening before the conference, at that point I hadn't even decided what
+subject I would choose for the talk... I decided on PHPCR and luckily the preperation went fairly well and I even rehearsed
+it once!</p>
+
+<p>So yesterday the conference was there, and on my way in the train I even managed to talk myself into a calmer state. Don't
+get me wrong, I was still nervous as hell... just a bit less then before. I spoke to Linke en we planned my talk at 12.10.
+After that I just went to the talks, trying not to think about it to much anymore. At <a href="http://joind.in/talk/view/8955">the talk just before my uncon slot</a>,
+I got a bit nervous when Joshua already mentioned he didn't now if he would be done in time. Should I leave the talk early
+to be on time? Should I just leave with everybody else? Eventually I decided that I would leave 5 minutes before my talk
+started. That gave me some time to visit a restroom (to much coffee...), and still be on time for my talk. This meant I
+walked out while Joshua was still answering some questions (sorry for that), but it made me feel a bit better.</p>
+
+<p>Giving the talk went pretty well, of course I forgot to bring a VGA connector, but I could use Lineke's (thanks!). I pretty
+much gave my talk as intended (only forgot to tell 1 thing), and got some good questions, so apparently people weren't bored
+to death :)
+Just before the end of my talk I noticed myself saying <em>Uhh</em> between pretty much every sentence, so I learned something
+<strong>while</strong> giving the talk!</p>
+
+<p>After the talk Lineke already gave me some feedback (she noticed the <em>Uhh</em>'s as well) and I spoke some people that had
+seen it.
+Another important thing I learned, is that a topic like PHPCR is very hard to explain, and nearly impossible to explain in
+10-15 minutes, so next time I would probably want a 50min slot and I need to rethink how I can explain the subject to people
+that have no clue about it. On a sidenote: you can still comment on my talk, so <strong>please</strong> <a href="https://joind.in/talk/view/9216">leave feedback</a>!</p>
+
+<p>All with all was it a great experience and I'm certain I will do it again. Maybe I'll even submit a actual talk to a conference
+next year.</p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend">Vespolina hackweekend</a><span class="date">2013-08-16</span></h3>
         <p>As I mentioned in <a href="/2012/06/02/working-on-opensource/">Working on an OpenSource project</a>,
 I'm somewhat involved with <a href="http://www.vespolina.org">Vespolina</a>.
@@ -183,39 +221,6 @@ It was a nice little project, got to know Composer a bit better, got some more e
 
 <p>Github: <a href="https://github.com/wjzijderveld/CheckBundles">https://github.com/wjzijderveld/CheckBundles</a><br />
 Packagist: <a href="https://packagist.org/packages/wjzijderveld/check-bundles">https://packagist.org/packages/wjzijderveld/check-bundles</a></p>
-
-        <hr class="rule rule--ornament" />
-            <h3><a href="http://blog.willem-jan.net/2012/06/02/working-on-opensource">Working on an OpenSource project</a><span class="date">2012-06-02</span></h3>
-        <p>At the company I work at, we have a custom e-commerce
-platform that’s in a need of replacement. The codebase is more then 6 years
-old and by now, there are more exceptions that rules. The lack of actual MVC
-implementation, an ORM or even a DBAL, made maintenance… not very pleasant.</p>
-
-<p>Although we can’t just replace the platform, we did start looking at other
-options to create a stable base for future development. For new features that
-included a large bit of backend, we already created a new Symfony2 application.
-That helped, but didn’t solve the spagetti frontend code. For some new frontend
-features, we created a REST service in the Symfony2 application, and used
-that in the old frontend application.</p>
-
-<p>But to be able to create a new solid base for a new frontend we started looking
-out for options. A completely custom Symfony2 application would simply cost to
-much for the customer, a almost ready package as Magento is also an option, but
-we weren’t really excited by the news of Ebay buying Magento.</p>
-
-<p>We also looked at some Symfony2 Open Source projects, like Sylius and Vespolina.
-Both projects weren’t very far when I started looking. But because Vespolina
-started more as a Framework, I started to follow that project more closely.
-After a few conversations on IRC with inspiran and iampersistent, I decided
-to try and contribute to the project. At that point I had no idea if we ever
-would be able to use Vespolina at our company, but I liked to project and just
-wanted to help with an Open Source project.</p>
-
-<p>I started with the Vespolina PartnerBundle. A bundle that would be responsible for creating and maintaining parterns in the application. A partner could be a lot more than a customer. It could also be a supplier, a company or a shop employee. The idea is, that the PartnerBundle could even be used in a CRM application.</p>
-
-<p>We now are a few months further, and Vespolina is going steady. Unfortunately, I have little time to spare, so I can’t work on Vespolina as much as I like. At the company we haven’t made a decision about the platform, so I can’t spend time on Vespolina there.</p>
-
-<p>I hope to create some time in the coming weeks. Really need to get going on the forms.</p>
 
         <hr class="rule rule--ornament" />
             <div>
