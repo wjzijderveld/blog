@@ -21,8 +21,7 @@ create a query you specify a `selector` (or multiple if the repository supports 
 all files, without knowing where they are in your tree, you simply use the following query.
 
 ~~~language-php
-$factory = $session->getWorkspace()->getQueryManager()
-                                   ->getQOMFactory();
+$factory = $session->getWorkspace()->getQueryManager()->getQOMFactory();
 $source = $factory->selector('file', 'nt:file');
 $qom = $factory->createQuery($source);
 $result = $qom->execute();
@@ -39,6 +38,18 @@ $result = $session->getWorkspace()->getQueryManager()
 Already you can see the difference in verbosity of both methods. Because of this, you will probably use JCR-SQL2 when
 building your queries. But in this post I will the QOM Factory for the most examples because (IMHO) that shows a bit
 better what parts make up a query.
+
+**Update:** Instead of working with the QOMFactory directly, you can also work with the more fluent QueryBuilder that's
+provided by PHPCR Utils.
+
+~~~language-php
+$qomFactory = $session->getWorkspace()->getQueryManager()->getQOMFactory();
+$queryBuilder = new \PHPCR\Util\QOM\QueryBuilder($qomFactory);
+$queryBuilder
+    ->from($qomFactory->selector('file', 'nt:file'))
+    ->where($qomFactory->descendantNode('file', '/documents'))
+    ->execute();
+~~~
 
 ## Basic conditions
 
