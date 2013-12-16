@@ -6,6 +6,105 @@
         <description>On this blog I try to regularly talk about my experiences with development.</description>
         <language>en</language>
                 <item>
+            <title>NodeTypes and Mixins, with a versioning example</title>
+            <description><![CDATA[<p>This post is the fourth in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
+<a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository. In the <a href="http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model">previous post</a> we played with the
+QOM and wrote our first queries.</p>
+
+<p>In this post, we will be digging a bit deeper into PHPCR. We'll see how NodeTypes work and how you can combine some
+properties with the use of Mixins.</p>
+
+<h2>Introduction to NodeTypes</h2>
+
+<p>What are NodeTypes? The JCR specification defines it like this:</p>
+
+<blockquote>
+  <p>Node types are used to enforce structural restrictions on the nodes and properties in a workspace by defining for
+  each node, its required and permitted child nodes and properties.</p>
+</blockquote>
+
+<p>A repository can determine what NodeTypes are supported. In this case we will look at the types that Jackalope defines.
+For that, we use the Command provided by PHPCR-Utils. I added that to the console used by the</p>
+
+<pre><code class="language-bash">$ ./console phpcr:node-type:list
+</code></pre>
+
+<p>This will give you a list of the NodeTypes defined by Jackalope. If you would have defined custom NodeTypes, then those
+would show here as well. As you already can see in that list almost all of them have one or more SuperTypes. That means
+you can extend NodeTypes with one or more other NodeTypes.</p>
+
+<p>But this list doesn't show everything we want to see, so I created a <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part4-nodetypes-and-mixins/src/Wjzijderveld/Command/InfoCommand.php">new info Command</a> in the example that also shows
+PropertyDefinitions and ChildNodeDefinitions. That way we can get a better understanding what NodeTypes actually define.</p>
+
+<pre><code class="language-bash">$ ./console tutorial:info
+</code></pre>
+
+<p>In this case, we are going to look at the NodeType <code>nt:nodeType</code> the nodeType that is used to define custom NodeTypes.</p>
+
+<pre><code class="language-css">nt:nodeType
+  Supertypes:
+    &gt; nt:base
+  PropertyDefinitions:
+    &gt; jcr:hasOrderableChildNodes (Boolean: Required)
+    &gt; jcr:isQueryable (Boolean: Required)
+    &gt; jcr:isMixin (Boolean: Required)
+    &gt; jcr:nodeTypeName (Name: Required)
+    &gt; jcr:isAbstract (Boolean: Required)
+    &gt; jcr:primaryItemName (Name: Optional)
+    &gt; jcr:supertypes (Name: Optional)
+    &gt; jcr:mixinTypes (Name: Optional)
+    &gt; jcr:primaryType (Name: Required)
+  ChildNodeDefinitions:
+    &gt; jcr:childNodeDefinition (Optional)
+    &gt; jcr:propertyDefinition (Optional)
+</code></pre>
+
+<p>As you can see, a NodeType defines a lot of stuff. So it defines that it should have a property that defines it's name
+<code>jcr:nodeTypeName</code>. It also defines if the NodeType is Queryable and if it's childNodes have an order.
+Besides that, it can also define if and which childNodes it can contain. As an example, NodeType <code>nt:activity</code> doesn't
+support any ChildNodes, <code>nt:folder</code> can contain any NodeType and <code>nt:file</code> has a required ChildNode <code>jcr:content</code>.</p>
+
+<h2>Mixin example</h2>
+
+<p>For an example with Mixins, I planned to use some versioning code examples to demonstrate how mixins can be used. But
+that was until I found out Versioning is not yet supported by Jackalope Doctrine DBAL. So I'm just going to explain what
+mixins can do for you, and I will use some of the other default mixins available.</p>
+
+<p>A Mixin looks like a NodeType, it also defines some parameters of how a Node should behave. But different from the
+primary NodeType, you can add multiple mixins to a single node. Let's see how we add a Mixin to a Node first, in this
+case <code>mix:created</code>.</p>
+
+<pre><code class="language-php">$mixinExample = $rootNode-&gt;addNode('mixinExample');
+$mixinExample-&gt;addMixin('mix:created');
+$session-&gt;save();
+</code></pre>
+
+<p>That's simple isn't it? Directly we can see what this mixin can do:</p>
+
+<pre><code class="language-php">var_dump($mixinExample-&gt;getProperty('jcr:created')-&gt;getString());
+// string(29) "2014-01-10T22:28:26.000+01:00"
+</code></pre>
+
+<p>So we now have a creation date without us adding it manually. We also got a <code>jcr:createdBy</code> property, which is empty by
+default. Let's add another mixin.</p>
+
+<pre><code class="language-php">$mixinExample-&gt;addMixin('mix:lastModified');
+</code></pre>
+
+<p>That mixin provides us with a <code>jcr:lastModified</code> and a <code>jcr:lastModifiedBy</code> property. It differs per transport layer if
+the <code>jcr:lastModified</code> is automatically updated. Jackalope Doctrine DBAL doesn't do that this moment. But we can still
+set it manually.</p>
+
+<p>That's it for this post. It took a lot longer then planned to finish this post, partly because of the holidays and
+partly because I stumbled on some bugs in Jackalope that I wanted to fix first.</p>
+
+<p>I hope the next part of this blogpost will appear within the next 2 weeks.</p>
+]]></description>
+            <pubDate>2014-01-10T22:15:00+01:00</pubDate>
+            <guid>http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins</guid>
+            <link>http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins</link>
+        </item>
+                <item>
             <title>PHPCR: Query Object Model</title>
             <description><![CDATA[<p>This post is the third in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
 <a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository.</p>

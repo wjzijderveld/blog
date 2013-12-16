@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+    <title>NodeTypes and Mixins, with a versioning example - blog.willem-jan.net - Just some rambling about (web)development</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="icon" type="image/ico" href="/img/favicon.ico" />
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-5505825-8']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    </head>
+<body>
+    <div class="wrapper">
+
+        <header class="block padded">
+            <span class="alpha">blog.willem-jan.net</span>
+        </header>
+
+        <div class="page">
+
+            <div class="sidebar">
+
+                <ul class="main">
+                    <li><a href="http://blog.willem-jan.net/">Home</a></li>
+                                        <li><a href="http://blog.willem-jan.net/blog">Archive</a></li>
+                    <li><a href="http://blog.willem-jan.net/rss.xml">RSS <img src="/img/feed-icon-14x14.png" alt="" title="RSS Feed" /></a></li>
+                </ul>
+
+                <div class="intro">
+                <h3>Short intro</h3>
+                <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
+                </div>
+
+                <div class="block no-padding textads">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Sidebar -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6473304659214282"
+     data-ad-slot="6183414453"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>                </div>
+            </div>
+
+                <article class="content long">
+        <span class="date">2013-12-19</span>
+        <h1>NodeTypes and Mixins, with a versioning example</h1>
+        <p>This post is the fourth in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
+<a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository. In the <a href="http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model">previous post</a> we played with the
+QOM and wrote our first queries.</p>
+
+<p>In this post, we will be digging a bit deeper into PHPCR. We'll see how NodeTypes work and how you can combine some
+properties with the use of Mixins.</p>
+
+<h2>Introduction to NodeTypes</h2>
+
+<p>What are NodeTypes? The JCR specification defines it like this:</p>
+
+<blockquote>
+  <p>Node types are used to enforce structural restrictions on the nodes and properties in a workspace by defining for
+  each node, its required and permitted child nodes and properties.</p>
+</blockquote>
+
+<p>A repository can determine what NodeTypes are supported. In this case we will look at the types that Jackalope defines.
+For that, we use the Command provided by PHPCR-Utils. I added that to the console used by the</p>
+
+<pre><code class="language-bash">$ ./console phpcr:node-type:list
+</code></pre>
+
+<p>This will give you a list of the NodeTypes defined by Jackalope. If you would have defined custom NodeTypes, then those
+would show here as well. As you already can see in that list almost all of them have one or more SuperTypes. That means
+you can extend NodeTypes with one or more other NodeTypes.</p>
+
+<p>But this list doesn't show everything we want to see, so I created a new Command in the example that also shows
+PropertyDefinitions and ChildNodeDefinitions. That way we can get a better understanding what NodeTypes actually define.
+In this case, we are going to look at the NodeType <code>nt:nodeType</code> the nodeType that is used to define custom NodeTypes.</p>
+
+<pre><code class="language-css">nt:nodeType
+  Supertypes:
+    &gt; nt:base
+  PropertyDefinitions:
+    &gt; jcr:hasOrderableChildNodes (Boolean: Required)
+    &gt; jcr:isQueryable (Boolean: Required)
+    &gt; jcr:isMixin (Boolean: Required)
+    &gt; jcr:nodeTypeName (Name: Required)
+    &gt; jcr:isAbstract (Boolean: Required)
+    &gt; jcr:primaryItemName (Name: Optional)
+    &gt; jcr:supertypes (Name: Optional)
+    &gt; jcr:mixinTypes (Name: Optional)
+    &gt; jcr:primaryType (Name: Required)
+  ChildNodeDefinitions:
+    &gt; jcr:childNodeDefinition (Optional)
+    &gt; jcr:propertyDefinition (Optional)
+</code></pre>
+
+<p>As you can see, a NodeType defines a lot of stuff. So it defines that it should have a property that defines it's name
+<code>jcr:nodeTypeName</code>. It also defines if the NodeType is Queryable and if it's childNodes have an order.
+Besides that, it can also define if and which childNodes it can contain. As an example, NodeType <code>nt:activity</code> doesn't
+support any ChildNodes, <code>nt:folder</code> can contain any NodeType and <code>nt:file</code> has a required ChildNode <code>jcr:content</code>.</p>
+
+    </article>
+
+    <div class="content">
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'blogwillemjannet'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+        </div>
+
+        <footer class="block padded">
+            &copy; 2013 Willem-Jan Zijderveld - all rights reserved
+        </footer>
+    </div>
+    <script type="text/javascript" src="/js/prism.js"></script>
+    <script type="text/javascript" src="/js/prism.hooks.js"></script>
+</body>
+</html>

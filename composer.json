@@ -12,10 +12,5 @@
             "email": "wjzijderveld@gmail.com"
         }
     ],
-    "autload": {
-        "psr-0": {
-            "Sculpin\Contrib\FeedBundle": "src/"
-        }
-    },
     "minimum-stability": "dev"
 }
