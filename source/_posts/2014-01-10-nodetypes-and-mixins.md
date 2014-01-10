@@ -1,5 +1,5 @@
 ---
-title: NodeTypes and Mixins, with a versioning example
+title: NodeTypes and Mixins
 tags: [phpcr,jackalope]
 date: 2014-01-10 22:15
 ---
@@ -98,7 +98,7 @@ set it manually.
 That's it for this post. It took a lot longer then planned to finish this post, partly because of the holidays and
 partly because I stumbled on some bugs in Jackalope that I wanted to fix first.
 
-I hope the next part of this blogpost will appear within the next 2 weeks.  
+I hope the next part of this blogpost will appear within the next 2 weeks.
 
 [first post]: {{site.url}}/2013/11/16/setup-jackalope-with-mysql
 [the second]: {{site.url}}/2013/11/26/phpcr-reading-and-writing

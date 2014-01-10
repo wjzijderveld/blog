@@ -58,7 +58,7 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
-            <h3><a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">NodeTypes and Mixins, with a versioning example</a><span class="date">2014-01-10</span></h3>
+            <h3><a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">NodeTypes and Mixins</a><span class="date">2014-01-10</span></h3>
         <p>This post is the fourth in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
 <a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository. In the <a href="http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model">previous post</a> we played with the
 QOM and wrote our first queries.</p>
@@ -134,7 +134,7 @@ $session-&gt;save();
 <p>That's simple isn't it? Directly we can see what this mixin can do:</p>
 
 <pre><code class="language-php">var_dump($mixinExample-&gt;getProperty('jcr:created')-&gt;getString());
-// string(29) "2014-01-10T22:28:26.000+01:00"
+// string(29) "2014-01-10T22:34:33.000+01:00"
 </code></pre>
 
 <p>So we now have a creation date without us adding it manually. We also got a <code>jcr:createdBy</code> property, which is empty by
