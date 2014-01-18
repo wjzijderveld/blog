@@ -118,7 +118,7 @@ schemaless storage.</p>
 
 <p>The examples in this blogpost can be found <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part5-creating-a-nodetype">on Github</a>.</p>
 ]]></description>
-            <pubDate>Sat, 18 Jan 2014 17:30:00 CET</pubDate>
+            <pubDate>Sat, 18 Jan 2014 17:30:00 +01:00</pubDate>
             <guid>http://blog.willem-jan.net/2014/01/18/creating-custom-nodetypes</guid>
             <link>http://blog.willem-jan.net/2014/01/18/creating-custom-nodetypes</link>
         </item>
@@ -217,7 +217,7 @@ partly because I stumbled on some bugs in Jackalope that I wanted to fix first.<
 
 <p>I hope the next part of this blogpost will appear within the next 2 weeks.</p>
 ]]></description>
-            <pubDate>Fri, 10 Jan 2014 22:15:00 CET</pubDate>
+            <pubDate>Fri, 10 Jan 2014 22:15:00 +01:00</pubDate>
             <guid>http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins</guid>
             <link>http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins</link>
         </item>
@@ -443,7 +443,7 @@ implemented.</p>
 
 <p>In the next post, I'll tell more nodeTypes and mixins. I'll do that by using versionable as an example.</p>
 ]]></description>
-            <pubDate>Mon, 09 Dec 2013 22:00:00 CET</pubDate>
+            <pubDate>Mon, 09 Dec 2013 22:00:00 +01:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model</guid>
             <link>http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model</link>
         </item>
@@ -559,7 +559,7 @@ explained. If you want to learn more about the possibilities, you might want to 
 
 <p>In the next post, we will play with Queries and the QueryObjectModel.</p>
 ]]></description>
-            <pubDate>Wed, 27 Nov 2013 23:30:00 CET</pubDate>
+            <pubDate>Wed, 27 Nov 2013 23:30:00 +01:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing</guid>
             <link>http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing</link>
         </item>
@@ -655,7 +655,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 Now we're done with the first part. In the next part, we will start with reading and writing to the repository via
 Jackalope.</p>
 ]]></description>
-            <pubDate>Sat, 16 Nov 2013 00:00:00 CET</pubDate>
+            <pubDate>Sat, 16 Nov 2013 00:00:00 +01:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql</guid>
             <link>http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql</link>
         </item>
@@ -691,7 +691,7 @@ content management to your Symfony2 application.</p>
 
 <p>For more information about Symfony CMF, check the <a href="http://cmf.symfony.com/slides/bigpicture.html">bigger picture slides</a></p>
 ]]></description>
-            <pubDate>Tue, 05 Nov 2013 00:00:00 CET</pubDate>
+            <pubDate>Tue, 05 Nov 2013 00:00:00 +01:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/11/05/symfony-cmf</guid>
             <link>http://blog.willem-jan.net/2013/11/05/symfony-cmf</link>
         </item>
@@ -721,7 +721,7 @@ So I try to put some time in a JAVA project I started 6 months ago, at least I'm
 <p>Any tips how to deal with such a time would be greatly appreciated! Sometimes I have the feeling I'm just not patient enough,
 that I should just wait, and be grateful I have a job.</p>
 ]]></description>
-            <pubDate>Fri, 04 Oct 2013 00:00:00 CEST</pubDate>
+            <pubDate>Fri, 04 Oct 2013 00:00:00 +02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/10/04/so-little-time</guid>
             <link>http://blog.willem-jan.net/2013/10/04/so-little-time</link>
         </item>
@@ -763,7 +763,7 @@ that have no clue about it. On a sidenote: you can still comment on my talk, so 
 <p>All with all was it a great experience and I'm certain I will do it again. Maybe I'll even submit a actual talk to a conference
 next year.</p>
 ]]></description>
-            <pubDate>Sun, 15 Sep 2013 00:00:00 CEST</pubDate>
+            <pubDate>Sun, 15 Sep 2013 00:00:00 +02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk</guid>
             <link>http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk</link>
         </item>
@@ -804,7 +804,7 @@ bugfixes. But the documentation still needs lots of work.</p>
 and focus on writing more tests. The combination is probably a good way
 to learn Vespolina better and hopefully lead to better documentation and tests.</p>
 ]]></description>
-            <pubDate>Fri, 16 Aug 2013 00:00:00 CEST</pubDate>
+            <pubDate>Fri, 16 Aug 2013 00:00:00 +02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend</guid>
             <link>http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend</link>
         </item>
@@ -834,7 +834,7 @@ in exploring the possibilities of new techniques and implementing those
 techniques. And if that includes working on and with OpenSource, that would
 be awesome!</p>
 ]]></description>
-            <pubDate>Fri, 02 Aug 2013 00:00:00 CEST</pubDate>
+            <pubDate>Fri, 02 Aug 2013 00:00:00 +02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/08/02/keep-improving</guid>
             <link>http://blog.willem-jan.net/2013/08/02/keep-improving</link>
         </item>
@@ -884,7 +884,7 @@ Sculpin supports Markdown Extra, so I can do the following:</p>
 
 <p>I only haven't figured out how I can use the <a href="http://prismjs.com/plugins/line-numbers/">line-numbers</a> plugin within Markdown.</p>
 ]]></description>
-            <pubDate>Fri, 26 Jul 2013 00:00:00 CEST</pubDate>
+            <pubDate>Fri, 26 Jul 2013 00:00:00 +02:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/07/26/new-blog</guid>
             <link>http://blog.willem-jan.net/2013/07/26/new-blog</link>
         </item>
@@ -906,7 +906,7 @@ It was a nice little project, got to know Composer a bit better, got some more e
 <p>Github: <a href="https://github.com/wjzijderveld/CheckBundles">https://github.com/wjzijderveld/CheckBundles</a><br />
 Packagist: <a href="https://packagist.org/packages/wjzijderveld/check-bundles">https://packagist.org/packages/wjzijderveld/check-bundles</a></p>
 ]]></description>
-            <pubDate>Tue, 26 Feb 2013 00:00:00 CET</pubDate>
+            <pubDate>Tue, 26 Feb 2013 00:00:00 +01:00</pubDate>
             <guid>http://blog.willem-jan.net/2013/02/26/created-a-little-bundle-check-library</guid>
             <link>http://blog.willem-jan.net/2013/02/26/created-a-little-bundle-check-library</link>
         </item>
@@ -943,7 +943,7 @@ wanted to help with an Open Source project.</p>
 
 <p>I hope to create some time in the coming weeks. Really need to get going on the forms.</p>
 ]]></description>
-            <pubDate>Sat, 02 Jun 2012 00:00:00 CEST</pubDate>
+            <pubDate>Sat, 02 Jun 2012 00:00:00 +02:00</pubDate>
             <guid>http://blog.willem-jan.net/2012/06/02/working-on-opensource</guid>
             <link>http://blog.willem-jan.net/2012/06/02/working-on-opensource</link>
         </item>
@@ -987,7 +987,7 @@ Thanks RumpledElf and damiankloip (and some others that made a suggestion)!</p>
 
 <p>Join <a href="irc://irc.freenode.org/drupal">#drupal</a> on <a href="http://www.freenode.org">freenode.org</a></p>
 ]]></description>
-            <pubDate>Sat, 11 Jun 2011 00:00:00 CEST</pubDate>
+            <pubDate>Sat, 11 Jun 2011 00:00:00 +02:00</pubDate>
             <guid>http://blog.willem-jan.net/2011/06/11/drupal-combined-views</guid>
             <link>http://blog.willem-jan.net/2011/06/11/drupal-combined-views</link>
         </item>
