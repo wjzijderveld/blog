@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+    <title>Creating custom NodeTypes - blog.willem-jan.net - Just some rambling about (web)development</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="icon" type="image/ico" href="/img/favicon.ico" />
+        <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-5505825-8']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    </head>
+<body>
+    <div class="wrapper">
+
+        <header class="block padded">
+            <span class="alpha">blog.willem-jan.net</span>
+        </header>
+
+        <div class="page">
+
+            <div class="sidebar">
+
+                <ul class="main">
+                    <li><a href="http://blog.willem-jan.net/">Home</a></li>
+                                        <li><a href="http://blog.willem-jan.net/blog">Archive</a></li>
+                    <li><a href="http://blog.willem-jan.net/rss.xml">RSS <img src="/img/feed-icon-14x14.png" alt="" title="RSS Feed" /></a></li>
+                </ul>
+
+                <div class="intro">
+                <h3>Short intro</h3>
+                <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
+                </div>
+
+                <div class="block no-padding textads">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Sidebar -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-6473304659214282"
+     data-ad-slot="6183414453"></ins>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>                </div>
+            </div>
+
+                <article class="content long">
+        <span class="date">2014-01-18</span>
+        <h1>Creating custom NodeTypes</h1>
+        <p>This post is the fifth in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
+<a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository. The <a href="http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model">third post</a> was about the
+QueryObjectModel and in the <a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">previous post</a> we talked about NodeTypes and Mixins.</p>
+
+<p>In this post we'll be creating our own NodeType.</p>
+
+<h2>Defining the NodeType</h2>
+
+<p>As we saw in the <a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">previous post</a>, NodeTypes have certain properties that define how a NodeType behaves and property
+definitions that define what values are stored in the NodeType. To create our own NodeType, we need to tell our
+repository how our NodeType should behave.</p>
+
+<p>Our NodeType should have a name which shouldn't clash with other NodeTypes. To be sure of that, we need to register a
+new namespace with our repository and use that namespace to name our NodeType.</p>
+
+<pre><code class="language-php">$session-&gt;getWorkspace()-&gt;getNamespaceRegistry()
+        -&gt;registerNamespace('acme', 'http://acme.example.com/phpcr/1.0');
+</code></pre>
+
+<p>To define the actual NodeType we need to use the <code>NodeTypeManager</code>, that manager takes care of registering the NodeType
+with our repository. We need to pass a <code>NodeTypeDefinition</code> to <code>NodeTypeManager::registerNodeType</code>. We can build it from
+an array, from XML or create a copy from another NodeTypeDefinition instance.</p>
+
+<p>In this case I went for the XML solution which has the benefit that you can easily distribute the NodeType so others can
+use it without the need for PHP.</p>
+
+<pre><code class="language-markup">&lt;!-- customNodeTypes.xml --&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;nodeTypes&gt;
+    &lt;nodeType
+            name="acme:product" isMixin="false" isAbstract="false"
+            isQueryable="true" hasOrderableChildNodes="true"&gt;
+        &lt;supertypes&gt;
+            &lt;supertype&gt;nt:base&lt;/supertype&gt;
+            &lt;supertype&gt;mix:title&lt;/supertype&gt;
+            &lt;supertype&gt;mix:referenceable&lt;/supertype&gt;
+        &lt;/supertypes&gt;
+        &lt;propertyDefinition
+                name="acme:rrpPrice"
+                requiredType="decimal"
+                declaringNodeType="acme:product"
+                autoCreated="true"
+                fullTextSearchable="false"
+                mandatory="true"
+                multiple="false"
+                onParentVersion="COPY"
+                protected="false"
+                queryOrderable="true"&gt;
+            &lt;valueConstraints /&gt;
+        &lt;/propertyDefinition&gt;
+        &lt;propertyDefinition
+                name="acme:media"
+                requiredType="Reference"
+                declaringNodeType="acme:product"
+                autoCreated="false"
+                fullTextSearchable="false"
+                mandatory="false"
+                multiple="true"
+                onParentVersion="COPY"
+                protected="false"
+                queryOrderable="false"&gt;
+            &lt;valueConstraints&gt;
+                &lt;valueConstraint&gt;nt:resource&lt;/valueConstraint&gt;
+            &lt;/valueConstraints&gt;
+        &lt;/propertyDefinition&gt;
+    &lt;/nodeType&gt;
+&lt;/nodeTypes&gt;
+</code></pre>
+
+<p>The definition above gives us a acme:product NodeType with 2 properties. Beside that, we also defined that it has 3
+supertypes: <code>nt:base</code>, <code>mix:title</code> and <code>mix:reference</code>. For the acme:media property, we also added a valueConstraint.</p>
+
+<h2>Registering the NodeType</h2>
+
+<p>To actually register the nodeType, we only need a few lines of code as seen in the <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part5-creating-a-nodetype/src/Wjzijderveld/Command/CreateNodeTypeCommand.php">CreateNodeTypeCommand</a></p>
+
+<pre><code class="language-php">$nodeTypesDocument = new \DOMDocument();
+$nodeTypesDocument-&gt;load(__DIR__ . '/../Resources/data/customNodeTypes.xml');
+$xpath = new \DOMXPath($nodeTypesDocument);
+foreach ($xpath-&gt;query('//nodeType') as $nodeTypeElement) {
+    $nodeType = new NodeType(
+        new Factory(),
+        $session-&gt;getWorkspace()-&gt;getNodeTypeManager(),
+        $nodeTypeElement
+    );
+    $session-&gt;getWorkspace()
+        -&gt;getNodeTypeManager()
+        -&gt;registerNodeType($nodeType, true);
+}
+$session-&gt;save();
+</code></pre>
+
+<p><strong>Sidenote</strong>: above code won't work correctly untill <a href="https://github.com/jackalope/jackalope/pull/203">PR 203</a> has been merged.</p>
+
+<h2>Using the newly created NodeType</h2>
+
+<p>To use the new NodeType, we need to create a Node with the new NodeType as primaryType.</p>
+
+<pre><code class="language-php">$rootNode-&gt;addNode('customNodeTypeNode', 'acme:product');
+</code></pre>
+
+<p>We new now try to save the product, we get an error stating that the property acme:rrpPrice doesn't have a default value.
+If we fill the price the node saves just fine. After that we can also add a property jcr:title, which is defined by our
+supertype mix:title. But when we also try to add a property <code>foo</code> with value <code>bar</code>, we get an exception that our
+NodeTypeDefinition doesn't allow to set a property <code>foo</code>.</p>
+
+<p>By creating custom NodeTypes, you can create some structure in your data, while still having the flexibility from a
+schemaless storage.</p>
+
+<p>The examples in this blogpost can be found <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part5-creating-a-nodetype">on Github</a>.</p>
+
+    </article>
+
+    <div class="content">
+
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'blogwillemjannet'; // required: replace example with your forum shortname
+
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </div>
+
+
+        </div>
+
+        <footer class="block padded">
+            &copy; 2013 Willem-Jan Zijderveld - all rights reserved
+        </footer>
+    </div>
+    <script type="text/javascript" src="/js/prism.js"></script>
+    <script type="text/javascript" src="/js/prism.hooks.js"></script>
+</body>
+</html>

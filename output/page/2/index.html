@@ -58,6 +58,38 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="http://blog.willem-jan.net/2013/11/05/symfony-cmf">Symfony CMF</a><span class="date">2013-11-05</span></h3>
+        <p>Today I got into a discussion about <a href="http://cmf.symfony.com">Symfony CMF</a>. The discussion started with the question, if Symfony CMF isn't trying
+to create a solution for a problem that doesn't exists. That person thought CMF only solved a developers problem, but
+couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
+he had seen the admin interfaces that come with Symfony CMF and saw that it was... less from perfect (to put it nice).</p>
+
+<h4>Goals of Symfony CMF</h4>
+
+<p>Symfony CMF aims to provide a toolbox to create your own custom CMS, not by reinventing the wheel, but by reusing
+existing code and sharing the produced code (parts of it will be used in Drupal 8). It aims to make it easier for
+developers to add CMS functionality to applications built on Symfony 2.</p>
+
+<h4>PHPCR</h4>
+
+<p>To do that, they looked at other solutions, solutions not limited to PHP, to structure content. This because a CMS has
+mostly unstructured data, and forcing this into a RDBMS isn't always a good fit. <a href="https://en.wikipedia.org/wiki/Graph_database">Graph database</a> are a better
+fit. They found <a href="http://jcp.org/en/jsr/detail?id=283">JCR</a>, a Java specification that deals with content. They ported that to PHP and called it <a href="https://github.com/phpcr/" title="PHPCR Github">PHPCR</a>;
+PHP Content Repository. With PHPCR, there is an API to interface with your content repository.</p>
+
+<h4>What is doesn't solve</h4>
+
+<p>Althought Symfony CMF does provide some basic admin interfaces (with Sonata Admin), it isn't meant as an end product.
+For most customers and editors, those screens just won't be enough. But there is nothing to stop you from developing
+your own admin screens that does fit you customers needs.</p>
+
+<p>Symfony CMF isn't a solution aimed at the end-user, that is still you job as a developer, to implement a solution that
+helps your end-user and the editors. Symfony CMF just helps you to not get a panic attack when somebody tells you to add
+content management to your Symfony2 application.</p>
+
+<p>For more information about Symfony CMF, check the <a href="http://cmf.symfony.com/slides/bigpicture.html">bigger picture slides</a></p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2013/10/04/so-little-time">So little time</a><span class="date">2013-10-04</span></h3>
         <p>As I mentioned 2 months ago, I believe it's important to keep developing yourself. You can't just sit there and
 repeat the same trick every time. I also told that I wanted to do that by trying to find a new job, and by attending
@@ -183,52 +215,6 @@ and other QA techniques and tools. A job were I can put my hearth and soul
 in exploring the possibilities of new techniques and implementing those
 techniques. And if that includes working on and with OpenSource, that would
 be awesome!</p>
-
-        <hr class="rule rule--ornament" />
-            <h3><a href="http://blog.willem-jan.net/2013/07/26/new-blog">A new blog</a><span class="date">2013-07-26</span></h3>
-        <p>Okay, so I started a new blog again.
-This time I have the plan to force myself to write a post at least every 2 weeks,
-but when possible every week. It's going to be hard, especially in the beginning.
-But I think it's good for me to write down what I'm doing.</p>
-
-<p>As this is the first post, I'll write about the software I used to build this.
-It's called <a href="https://sculpin.io">Sculpin</a>, and it's a static site generator
-written in PHP. It allows you to create a design with <a href="http://twig.sensiolabs.org">Twig</a> templates and
-then write posts in any markup language you like (I'm using Markdown).</p>
-
-<p>I like the fact that I can easily write a post now while being offline and
-just deploy the project when I get online. The lack of a database is just
-a nice elimination of another thing that can go wrong.</p>
-
-<p>And for syntax highlighting I now use <a href="http://prismjs.com/">Prism.js</a>. A nice javascript library.
-Sculpin supports Markdown Extra, so I can do the following:</p>
-
-<pre><code>~~~language-markup
-&lt;div id="foo"&gt;
-    &lt;span class="bar"&gt;foobar&lt;/span&gt;
-&lt;/div&gt;
-~~~
-</code></pre>
-
-<p>And that will produce:</p>
-
-<pre><code class="language-markup">&lt;div id="foo"&gt;
-    &lt;span class="bar"&gt;foobar&lt;/span&gt;
-&lt;/div&gt;
-</code></pre>
-
-<p>PHP Example:</p>
-
-<pre><code class="language-php">&lt;?php
-    $kernel = new AppKernel();
-    $kernel-&gt;handle(Request::createFromGlobals());
-    $kernel-&gt;terminate();
-?&gt;
-</code></pre>
-
-<p>And of course there are more languages it can highlight.</p>
-
-<p>I only haven't figured out how I can use the <a href="http://prismjs.com/plugins/line-numbers/">line-numbers</a> plugin within Markdown.</p>
 
         <hr class="rule rule--ornament" />
             <div>

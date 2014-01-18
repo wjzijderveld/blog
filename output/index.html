@@ -58,6 +58,119 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="http://blog.willem-jan.net/2014/01/18/creating-custom-nodetypes">Creating custom NodeTypes</a><span class="date">2014-01-18</span></h3>
+        <p>This post is the fifth in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
+<a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository. The <a href="http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model">third post</a> was about the
+QueryObjectModel and in the <a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">previous post</a> we talked about NodeTypes and Mixins.</p>
+
+<p>In this post we'll be creating our own NodeType.</p>
+
+<h2>Defining the NodeType</h2>
+
+<p>As we saw in the <a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">previous post</a>, NodeTypes have certain properties that define how a NodeType behaves and property
+definitions that define what values are stored in the NodeType. To create our own NodeType, we need to tell our
+repository how our NodeType should behave.</p>
+
+<p>Our NodeType should have a name which shouldn't clash with other NodeTypes. To be sure of that, we need to register a
+new namespace with our repository and use that namespace to name our NodeType.</p>
+
+<pre><code class="language-php">$session-&gt;getWorkspace()-&gt;getNamespaceRegistry()
+        -&gt;registerNamespace('acme', 'http://acme.example.com/phpcr/1.0');
+</code></pre>
+
+<p>To define the actual NodeType we need to use the <code>NodeTypeManager</code>, that manager takes care of registering the NodeType
+with our repository. We need to pass a <code>NodeTypeDefinition</code> to <code>NodeTypeManager::registerNodeType</code>. We can build it from
+an array, from XML or create a copy from another NodeTypeDefinition instance.</p>
+
+<p>In this case I went for the XML solution which has the benefit that you can easily distribute the NodeType so others can
+use it without the need for PHP.</p>
+
+<pre><code class="language-markup">&lt;!-- customNodeTypes.xml --&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;nodeTypes&gt;
+    &lt;nodeType
+            name="acme:product" isMixin="false" isAbstract="false"
+            isQueryable="true" hasOrderableChildNodes="true"&gt;
+        &lt;supertypes&gt;
+            &lt;supertype&gt;nt:base&lt;/supertype&gt;
+            &lt;supertype&gt;mix:title&lt;/supertype&gt;
+            &lt;supertype&gt;mix:referenceable&lt;/supertype&gt;
+        &lt;/supertypes&gt;
+        &lt;propertyDefinition
+                name="acme:rrpPrice"
+                requiredType="decimal"
+                declaringNodeType="acme:product"
+                autoCreated="true"
+                fullTextSearchable="false"
+                mandatory="true"
+                multiple="false"
+                onParentVersion="COPY"
+                protected="false"
+                queryOrderable="true"&gt;
+            &lt;valueConstraints /&gt;
+        &lt;/propertyDefinition&gt;
+        &lt;propertyDefinition
+                name="acme:media"
+                requiredType="Reference"
+                declaringNodeType="acme:product"
+                autoCreated="false"
+                fullTextSearchable="false"
+                mandatory="false"
+                multiple="true"
+                onParentVersion="COPY"
+                protected="false"
+                queryOrderable="false"&gt;
+            &lt;valueConstraints&gt;
+                &lt;valueConstraint&gt;nt:resource&lt;/valueConstraint&gt;
+            &lt;/valueConstraints&gt;
+        &lt;/propertyDefinition&gt;
+    &lt;/nodeType&gt;
+&lt;/nodeTypes&gt;
+</code></pre>
+
+<p>The definition above gives us a acme:product NodeType with 2 properties. Beside that, we also defined that it has 3
+supertypes: <code>nt:base</code>, <code>mix:title</code> and <code>mix:reference</code>. For the acme:media property, we also added a valueConstraint.</p>
+
+<h2>Registering the NodeType</h2>
+
+<p>To actually register the nodeType, we only need a few lines of code as seen in the <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part5-creating-a-nodetype/src/Wjzijderveld/Command/CreateNodeTypeCommand.php">CreateNodeTypeCommand</a></p>
+
+<pre><code class="language-php">$nodeTypesDocument = new \DOMDocument();
+$nodeTypesDocument-&gt;load(__DIR__ . '/../Resources/data/customNodeTypes.xml');
+$xpath = new \DOMXPath($nodeTypesDocument);
+foreach ($xpath-&gt;query('//nodeType') as $nodeTypeElement) {
+    $nodeType = new NodeType(
+        new Factory(),
+        $session-&gt;getWorkspace()-&gt;getNodeTypeManager(),
+        $nodeTypeElement
+    );
+    $session-&gt;getWorkspace()
+        -&gt;getNodeTypeManager()
+        -&gt;registerNodeType($nodeType, true);
+}
+$session-&gt;save();
+</code></pre>
+
+<p><strong>Sidenote</strong>: above code won't work correctly untill <a href="https://github.com/jackalope/jackalope/pull/203">PR 203</a> has been merged.</p>
+
+<h2>Using the newly created NodeType</h2>
+
+<p>To use the new NodeType, we need to create a Node with the new NodeType as primaryType.</p>
+
+<pre><code class="language-php">$rootNode-&gt;addNode('customNodeTypeNode', 'acme:product');
+</code></pre>
+
+<p>We new now try to save the product, we get an error stating that the property acme:rrpPrice doesn't have a default value.
+If we fill the price the node saves just fine. After that we can also add a property jcr:title, which is defined by our
+supertype mix:title. But when we also try to add a property <code>foo</code> with value <code>bar</code>, we get an exception that our
+NodeTypeDefinition doesn't allow to set a property <code>foo</code>.</p>
+
+<p>By creating custom NodeTypes, you can create some structure in your data, while still having the flexibility from a
+schemaless storage.</p>
+
+<p>The examples in this blogpost can be found <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part5-creating-a-nodetype">on Github</a>.</p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">NodeTypes and Mixins</a><span class="date">2014-01-10</span></h3>
         <p>This post is the fourth in a serie about PHPCR with Jackalope. In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">first post</a> we've setup our repository, in
 <a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">the second</a> we talked about reading and writing from and to our repository. In the <a href="http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model">previous post</a> we played with the
@@ -111,7 +224,7 @@ PropertyDefinitions and ChildNodeDefinitions. That way we can get a better under
     &gt; jcr:propertyDefinition (Optional)
 </code></pre>
 
-<p>As you can see, a NodeType defines a lot of stuff. So it defines that it should have a property that defines it's name
+<p>As you can see, a NodeType defines a lot of stuff. It defines that it should have a property that defines it's name
 <code>jcr:nodeTypeName</code>. It also defines if the NodeType is Queryable and if it's childNodes have an order.
 Besides that, it can also define if and which childNodes it can contain. As an example, NodeType <code>nt:activity</code> doesn't
 support any ChildNodes, <code>nt:folder</code> can contain any NodeType and <code>nt:file</code> has a required ChildNode <code>jcr:content</code>.</p>
@@ -134,7 +247,7 @@ $session-&gt;save();
 <p>That's simple isn't it? Directly we can see what this mixin can do:</p>
 
 <pre><code class="language-php">var_dump($mixinExample-&gt;getProperty('jcr:created')-&gt;getString());
-// string(29) "2014-01-10T22:34:33.000+01:00"
+// string(29) "2014-01-18T17:29:42.000+01:00"
 </code></pre>
 
 <p>So we now have a creation date without us adding it manually. We also got a <code>jcr:createdBy</code> property, which is empty by
@@ -577,38 +690,6 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 <p>With this query, you request all notes with type <code>nt:unstructed</code>, which in this case, is only the rootNode.
 Now we're done with the first part. In the next part, we will start with reading and writing to the repository via
 Jackalope.</p>
-
-        <hr class="rule rule--ornament" />
-            <h3><a href="http://blog.willem-jan.net/2013/11/05/symfony-cmf">Symfony CMF</a><span class="date">2013-11-05</span></h3>
-        <p>Today I got into a discussion about <a href="http://cmf.symfony.com">Symfony CMF</a>. The discussion started with the question, if Symfony CMF isn't trying
-to create a solution for a problem that doesn't exists. That person thought CMF only solved a developers problem, but
-couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
-he had seen the admin interfaces that come with Symfony CMF and saw that it was... less from perfect (to put it nice).</p>
-
-<h4>Goals of Symfony CMF</h4>
-
-<p>Symfony CMF aims to provide a toolbox to create your own custom CMS, not by reinventing the wheel, but by reusing
-existing code and sharing the produced code (parts of it will be used in Drupal 8). It aims to make it easier for
-developers to add CMS functionality to applications built on Symfony 2.</p>
-
-<h4>PHPCR</h4>
-
-<p>To do that, they looked at other solutions, solutions not limited to PHP, to structure content. This because a CMS has
-mostly unstructured data, and forcing this into a RDBMS isn't always a good fit. <a href="https://en.wikipedia.org/wiki/Graph_database">Graph database</a> are a better
-fit. They found <a href="http://jcp.org/en/jsr/detail?id=283">JCR</a>, a Java specification that deals with content. They ported that to PHP and called it <a href="https://github.com/phpcr/" title="PHPCR Github">PHPCR</a>;
-PHP Content Repository. With PHPCR, there is an API to interface with your content repository.</p>
-
-<h4>What is doesn't solve</h4>
-
-<p>Althought Symfony CMF does provide some basic admin interfaces (with Sonata Admin), it isn't meant as an end product.
-For most customers and editors, those screens just won't be enough. But there is nothing to stop you from developing
-your own admin screens that does fit you customers needs.</p>
-
-<p>Symfony CMF isn't a solution aimed at the end-user, that is still you job as a developer, to implement a solution that
-helps your end-user and the editors. Symfony CMF just helps you to not get a panic attack when somebody tells you to add
-content management to your Symfony2 application.</p>
-
-<p>For more information about Symfony CMF, check the <a href="http://cmf.symfony.com/slides/bigpicture.html">bigger picture slides</a></p>
 
         <hr class="rule rule--ornament" />
             <div>

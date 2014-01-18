@@ -56,7 +56,7 @@ nt:nodeType
     > jcr:propertyDefinition (Optional)
 ~~~
 
-As you can see, a NodeType defines a lot of stuff. So it defines that it should have a property that defines it's name
+As you can see, a NodeType defines a lot of stuff. It defines that it should have a property that defines it's name
 `jcr:nodeTypeName`. It also defines if the NodeType is Queryable and if it's childNodes have an order.
 Besides that, it can also define if and which childNodes it can contain. As an example, NodeType `nt:activity` doesn't
 support any ChildNodes, `nt:folder` can contain any NodeType and `nt:file` has a required ChildNode `jcr:content`.

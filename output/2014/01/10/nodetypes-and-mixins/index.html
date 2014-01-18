@@ -106,7 +106,7 @@ PropertyDefinitions and ChildNodeDefinitions. That way we can get a better under
     &gt; jcr:propertyDefinition (Optional)
 </code></pre>
 
-<p>As you can see, a NodeType defines a lot of stuff. So it defines that it should have a property that defines it's name
+<p>As you can see, a NodeType defines a lot of stuff. It defines that it should have a property that defines it's name
 <code>jcr:nodeTypeName</code>. It also defines if the NodeType is Queryable and if it's childNodes have an order.
 Besides that, it can also define if and which childNodes it can contain. As an example, NodeType <code>nt:activity</code> doesn't
 support any ChildNodes, <code>nt:folder</code> can contain any NodeType and <code>nt:file</code> has a required ChildNode <code>jcr:content</code>.</p>
@@ -129,7 +129,7 @@ $session-&gt;save();
 <p>That's simple isn't it? Directly we can see what this mixin can do:</p>
 
 <pre><code class="language-php">var_dump($mixinExample-&gt;getProperty('jcr:created')-&gt;getString());
-// string(29) "2014-01-10T22:34:33.000+01:00"
+// string(29) "2014-01-18T17:29:42.000+01:00"
 </code></pre>
 
 <p>So we now have a creation date without us adding it manually. We also got a <code>jcr:createdBy</code> property, which is empty by
