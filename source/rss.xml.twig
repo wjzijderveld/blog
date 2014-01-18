@@ -18,7 +18,7 @@ use:
         <item>
             <title>{{ post.title }}</title>
             <description><![CDATA[{{ post.blocks.content|raw }}]]></description>
-            <pubDate>{{ post.date|date('D, d M Y H:i:s P') }}</pubDate>
+            <pubDate>{{ post.date|date('D, d M Y H:i:s O') }}</pubDate>
             <guid>{{ site.url }}{{ post.url }}</guid>
             <link>{{ site.url }}{{ post.url }}</link>
         </item>
