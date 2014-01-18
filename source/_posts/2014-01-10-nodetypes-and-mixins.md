@@ -81,7 +81,7 @@ That's simple isn't it? Directly we can see what this mixin can do:
 
 ~~~language-php
 var_dump($mixinExample->getProperty('jcr:created')->getString());
-// string(29) "{{ 'now'|date('Y-m-d') }}T{{ 'now'|date('H:i:s') }}.{{ 'now'|date('u')|slice(0,3) }}{{ 'now'|date('P') }}"
+// string(29) "2014-01-10T22:15:25.000+01:00"
 ~~~
 
 So we now have a creation date without us adding it manually. We also got a `jcr:createdBy` property, which is empty by

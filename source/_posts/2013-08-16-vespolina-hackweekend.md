@@ -3,7 +3,7 @@ layout: post
 title: Vespolina hackweekend
 tags: [vespolina, ecommerce, framework]
 ---
-As I mentioned in [Working on an OpenSource project](/2012/06/02/working-on-opensource/),
+As I mentioned in [Working on an OpenSource project]({{ site.url }}/2012/06/02/working-on-opensource/),
 I'm somewhat involved with [Vespolina](http://www.vespolina.org).
 Last weekend we had our first hackweekend, [Daniel](https://github.com/inspiran)
 and I sat together, and [Richard](https://github.com/iampersistent) and

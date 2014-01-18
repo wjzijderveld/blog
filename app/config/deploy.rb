@@ -1,3 +1,5 @@
+require 'steps'
+
 set :application, "Blog"
 set :repository,  "https://github.com/wjzijderveld/blog.git"
 
@@ -22,3 +24,18 @@ set :deploy_via, :remote_cache
 set :deploy_to, "/var/customers/webs/wjzijderveld/blog.willem-jan.net"
 set :user, "wjzijderveld"
 set :use_sudo, false
+
+logger.level = Logger::IMPORTANT
+
+# Configure the steps
+before "deploy:update_code"       do start_to "Deploying code" end
+after "deploy:update_code"        do success end
+
+before "deploy:assets:clean"      do start_to "Cleaning assets" end
+after "deploy:assets:clean"       do success end
+
+before "deploy:assets:precompile" do start to "Compiling sssets" end
+after "deploy:assets:precompile"  do success end
+
+before "deploy:restart"           do start_to "Restarting application" end
+after "deploy:restart"            do success end

@@ -8,7 +8,7 @@ use:
 - posts
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<rss>
+<rss version="2.0">
     <channel>
         <title>{{ site.title }}</title>
         <link>{{ site.url }}</link>
@@ -18,7 +18,7 @@ use:
         <item>
             <title>{{ post.title }}</title>
             <description><![CDATA[{{ post.blocks.content|raw }}]]></description>
-            <pubDate>{{ post.date|date('c') }}</pubDate>
+            <pubDate>{{ post.date|date('D, d M Y H:i:s T') }}</pubDate>
             <guid>{{ site.url }}{{ post.url }}</guid>
             <link>{{ site.url }}{{ post.url }}</link>
         </item>
