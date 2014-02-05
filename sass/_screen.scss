@@ -1,0 +1,171 @@
+html{
+    font: 1em/1.5 'Open Sans', sans-serif;
+    background-color: #000;
+    background-image: url(../img/background.jpg);
+    background-attachment: fixed;
+    background-position: center center;
+    color: #333;
+}
+
+/* Some basic styles */
+a {
+    color: $linkColor;
+    text-decoration: none;
+    &:hover {
+        color: $linkHoverColor;
+    }
+}
+
+ins {
+    border: 0;
+}
+
+::selection {
+    background-color: #A0A0A0;
+    color: #FFF;
+}
+
+h4, h5, h6 {
+    font-weight: normal;
+    //margin-bottom: 0;
+}
+
+blockquote {
+    margin: 12px 24px;
+    background: #333;
+    color: #DEDEDE;
+    padding: 24px;
+    @include border-radius(10px);
+    font-family: Georgia, serif;
+    font-style: italic;
+}
+
+/* Layout */
+
+.wrapper{
+    max-width: 1200px;
+    padding: 0 24px;
+    margin: 0 auto;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.75em;
+}
+
+.padded {
+    padding: 24px;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.block {
+    display: block;
+    @extend .cf;
+    background: rgba(255, 255, 255, 0.85);
+}
+
+.page {
+    margin-top: 48px;
+}
+
+.content {
+    @extend .block;
+    @extend .padded;
+    overflow: hidden;
+    margin-left: 340px;
+    margin-bottom: 24px;
+
+    &.long {
+        min-height: 480px;
+    }
+}
+
+.sidebar {
+    float: left;
+    width: 316px;
+    margin-right: 24px;
+}
+
+ul.main {
+    @extend .block;
+    margin: 0 0 24px 0;
+    overflow: auto;
+    li {
+        list-style: none;
+        border-top: 1px solid #C0C0C0;
+        a {
+            padding: 0 24px;
+            display: block;
+            line-height: 3.5em;
+            &:hover {
+                background: #ECECEC;
+
+            }
+        }
+        &:first-child {
+            border-left: 0;
+        }
+    }
+}
+
+.intro {
+    @extend .block;
+    @extend .padded;
+}
+
+.related {
+    @extend .block;
+    @extend ul.main;
+    margin: 0 0 24px 0;
+    list-style: none;
+    li {
+        overflow: hidden;
+        > h3 {
+            padding: 24px;
+            padding-bottom: 0;
+        }
+    }
+    .loz.date {
+        display: inline;
+        margin-left: 0;
+    }
+}
+
+.date {
+    font-size: 0.75em;
+    margin-left: 24px;
+    color: $infoColor;
+}
+
+.textads {
+    // margin-top: 24px;
+    padding: 0 8px;
+    .ins {
+        margin: 0 auto;
+    }
+}
+
+article {
+    .date {
+        float: right;
+        font-size: 1em;
+    }
+}
+
+.archive {
+    .date {
+        display: block;
+        float: left;
+        font-size: 0.75em;
+        margin-left: 0;
+        width: 175px;
+        line-height: 1.5em;
+    }
+    article > a {
+        float: left;
+        line-height: 1em;
+    }
+}

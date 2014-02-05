@@ -3,7 +3,8 @@
     "description": "My personal blog, generated with sculpin",
     "require": {
         "sculpin/sculpin": "2.0.x-dev",
-        "zendframework/zend-feed": "~2.3"
+        "zendframework/zend-feed": "~2.3",
+        "wjzijderveld/sculpin-related-content-bundle": "1.0.x-dev"
     },
     "license": "http://creativecommons.org/licenses/by-nd/3.0/",
     "authors": [
@@ -12,5 +13,10 @@
             "email": "wjzijderveld@gmail.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    }
 }
