@@ -1,7 +1,9 @@
 ---
 title: PHPCR: Reading and writing
-tags: [phpcr,jackalope,mysql,reading,writing]
+tags: [phpcr-tutorial,phpcr,jackalope,mysql,reading,writing]
 date: 2013-11-27 23:30
+related:
+  posts_tags: [phpcr-tutorial]
 ---
 This post is the second in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 [the slides about PHPCR].

@@ -1,6 +1,8 @@
 ---
 title: Setup Jackalope with MySQL
-tags: [phpcr,jackalope,mysql]
+tags: [phpcr-tutorial,phpcr,jackalope,mysql]
+related:
+  posts_tags: [phpcr-tutorial]
 ---
 This post is the first in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 [the slides about PHPCR].

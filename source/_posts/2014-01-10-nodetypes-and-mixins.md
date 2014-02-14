@@ -1,7 +1,9 @@
 ---
 title: NodeTypes and Mixins
-tags: [phpcr,jackalope]
+tags: [phpcr-tutorial,phpcr,jackalope]
 date: 2014-01-10 22:15
+related:
+  posts_tags: [phpcr-tutorial]
 ---
 This post is the fourth in a serie about PHPCR with Jackalope. In the [first post] we've setup our repository, in
 [the second] we talked about reading and writing from and to our repository. In the [previous post] we played with the

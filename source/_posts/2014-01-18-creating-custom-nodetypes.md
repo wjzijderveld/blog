@@ -1,7 +1,9 @@
 ---
 title: Creating custom NodeTypes
-tags: [phpcr,jackalope]
+tags: [phpcr-tutorial,phpcr,jackalope]
 date: 2014-01-18 17:30
+related:
+  posts_tags: [phpcr-tutorial]
 ---
 This post is the fifth in a serie about PHPCR with Jackalope. In the [first post] we've setup our repository, in
 [the second] we talked about reading and writing from and to our repository. The [third post] was about the

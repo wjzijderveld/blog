@@ -1,7 +1,9 @@
 ---
 title: PHPCR: Query Object Model
-tags: [phpcr, jackalope, query, qom]
+tags: [phpcr-tutorial,phpcr, jackalope, query, qom]
 date: 2013-12-09 22:00
+related:
+  posts_tags: [phpcr-tutorial]
 ---
 This post is the third in a serie about PHPCR with Jackalope. In the [first post] we've setup our repository, in
 [the second] we talked about reading and writing from and to our repository.
