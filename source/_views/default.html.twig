@@ -41,7 +41,7 @@
                     <ul class="block related">
                         <li><h3>Related posts</h3></li>
                         {% for relatedSource in relatedContent %}
-                            <li><a href="{{ site.url }}{{ relatedSource.url }}">
+                            <li><a href="{{ site.url }}{{ relatedSource.url }}" title="{{ relatedSource.title }}">
                                     <span class="loz date">{{ relatedSource.date|date('Y-m-d') }}</span>
                                     {{ relatedSource.title|slice(0,20) }}...
                                 </a></li>
