@@ -59,15 +59,16 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
-            <h3><a href="http://blog.willem-jan.net/2014/02/15/migrating-to-jackrabbit">Migrating to jackrabbit</a><span class="date">2014-02-15</span></h3>
+            <h3><a href="http://blog.willem-jan.net/2014/02/17/migrating-to-jackrabbit">Migrating to jackrabbit</a><span class="date">2014-02-17</span></h3>
         <p>This is the sixth and probably last post about PHPCR with Jackalope. In the previous posts we played with PHPCR using
-Jackalope Doctrine DBAL as storage backend. In this post we are going to migrate our data to <a href="https://github.com/jackalope/jackalope-jackrabbit">Jackalope Jackrabbit</a>.</p>
+Jackalope Doctrine DBAL as storage backend. In this post we are going to migrate our data to <a href="http://jackrabbit.apache.org/">Jackrabbit</a>.</p>
 
-<p>Jackrabbit is a <a href="http://jackrabbit.apache.org/">Apache project</a> that fully implements the JCR-170 and JCR-283 spec.</p>
+<p>Jackrabbit is a Apache project that fully implements the JCR-170 and JCR-283 spec. We are going to implement it using
+<a href="https://github.com/jackalope/jackalope-jackrabbit">Jackalope Jackrabbit</a>.</p>
 
 <h2>Preperations</h2>
 
-<p>Because we want to be working with Jackrabbit, we need to install the Jackalope implementation for Jackrabbit.</p>
+<p>We first need to install the new Jackalope package.</p>
 
 <pre><code class="language-bash">$ require jackalope/jackalope-jackrabbit ~1.1
 $ composer update
@@ -86,7 +87,7 @@ And as always: make a backup!</em></p>
 
 <p>To do this migration, we will export the data from MySQL and import it again into Jackrabbit. To do this I added 2
 commands from PHPCR-Utils to our console, the <code>WorkspaceExportCommand</code> and the <code>WorkspaceImportCommand</code>. I also added
-the <code>WorkspaceQueryCommand</code> to perform simple SQL2 queries.</p>
+the <code>WorkspaceQueryCommand</code> to perform simple SQL2 queries, but this is purely for demo purposes.</p>
 
 <p>The export will be a XML file with your complete workspace. Running the export is as simple as running the command with
 the target filename as an argument.</p>
@@ -94,30 +95,27 @@ the target filename as an argument.</p>
 <pre><code class="language-bash">$ ./console phpcr:workspace:export tutorial.xml
 </code></pre>
 
-<p>You should now have a file <code>tutorial.xml</code> with your complete workspace. I included an example of my workspace in the git
-repository, I also included a formatted version for your convenience.</p>
+<p>You should now have a file <code>tutorial.xml</code> with your complete workspace. I included an example of my workspace in <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part6-migrate-to-jackrabbit">the
+git repository</a>, I also included a formatted version for your convenience.</p>
 
 <h2>Updating our configuration</h2>
 
-<p>Before we'er going to import our data in Jackrabbit, we need to update our config. And you'll need a running Jackrabbit
-server to import your data again. I'm not going into specifics how to install and run Jackrabbit, there are multiple
-options to do that. In this example I'll be using the <a href="http://jackrabbit.apache.org/standalone-server.html">standalone server</a>.</p>
+<p>Before we're going to import our data in Jackrabbit, we need to update our configuration. And you'll need a running
+Jackrabbit server to import your data again. I'm not going into specifics how to install and run Jackrabbit, there are
+multiple options to do that. In this example I'll be using the <a href="http://jackrabbit.apache.org/standalone-server.html">standalone server</a>.</p>
 
-<p>First we are going to update the config.yml we created in the root of our project. In the <code>jackalope</code> section, we'll add
-under the dbal section, a section for jackrabbit. In that section we configure the URL, username and password of our
-repository, in the case of the standalone server the username and password are both <code>admin</code>. And we update the transport
-to <code>jackalope-jackrabbit</code>.</p>
+<p>First we are going to update the <code>config.yml</code> we created in the root of our project. In the <code>jackalope</code> section we add a
+section for jackrabbit, under the dbal section. In the new section we only need to configure the URL of our repository.
+And update the transport to <code>jackalope-jackrabbit</code>.</p>
 
 <pre><code class="language-markup">jackalope:
   transport: jackalope-jackrabbit
   [..]
   jackrabbit:
-    username: admin
-    hostname: admin
     url: http://localhost:8080/server
 </code></pre>
 
-<p>I've updated the cli-config.php in <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part6-migrate-to-jackrabbit">the git repository</a>, similar to the one for DoctrineDBAL, but without the database
+<p>I've updated <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part6-migrate-to-jackrabbit/cli-config.php">the cli-config.php</a> in the git repository, similar to the one for DoctrineDBAL, but without the database
 connection.</p>
 
 <h2>Importing our data</h2>
@@ -137,10 +135,14 @@ $ ./console phpcr:workspace:import tutorial.xml
 
 <p>You should get a message like <code>"Successfully imported file "&lt;project path&gt;/tutorial.xml" to path "/" in workspace "default"</code>.</p>
 
-<p>When we now rerun the query from above, we should have some results!</p>
+<p>When we now rerun the query from above, we should have some results! With Jackrabbit now configured, you might play with
+some of the features Jackrabbit has built-in, like versioning.</p>
 
-<p>I hope this serie helped some people to understand a bit what PHPCR is and how it can be used. If somebody would like me
-to create a more detailed example, or expand a bit more on a specific subject, let me know!</p>
+<h2>That's a wrap</h2>
+
+<p>As I mentioned in the intro, this is probably the last post in this serie. I hope this serie helped some people to
+understand a bit what PHPCR is and how it can be used. If somebody would like me to create a more detailed example, or
+expand a bit more on a specific subject, let me know!</p>
 
         <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2014/01/18/creating-custom-nodetypes">Creating custom NodeTypes</a><span class="date">2014-01-18</span></h3>
