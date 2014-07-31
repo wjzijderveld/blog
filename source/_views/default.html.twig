@@ -37,10 +37,10 @@
                     <li><a href="http://feeds.feedburner.com/BlogWillemjanNet" rel="alternate" type="application/rss+xml">RSS <img src="/img/feed-icon-14x14.png" alt="" title="RSS Feed" /></a></li>
                 </ul>
 
-                {% if relatedContent|length %}
+                {% if related_content|length %}
                     <ul class="block related">
                         <li><h3>Related posts</h3></li>
-                        {% for relatedSource in relatedContent %}
+                        {% for relatedSource in related_content %}
                             <li><a href="{{ site.url }}{{ relatedSource.url }}" title="{{ relatedSource.title }}">
                                     <span class="loz date">{{ relatedSource.date|date('Y-m-d') }}</span>
                                     {{ relatedSource.title|slice(0,20) }}...

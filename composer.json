@@ -4,7 +4,7 @@
     "require": {
         "sculpin/sculpin": "2.0.x-dev",
         "zendframework/zend-feed": "~2.3",
-        "wjzijderveld/sculpin-related-content-bundle": "1.0.x-dev"
+        "wjzijderveld/sculpin-related-content-bundle": "~1.0"
     },
     "license": "http://creativecommons.org/licenses/by-nd/3.0/",
     "authors": [
