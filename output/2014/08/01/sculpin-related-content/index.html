@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
-    <title>A new blog - blog.willem-jan.net - Just some rambling about (web)development</title>
+    <title>Sculpin Related Content Bundle - blog.willem-jan.net - Just some rambling about (web)development</title>
     <link rel="stylesheet" href="/css/style.css"/>
     <link rel="icon" type="image/ico" href="/img/favicon.ico" />
         <script type="text/javascript">
@@ -53,51 +53,60 @@
             </div>
 
                 <article class="content long">
-        <span class="date">2013-07-26</span>
-        <h1>A new blog</h1>
-        <p>Okay, so I started a new blog again.
-This time I have the plan to force myself to write a post at least every 2 weeks,
-but when possible every week. It's going to be hard, especially in the beginning.
-But I think it's good for me to write down what I'm doing.</p>
+        <span class="date">2014-08-01</span>
+        <h1>Sculpin Related Content Bundle</h1>
+        <p>When I wrote the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">phpcr tutorial</a> serie, I wanted to show the previous posts in the same serie.
+As this wasn't a feature Sculpin provided, I decided to write my own bundle to make this
+possible, that's how <a href="https://github.com/wjzijderveld/SculpinRelatedContentBundle">SculpinRelatedContentBundle</a> started.</p>
 
-<p>As this is the first post, I'll write about the software I used to build this.
-It's called <a href="https://sculpin.io">Sculpin</a>, and it's a static site generator
-written in PHP. It allows you to create a design with <a href="http://twig.sensiolabs.org">Twig</a> templates and
-then write posts in any markup language you like (I'm using Markdown).</p>
+<p>Altough I only finished it for I wrote the last post in the serie, I'm still happy that I wrote it.
+But it still took me 6 months to actually tag and release it...</p>
 
-<p>I like the fact that I can easily write a post now while being offline and
-just deploy the project when I get online. The lack of a database is just
-a nice elimination of another thing that can go wrong.</p>
+<h2>Installation</h2>
 
-<p>And for syntax highlighting I now use <a href="http://prismjs.com/">Prism.js</a>. A nice javascript library.
-Sculpin supports Markdown Extra, so I can do the following:</p>
+<p>Add the bundle to yuor dependencies in your <a href="https://sculpin.io/documentation/embedded-composer/">sculpin.json</a> and run <code>sculpin install</code>.</p>
 
-<pre><code>~~~language-markup
-&lt;div id="foo"&gt;
-    &lt;span class="bar"&gt;foobar&lt;/span&gt;
-&lt;/div&gt;
-~~~
+<pre><code class="language-javascript">{
+    "require": {
+        "wjzijderveld/sculpin-related-content-bundle": "~1.0"
+    }
+}
 </code></pre>
 
-<p>And that will produce:</p>
+<p>To use the bundle you need to do 2 things, the first is configure each post where you want to show related content.
+You do this by defining the tags that relate to this content. I deliberately didn't choose to automatically couple
+tags to eachother, because I didn't want to show all posts about phpcr with all posts about phpcr.</p>
 
-<pre><code class="language-markup">&lt;div id="foo"&gt;
-    &lt;span class="bar"&gt;foobar&lt;/span&gt;
-&lt;/div&gt;
+<p>So we will configure for each content_type which tags should be used to find related content.</p>
+
+<pre><code class="language-javascript">title: Awesome content is awesome
+tags: [phpcr, phpcr-tutorial]
+related:
+  posts_tags: [phpcr-tutorial]
 </code></pre>
 
-<p>PHP Example:</p>
+<p>But only configuring the content that is related to each other isn't enough,
+We should also show the related content somewhere!</p>
 
-<pre><code class="language-php">&lt;?php
-    $kernel = new AppKernel();
-    $kernel-&gt;handle(Request::createFromGlobals());
-    $kernel-&gt;terminate();
-?&gt;
+<p>Because I didn't want to restrict where I can show the related content, I assigned the related content to
+a global variable <code>related_content</code>. This way you can choose how and where to show the content.</p>
+
+<pre><code class="language-markup">
+{% if related_content|length %}
+    &lt;ul class="block related"&gt;
+        {% for relatedSource in related_content %}
+            &lt;li&gt;&lt;a href="{{ site.url }}{{ relatedSource.url }}"&gt;
+                {{ relatedSource.title }}
+            &lt;/a&gt;&lt;/li&gt;
+        {% endfor %}
+    &lt;/ul&gt;
+{% endif %}
+
 </code></pre>
 
-<p>And of course there are more languages it can highlight.</p>
+<p>Yesterday I tagged version 1.0.0, about 15 minutes later I tagged 1.0.1 because I forgot to fix the only issue that prevented me from tagging 1.0.0 sooner, because you know... I just didn't think that far ahead yesterday :)</p>
 
-<p>I only haven't figured out how I can use the <a href="http://prismjs.com/plugins/line-numbers/">line-numbers</a> plugin within Markdown.</p>
+<p>It probably doesn't work with all content_types available and I only tested it with post_tags.</p>
 
     </article>
 

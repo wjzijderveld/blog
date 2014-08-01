@@ -59,6 +59,118 @@
 </div>
 <div class="content">
     <h2>Latest posts</h2>
+            <h3><a href="http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing">PHPCR: Reading and writing</a><span class="date">2013-11-27</span></h3>
+        <p>This post is the second in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
+<a href="http://phpcr.github.io/slides.html">the slides about PHPCR</a>.</p>
+
+<p>In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">previous post</a>, I talked about setting up your repository. In this post we will start playing with some actual
+content.</p>
+
+<h3>Insert data</h3>
+
+<p>To show the basic usage of PHPCR, we are going to load some data into our repository. For this I used <a href="https://github.com/fzaninotto/Faker">Faker</a>.</p>
+
+<pre><code class="language-bash">$ composer require fzaninotto/faker ~1.2
+</code></pre>
+
+<p>Because we are going to add more CLI scripts later on, I created a simple Symfony Console Application for this. I called
+it <code>console</code> at placed it in the root. You can find the console and the Command <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part2-querying">on Github</a>.</p>
+
+<p>With PHPCR, it is pretty easy to create new nodes. You simply call <code>addNode</code> on it's parent node. So before we can
+create new nodes, we need to rootNode. You can request the rootNode from the PHPCR session.</p>
+
+<pre><code class="language-php">$session = $this-&gt;getHelper('phpcr')-&gt;getSession();
+</code></pre>
+
+<p>Here we use the helper that we defined in cli-config.php in my previous post to get the Session. Now we have the
+session, we can simply retrieve the rootNode with <code>$session-&gt;getRootNode();</code> With the rootNode, we can start creating
+fake nodes.</p>
+
+<pre><code class="language-php line-numbers">$faker = \Faker\Factory::create();
+while (count($rootNode-&gt;getNodes()) &lt; 10) {
+
+    try {
+        $node = $rootNode-&gt;addNode($faker-&gt;word);
+
+        $node-&gt;setProperty('title', $faker-&gt;name);
+        $node-&gt;setProperty('body', $faker-&gt;text(1000));
+    } catch (\PHPCR\ItemExistsException $e) {
+        // Ignore, and try again
+    }
+}
+
+$session-&gt;save();
+</code></pre>
+
+<p>On line 5, you see the <code>addNode</code>, the first argument you give it, is the nodeName. You can give a second argument, to
+define the nodeType but in this case we will use the default value (which will be nt:unstructured).
+On line 7 and 8, we set 2 properties with random values. The first argument is the name of the property, the second is
+the value. You can also give a third parameter, to indicate the type, but this is not required as <a href="https://github.com/phpcr/phpcr/blob/master/src/PHPCR/PropertyType.php#L326">PHPCR will guess the
+type</a> based on given value.</p>
+
+<p>Because nodeNames need to be unique, Jackalope will throw a ItemExists Exception when we try to create 2 nodes with the
+same name. As that might happen with random date, we just catch the exception and try again.</p>
+
+<h3>Reading the data</h3>
+
+<p>Now we have some fake data, we can try to query it again. We start with simply iterating over all the childNodes.
+Because every Node implements <code>Traversable</code>, we can simply loop over a node to get its children.</p>
+
+<pre><code class="language-php line-numbers">foreach ($rootNode as $childNode) {
+    $name = $childNode-&gt;getName();
+    $title = $body = null;
+    if ($childNode-&gt;hasProperty('title')) {
+        $title = $childNode-&gt;getProperty('title')-&gt;getValue();
+    }
+    if ($childNode-&gt;hasProperty('body')) {
+        $body = $childNode-&gt;getProperty('body')-&gt;getValue();
+    }
+    // .. do something
+}
+</code></pre>
+
+<p>All pretty straight forward. To retrieve propertyValues, there are a few alternatives. You can, for example, use some of
+other property methods, to convert the property value to another type.</p>
+
+<pre><code class="language-php">$dummyNode-&gt;setProperty('floatProperty', 3.1415);
+$property = $dummyNode-&gt;getProperty('floatProperty');
+var_dump($property-&gt;getString()); // string(6) "3.1415"
+var_dump($property-&gt;getLong()); // int(3)
+var_dump($property-&gt;getBoolean()); // bool(true)
+var_dump($property-&gt;getBinary()); // resource(#) of type (stream)
+</code></pre>
+
+<p>Besides that, you can use <code>$node-&gt;getPropertyValue('propertyName')</code>. By passing the second argument, you can convert the
+value to the desired type.</p>
+
+<pre><code class="language-php">$dummyNode-&gt;getPropertyValue('floatProperty', \PHPCR\PropertyType::STRING); // string(6) "3.1415"
+</code></pre>
+
+<h3>Finding nodes</h3>
+
+<p>You can also retrieve a node by it's path or multiple nodes by an array with paths</p>
+
+<pre><code class="language-php">$dummyNode = $session-&gt;getNode('/dummy');
+$nodes = $session-&gt;getNodes(array('/', '/dummy'));
+</code></pre>
+
+<p>Or retrieve a childNode by it's name:</p>
+
+<pre><code class="language-php">$dummyNode = $rootNode-&gt;getNode('dummy');
+// Note that we call this on $rootNode, not on $session
+</code></pre>
+
+<p>You can even find nodes by searching with wildcards:</p>
+
+<pre><code class="language-php">$rootNode-&gt;getNodes('c*');
+</code></pre>
+
+<p>There is a lot more to learn about nodes and properties. In the following chapters some of those features will be
+explained. If you want to learn more about the possibilities, you might want to look at the <a href="https://github.com/phpcr/phpcr-api-tests">PHPCR api tests</a>.</p>
+
+<p>In the next post, we will play with Queries and the QueryObjectModel.</p>
+
+        <hr class="rule rule--ornament" />
             <h3><a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">Setup Jackalope with MySQL</a><span class="date">2013-11-16</span></h3>
         <p>This post is the first in a serie about PHPCR with Jackalope. If you want to know more about PHPCR, I recommend watching
 <a href="http://phpcr.github.io/slides.html">the slides about PHPCR</a>.</p>
@@ -245,43 +357,6 @@ that have no clue about it. On a sidenote: you can still comment on my talk, so 
 
 <p>All with all was it a great experience and I'm certain I will do it again. Maybe I'll even submit a actual talk to a conference
 next year.</p>
-
-        <hr class="rule rule--ornament" />
-            <h3><a href="http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend">Vespolina hackweekend</a><span class="date">2013-08-16</span></h3>
-        <p>As I mentioned in [Working on an OpenSource project](http://blog.willem-jan.net/2012/06/02/working-on-opensource/),
-I'm somewhat involved with <a href="http://www.vespolina.org">Vespolina</a>.
-Last weekend we had our first hackweekend, <a href="https://github.com/inspiran">Daniel</a>
-and I sat together, and <a href="https://github.com/iampersistent">Richard</a> and
-<a href="https://github.com/cordoval">Luis</a> joined us remote. On friday evening
-we had a conference call where <a href="https://github.com/hacfi">Philipp</a> also
-joined us. In that conference call we talked a bit about what we wanted
-to do that weekend.</p>
-
-<p>The biggest change that we did that weekend, was merging some of the libraries
-together in 1 lirbary. This to make it easier for people to start working
-with Vespolina, and the make development easier, because maintaining around
-40 repositories isn't trivial. Eventually the following libraries got merged
-into <a href="https://github.com/vespolina/commerce">a single library</a>.</p>
-
-<ul>
-<li>Billing</li>
-<li>Invoice</li>
-<li>Order</li>
-<li>Partner</li>
-<li>Pricing</li>
-<li>Product</li>
-</ul>
-
-<p>So essentially everything that was already done with the CommerceBundle,
-but now for the libraries.</p>
-
-<p>And I continued working on the new website and a bit on the documentation. The
-website is almost finished, just needs some more content and probably some minor
-bugfixes. But the documentation still needs lots of work.</p>
-
-<p>In the coming weeks, I hope to continue working on writing documentation
-and focus on writing more tests. The combination is probably a good way
-to learn Vespolina better and hopefully lead to better documentation and tests.</p>
 
         <hr class="rule rule--ornament" />
             <div>
