@@ -62,6 +62,6 @@ It probably doesn't work with all content_types available as I only tried it wit
 
 Contributions are welcome!
 
-[phpcr tutorial]: %site.url%/2013/11/16/setup-jackalope-with-mysql
+[phpcr tutorial]: {{site.url}}/2013/11/16/setup-jackalope-with-mysql
 [SculpinRelatedContentBundle]: https://github.com/wjzijderveld/SculpinRelatedContentBundle
 [sculpin.json]: https://sculpin.io/documentation/embedded-composer/
