@@ -58,7 +58,9 @@ a global variable `related_content`. This way you can choose how and where to sh
 
 Yesterday I tagged version 1.0.0, about 15 minutes later I tagged 1.0.1 because I forgot to fix the only issue that prevented me from tagging 1.0.0 sooner, because you know... I just didn't think that far ahead yesterday :)
 
-It probably doesn't work with all content_types available and I only tested it with post_tags.
+It probably doesn't work with all content_types available as I only tried it with post_tags, but it shouldn't be that hard to add support for other types.
+
+Contributions are welcome!
 
 [phpcr tutorial]: %site.url%/2013/11/16/setup-jackalope-with-mysql
 [SculpinRelatedContentBundle]: https://github.com/wjzijderveld/SculpinRelatedContentBundle
