@@ -12,7 +12,7 @@ But it still took me 6 months to actually tag and release it...
 
 ## Installation
 
-Add the bundle to yuor dependencies in your [sculpin.json] and run `sculpin install`.
+Add the bundle to your dependencies in your [sculpin.json] and run `sculpin install`.
 
 ~~~language-javascript
 {
