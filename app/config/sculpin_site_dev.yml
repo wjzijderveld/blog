@@ -1,5 +1,5 @@
 imports:
   - sculpin_site_prod.yml
 
-url: http://localhost:8000
+url: http://blog.willem-jan.local
 google_analytics: false
