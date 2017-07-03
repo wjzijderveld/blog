@@ -7,26 +7,29 @@ pagination:
 use:
   - posts
 ---
-<div class="content">
+<div class="row">
     <h1>Welcome on my blog</h1>
-    <p>On this blog I try to regularly talk about my experiences with development. To be honest, I tried this before, more than once... But this time it will be different!</p>
-    <p>This time I'm going to make a list of stuff I want to talk about, and I'm setting a weekly reminder in my agenda to write a blogpost and/or think about more subjects.</p>
+    <p>On this blog I might sometimes write something (I know myself, it probably won't happen on a regular basis) about my experiences with development.</p>
 </div>
-<div class="content">
+<div class="row">
     <h2>Latest posts</h2>
-    {% for post in page.pagination.items %}
-        <h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><span class="date">{{ post.date|date('Y-m-d') }}</span></h3>
-        {{ post.blocks.content|raw }}
-        <hr class="rule rule--ornament" />
-    {% endfor %}
-    {% if page.pagination.previous_page or page.pagination.next_page %}
-    <div>
-        {% if page.pagination.previous_page %}
-            <a href="{{ site.url }}{{ page.pagination.previous_page.url }}" class="previous">Previous page</a>
-        {% endif %}
-        {% if page.pagination.next_page %}
-            <a href="{{ site.url }}{{ page.pagination.next_page.url }}" class="next">Next page</a>
-        {% endif %}
+    <div class="container-fluid">
+      {% for post in page.pagination.items %}
+      <div class="row">
+          <h3><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a><span class="badge badge-default">{{ post.date|date('Y-m-d') }}</span></h3>
+          {{ post.blocks.content|raw }}
+          <hr class="rule rule--ornament" />
+      </div>
+      {% endfor %}
+      {% if page.pagination.previous_page or page.pagination.next_page %}
+      <div>
+          {% if page.pagination.previous_page %}
+              <a href="{{ site.url }}{{ page.pagination.previous_page.url }}" class="previous">Previous page</a>
+          {% endif %}
+          {% if page.pagination.next_page %}
+              <a href="{{ site.url }}{{ page.pagination.next_page.url }}" class="next">Next page</a>
+          {% endif %}
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
 </div>

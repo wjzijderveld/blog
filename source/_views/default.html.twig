@@ -1,71 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
-    <title>{% if page.title %}{{ page.title  }} - {% endif %}blog.willem-jan.net - Just some rambling about (web)development</title>
-    <link rel="stylesheet" href="/css/style.css"/>
-    <link rel="icon" type="image/ico" href="/img/favicon.ico" />
-    {% if site.google_analytics %}
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-5505825-8']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-    {% endif %}
-</head>
-<body>
-    <div class="wrapper">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+        <title>{% if page.title %}{{ page.title  }} - {% endif %}blog.willem-jan.net - Just some rambling about (web)development</title>
+        <link rel="icon" type="image/ico" href="/img/favicon.ico" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="/css/blog.css" />
+        {% if site.google_analytics %}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-5505825-8']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        {% endif %}
+    </head>
+    <body>
 
-        <header class="block padded">
-            <span class="alpha">blog.willem-jan.net</span>
-        </header>
+        <div class="jumbotron">
+            <h1>Willem-Jan Zijderveld</h1>
+            <span class="alpha hide-mobile">random ramblings about software</span>
+        </div>
 
-        <div class="page">
+        <div class="container">
 
-            <div class="sidebar">
+            <div class="row">
 
-                <ul class="main">
-                    <li><a href="{{ site.url }}/">Home</a></li>
-                    {#<li><a href="{{ site.url }}/">About me</a></li>#}
-                    <li><a href="{{ site.url }}/blog">Archive</a></li>
-                    <li><a href="http://feeds.feedburner.com/BlogWillemjanNet" rel="alternate" type="application/rss+xml">RSS <img src="/img/feed-icon-14x14.png" alt="" title="RSS Feed" /></a></li>
-                </ul>
+                <div class="col-3">
 
-                {% if related_content|length %}
-                    <ul class="block related">
-                        <li><h3>Related posts</h3></li>
-                        {% for relatedSource in related_content %}
-                            <li><a href="{{ site.url }}{{ relatedSource.url }}" title="{{ relatedSource.title }}">
-                                    <span class="loz date">{{ relatedSource.date|date('Y-m-d') }}</span>
-                                    {{ relatedSource.title|slice(0,20) }}...
-                                </a></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+                    <sidebar>
 
-                <div class="intro">
-                    <h3>Short intro</h3>
-                    <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="{{ site.url }}/">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ site.url }}/blog">Archive</a></li>
+                            <li class="nav-item"><a class="nav-link" href="http://feeds.feedburner.com/BlogWillemjanNet" rel="alternate" type="application/rss+xml">RSS <img src="/img/feed-icon-14x14.png" alt="" title="RSS Feed" /></a></li>
+                        </ul>
+
+                        {% if related_content|length %}
+                            <ul class="nav flex-column related">
+                                <li class="nav-item"><h3>Related posts</h3></li>
+                                {% for relatedSource in related_content %}
+                                    <li class="nav-item"><a class="nav-link" href="{{ site.url }}{{ relatedSource.url }}" title="{{ relatedSource.title }}">
+                                            <span class="loz date">{{ relatedSource.date|date('Y-m-d') }}</span>
+                                            {{ relatedSource.title|slice(0,20) }}...
+                                        </a></li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+                        <div class="intro">
+                            <h3>Short intro</h3>
+                            <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
+                        </div>
+                    </sidebar>
+
                 </div>
-            </div>
 
-            {% block content_wrapper %}
-                {% block content %}{% endblock %}
-            {% endblock %}
+                <div class="col">
+
+                    <div class="container-fluid">
+                        {% block content_wrapper %}
+                            {% block content %}{% endblock %}
+                        {% endblock %}
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
         <footer class="block padded">
-            &copy; 2013 Willem-Jan Zijderveld - all rights reserved
+            &copy; 2013 - {{ 'now'|date('Y') }} Willem-Jan Zijderveld - all rights reserved
         </footer>
-    </div>
-    <script type="text/javascript" src="/js/prism.js"></script>
-    <script type="text/javascript" src="/js/prism.hooks.js"></script>
-</body>
+        <script type="text/javascript" src="/js/prism.js"></script>
+        <script type="text/javascript" src="/js/prism.hooks.js"></script>
+    </body>
 </html>

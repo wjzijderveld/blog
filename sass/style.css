@@ -1,0 +1,59 @@
+/*
+Syntax error: File to import not found or unreadable: compass/css3/border-radius.
+              Load paths:
+                /home/vagrant/github.com/wjzijderveld/blog
+                /home/vagrant/github.com/wjzijderveld/blog/sass
+                /home/vagrant/github.com/wjzijderveld/blog/output_dev/css
+        on line 18 of sass/style.scss
+
+13: 
+14: /**
+15:  * Setup
+16:  *\/
+17: @import "vars";
+18: @import "compass/css3/border-radius";
+19: 
+20: // Optionally Import Everything
+21: // @import "compass-inuit";
+22: 
+23: // Optionally Import Sections (defaults required)
+
+Backtrace:
+sass/style.scss:18
+/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:67:in `rescue in import'
+/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:45:in `import'
+/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:28:in `imported_file'
+/usr/lib/ruby/vendor_ruby/sass/tree/import_node.rb:37:in `css_import?'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:217:in `visit_import'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:37:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:100:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `map'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:53:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:109:in `block in visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:121:in `with_environment'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:108:in `visit_children'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:37:in `block in visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:128:in `visit_root'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/base.rb:37:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:100:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/visitors/perform.rb:7:in `visit'
+/usr/lib/ruby/vendor_ruby/sass/tree/root_node.rb:20:in `render'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:315:in `_render'
+/usr/lib/ruby/vendor_ruby/sass/engine.rb:262:in `render'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:362:in `update_stylesheet'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:203:in `block in update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:201:in `each'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:201:in `update_stylesheets'
+/usr/lib/ruby/vendor_ruby/sass/plugin/compiler.rb:235:in `watch'
+/usr/lib/ruby/vendor_ruby/sass/plugin.rb:107:in `method_missing'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:459:in `watch_or_update'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:326:in `process_result'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:41:in `parse'
+/usr/lib/ruby/vendor_ruby/sass/exec.rb:21:in `parse!'
+/usr/bin/sass:8:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: File to import not found or unreadable: compass/css3/border-radius.\A               Load paths:\A                 /home/vagrant/github.com/wjzijderveld/blog\A                 /home/vagrant/github.com/wjzijderveld/blog/sass\A                 /home/vagrant/github.com/wjzijderveld/blog/output_dev/css\A         on line 18 of sass/style.scss\A \A 13: \A 14: /**\A 15:  * Setup\A 16:  */\A 17: @import \"vars\";\A 18: @import \"compass/css3/border-radius\";\A 19: \A 20: // Optionally Import Everything\A 21: // @import \"compass-inuit\";\A 22: \A 23: // Optionally Import Sections (defaults required)"; }

@@ -1,7 +1,7 @@
 html{
     font: 1em/1.5 'Open Sans', sans-serif;
-    background-color: #000;
-    background-image: url(../img/background.jpg);
+    background-color: #FFF;
+    // background-image: url(../img/background.jpg);
     background-attachment: fixed;
     background-position: center center;
     color: #333;
@@ -46,6 +46,14 @@ blockquote {
     max-width: 1200px;
     padding: 0 24px;
     margin: 0 auto;
+}
+
+header.block {
+  padding: 40px;
+  text-align: center;
+  color: #FFF;
+  background: #888;
+  text-shadow: 1px 1px 2px #000;
 }
 
 footer {
