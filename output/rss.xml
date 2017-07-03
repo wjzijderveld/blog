@@ -14,7 +14,7 @@ possible, that's how <a href="https://github.com/wjzijderveld/SculpinRelatedCont
 <p>Altough I only finished it for I wrote the last post in the serie, I'm still happy that I wrote it.
 But it still took me 6 months to actually tag and release it...</p>
 
-<h2>Installation</h2>
+<h2 id="installation">Installation</h2>
 
 <p>Add the bundle to your dependencies in your <a href="https://sculpin.io/documentation/embedded-composer/">sculpin.json</a> and run <code>sculpin install</code>.</p>
 
@@ -62,7 +62,7 @@ a global variable <code>related_content</code>. This way you can choose how and 
 
 <p>Contributions are welcome!</p>
 ]]></description>
-            <pubDate>Fri, 01 Aug 2014 00:00:00 +0200</pubDate>
+            <pubDate>Fri, 01 Aug 2014 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2014/08/01/sculpin-related-content</guid>
             <link>http://blog.willem-jan.net/2014/08/01/sculpin-related-content</link>
         </item>
@@ -74,7 +74,7 @@ Jackalope Doctrine DBAL as storage backend. In this post we are going to migrate
 <p>Jackrabbit is a Apache project that fully implements the JCR-170 and JCR-283 spec. We are going to implement it using
 <a href="https://github.com/jackalope/jackalope-jackrabbit">Jackalope Jackrabbit</a>.</p>
 
-<h2>Preperations</h2>
+<h2 id="preperations">Preperations</h2>
 
 <p>We first need to install the new Jackalope package.</p>
 
@@ -91,7 +91,7 @@ of the fact that we can use multiple backends.</p>
 <p><em><strong>Disclaimer</strong>: I haven't performed this action in production yet, so I can't guarantee this works for all cases.
 And as always: make a backup!</em></p>
 
-<h2>Exporting the data from MySQL</h2>
+<h2 id="exporting-the-data-from-mysql">Exporting the data from MySQL</h2>
 
 <p>To do this migration, we will export the data from MySQL and import it again into Jackrabbit. To do this I added 2
 commands from PHPCR-Utils to our console, the <code>WorkspaceExportCommand</code> and the <code>WorkspaceImportCommand</code>. I also added
@@ -106,7 +106,7 @@ the target filename as an argument.</p>
 <p>You should now have a file <code>tutorial.xml</code> with your complete workspace. I included an example of my workspace in <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part6-migrate-to-jackrabbit">the
 git repository</a>, I also included a formatted version for your convenience.</p>
 
-<h2>Updating our configuration</h2>
+<h2 id="updating-our-configuration">Updating our configuration</h2>
 
 <p>Before we're going to import our data in Jackrabbit, we need to update our configuration. And you'll need a running
 Jackrabbit server to import your data again. I'm not going into specifics how to install and run Jackrabbit, there are
@@ -126,7 +126,7 @@ And update the transport to <code>jackalope-jackrabbit</code>.</p>
 <p>I've updated <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part6-migrate-to-jackrabbit/cli-config.php">the cli-config.php</a> in the git repository, similar to the one for DoctrineDBAL, but without the database
 connection.</p>
 
-<h2>Importing our data</h2>
+<h2 id="importing-our-data">Importing our data</h2>
 
 <p>Before we actually import our data, lets run a SQL2 query to check we actually changed our backend correctly and the
 workspace is empty.</p>
@@ -146,13 +146,13 @@ $ ./console phpcr:workspace:import tutorial.xml
 <p>When we now rerun the query from above, we should have some results! With Jackrabbit now configured, you might play with
 some of the features Jackrabbit has built-in, like versioning.</p>
 
-<h2>That's a wrap</h2>
+<h2 id="that%27s-a-wrap">That's a wrap</h2>
 
 <p>As I mentioned in the intro, this is probably the last post in this serie. I hope this serie helped some people to
 understand a bit what PHPCR is and how it can be used. If somebody would like me to create a more detailed example, or
 expand a bit more on a specific subject, let me know!</p>
 ]]></description>
-            <pubDate>Mon, 17 Feb 2014 14:30:00 +0100</pubDate>
+            <pubDate>Mon, 17 Feb 2014 14:30:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2014/02/17/migrating-to-jackrabbit</guid>
             <link>http://blog.willem-jan.net/2014/02/17/migrating-to-jackrabbit</link>
         </item>
@@ -164,7 +164,7 @@ QueryObjectModel and in the <a href="http://blog.willem-jan.net/2014/01/10/nodet
 
 <p>In this post we'll be creating our own NodeType.</p>
 
-<h2>Defining the NodeType</h2>
+<h2 id="defining-the-nodetype">Defining the NodeType</h2>
 
 <p>As we saw in the <a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">previous post</a>, NodeTypes have certain properties that define how a NodeType behaves and property
 definitions that define what values are stored in the NodeType. To create our own NodeType, we need to tell our
@@ -230,7 +230,7 @@ use it without the need for PHP.</p>
 <p>The definition above gives us a acme:product NodeType with 2 properties. Beside that, we also defined that it has 3
 supertypes: <code>nt:base</code>, <code>mix:title</code> and <code>mix:reference</code>. For the acme:media property, we also added a valueConstraint.</p>
 
-<h2>Registering the NodeType</h2>
+<h2 id="registering-the-nodetype">Registering the NodeType</h2>
 
 <p>To actually register the nodeType, we only need a few lines of code as seen in the <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part5-creating-a-nodetype/src/Wjzijderveld/Command/CreateNodeTypeCommand.php">CreateNodeTypeCommand</a></p>
 
@@ -252,7 +252,7 @@ $session-&gt;save();
 
 <p><strong>Sidenote</strong>: above code won't work correctly untill <a href="https://github.com/jackalope/jackalope/pull/203">PR 203</a> has been merged.</p>
 
-<h2>Using the newly created NodeType</h2>
+<h2 id="using-the-newly-created-nodetype">Using the newly created NodeType</h2>
 
 <p>To use the new NodeType, we need to create a Node with the new NodeType as primaryType.</p>
 
@@ -269,7 +269,7 @@ schemaless storage.</p>
 
 <p>The examples in this blogpost can be found <a href="https://github.com/wjzijderveld/phpcr-blog-serie/tree/part5-creating-a-nodetype">on Github</a>.</p>
 ]]></description>
-            <pubDate>Sat, 18 Jan 2014 17:30:00 +0100</pubDate>
+            <pubDate>Sat, 18 Jan 2014 17:30:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2014/01/18/creating-custom-nodetypes</guid>
             <link>http://blog.willem-jan.net/2014/01/18/creating-custom-nodetypes</link>
         </item>
@@ -282,7 +282,7 @@ QOM and wrote our first queries.</p>
 <p>In this post, we will be digging a bit deeper into PHPCR. We'll see how NodeTypes work and how you can combine some
 properties with the use of Mixins.</p>
 
-<h2>Introduction to NodeTypes</h2>
+<h2 id="introduction-to-nodetypes">Introduction to NodeTypes</h2>
 
 <p>What are NodeTypes? The JCR specification defines it like this:</p>
 
@@ -332,7 +332,7 @@ PropertyDefinitions and ChildNodeDefinitions. That way we can get a better under
 Besides that, it can also define if and which childNodes it can contain. As an example, NodeType <code>nt:activity</code> doesn't
 support any ChildNodes, <code>nt:folder</code> can contain any NodeType and <code>nt:file</code> has a required ChildNode <code>jcr:content</code>.</p>
 
-<h2>Mixin example</h2>
+<h2 id="mixin-example">Mixin example</h2>
 
 <p>For an example with Mixins, I planned to use some versioning code examples to demonstrate how mixins can be used. But
 that was until I found out Versioning is not yet supported by Jackalope Doctrine DBAL. So I'm just going to explain what
@@ -368,7 +368,7 @@ partly because I stumbled on some bugs in Jackalope that I wanted to fix first.<
 
 <p>I hope the next part of this blogpost will appear within the next 2 weeks.</p>
 ]]></description>
-            <pubDate>Fri, 10 Jan 2014 22:15:00 +0100</pubDate>
+            <pubDate>Fri, 10 Jan 2014 22:15:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins</guid>
             <link>http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins</link>
         </item>
@@ -419,7 +419,7 @@ $queryBuilder
     -&gt;execute();
 </code></pre>
 
-<h2>Basic conditions</h2>
+<h2 id="basic-conditions">Basic conditions</h2>
 
 <p>In the fixture file, I created some news items which we are going to query. The items have the nodeType <code>nt:unstructured</code>
 so that's the what we are quering for. For the first example we are just retrieving all items, which are placed under
@@ -496,7 +496,7 @@ if the nodes are descendants of a specific node, or if the node is a direct chil
 need to query nodes that have a specific property. Now everything is an object, it's way easier to walk the query to be
 able toe execute it.</p>
 
-<h2>More operands</h2>
+<h2 id="more-operands">More operands</h2>
 
 <p>The next queries have a bit more constraints, and a constraint that you might expected to work differently.
 We are going to query for nodes under <code>/queryExamples/news</code>, where the author is <strong>NOT</strong> <code>bar</code> <strong>AND</strong> where the node
@@ -539,13 +539,13 @@ on NodeName in descending order.</p>
 
 <p>We now receive 2 rows, <code>item2</code> and <code>item1</code> in that order.</p>
 
-<h4>To keep in mind</h4>
+<h4 id="to-keep-in-mind">To keep in mind</h4>
 
 <p>Especially with Doctrine DBAL there are a few limitations with querying. So is comparing dates a bit tricky because the
 properties are stored in XML. A workaround would be to store the date as a numeric format, so it becomes a lot easier to
 compare and order it.</p>
 
-<h2>JCR-SQL2</h2>
+<h2 id="jcr-sql2">JCR-SQL2</h2>
 
 <p>Now let's have a quick look at the JCR-SQL2 variant of above query. We can just generate that from the above code with
 <code>$qom-&gt;getStatement();</code></p>
@@ -567,7 +567,7 @@ ORDER BY NAME(news) DESC
 <p>As you can see, is that a lot shorter and probably more more readable then the QOM Factory version. But a JCR-SQL2 can
 get hard to read when you build it dynamicly, so it definitely isn't always the better solution.</p>
 
-<h2>Other constraints</h2>
+<h2 id="other-constraints">Other constraints</h2>
 
 <p>We already saw quit a few constraints and I named a few others. Here is a quick overview of all the constraints that
 PHPCR defines.</p>
@@ -590,11 +590,11 @@ implemented.</p>
 
 <p>We might see some of these constraints begin used in future posts. But I guess most are pretty obvious in what they do.</p>
 
-<h2>Next post</h2>
+<h2 id="next-post">Next post</h2>
 
 <p>In the next post, I'll tell more nodeTypes and mixins. I'll do that by using versionable as an example.</p>
 ]]></description>
-            <pubDate>Mon, 09 Dec 2013 22:00:00 +0100</pubDate>
+            <pubDate>Mon, 09 Dec 2013 22:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model</guid>
             <link>http://blog.willem-jan.net/2013/12/09/phpcr-query-object-model</link>
         </item>
@@ -606,7 +606,7 @@ implemented.</p>
 <p>In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">previous post</a>, I talked about setting up your repository. In this post we will start playing with some actual
 content.</p>
 
-<h3>Insert data</h3>
+<h3 id="insert-data">Insert data</h3>
 
 <p>To show the basic usage of PHPCR, we are going to load some data into our repository. For this I used <a href="https://github.com/fzaninotto/Faker">Faker</a>.</p>
 
@@ -651,7 +651,7 @@ type</a> based on given value.</p>
 <p>Because nodeNames need to be unique, Jackalope will throw a ItemExists Exception when we try to create 2 nodes with the
 same name. As that might happen with random date, we just catch the exception and try again.</p>
 
-<h3>Reading the data</h3>
+<h3 id="reading-the-data">Reading the data</h3>
 
 <p>Now we have some fake data, we can try to query it again. We start with simply iterating over all the childNodes.
 Because every Node implements <code>Traversable</code>, we can simply loop over a node to get its children.</p>
@@ -686,7 +686,7 @@ value to the desired type.</p>
 <pre><code class="language-php">$dummyNode-&gt;getPropertyValue('floatProperty', \PHPCR\PropertyType::STRING); // string(6) "3.1415"
 </code></pre>
 
-<h3>Finding nodes</h3>
+<h3 id="finding-nodes">Finding nodes</h3>
 
 <p>You can also retrieve a node by it's path or multiple nodes by an array with paths</p>
 
@@ -710,7 +710,7 @@ explained. If you want to learn more about the possibilities, you might want to 
 
 <p>In the next post, we will play with Queries and the QueryObjectModel.</p>
 ]]></description>
-            <pubDate>Wed, 27 Nov 2013 23:30:00 +0100</pubDate>
+            <pubDate>Wed, 27 Nov 2013 23:30:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing</guid>
             <link>http://blog.willem-jan.net/2013/11/26/phpcr-reading-and-writing</link>
         </item>
@@ -722,7 +722,7 @@ explained. If you want to learn more about the possibilities, you might want to 
 <p>In this post I will walk through the first steps, setting up your Content Repository using Jackalope. In this case we
 will use MySQL as storage, but in a future post, we will migrate our data to a Jackrabbit server.</p>
 
-<h3>Install Jackalope</h3>
+<h3 id="install-jackalope">Install Jackalope</h3>
 
 <p>First we will install Jackalope DoctrineDBAL. In this serie I will use <a href="http://getcomposer.org">composer</a>, and in the examples I assume it's
 installed system wide, so the <code>composer</code> command is available.</p>
@@ -742,7 +742,7 @@ easily later on. For this I installed symfony/yaml to parse the Yaml file.</p>
 
 <p>The next step is to create your database and configure Jackalope with the correct transport layer.</p>
 
-<h3>Configure jackalope</h3>
+<h3 id="configure-jackalope">Configure jackalope</h3>
 
 <p>Jackalope provides a file that gives us some powerfull CLI commands. For this to work, we need to tell Jackalope what
 repository connection we are using. Jackalope requires a cli-config.php file for that in the root of your project.
@@ -795,7 +795,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 
 <p>Jackalope will tell you it has initialized the database tables.</p>
 
-<h3>Testing your repository</h3>
+<h3 id="testing-your-repository">Testing your repository</h3>
 
 <p>You should now have a working repository. We can test this by executing our first query, which should return the rootNode</p>
 
@@ -806,7 +806,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 Now we're done with the first part. In the next part, we will start with reading and writing to the repository via
 Jackalope.</p>
 ]]></description>
-            <pubDate>Sat, 16 Nov 2013 00:00:00 +0100</pubDate>
+            <pubDate>Sat, 16 Nov 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql</guid>
             <link>http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql</link>
         </item>
@@ -817,20 +817,20 @@ to create a solution for a problem that doesn't exists. That person thought CMF 
 couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
 he had seen the admin interfaces that come with Symfony CMF and saw that it was... less from perfect (to put it nice).</p>
 
-<h4>Goals of Symfony CMF</h4>
+<h4 id="goals-of-symfony-cmf">Goals of Symfony CMF</h4>
 
 <p>Symfony CMF aims to provide a toolbox to create your own custom CMS, not by reinventing the wheel, but by reusing
 existing code and sharing the produced code (parts of it will be used in Drupal 8). It aims to make it easier for
 developers to add CMS functionality to applications built on Symfony 2.</p>
 
-<h4>PHPCR</h4>
+<h4 id="phpcr">PHPCR</h4>
 
 <p>To do that, they looked at other solutions, solutions not limited to PHP, to structure content. This because a CMS has
 mostly unstructured data, and forcing this into a RDBMS isn't always a good fit. <a href="https://en.wikipedia.org/wiki/Graph_database">Graph database</a> are a better
 fit. They found <a href="http://jcp.org/en/jsr/detail?id=283">JCR</a>, a Java specification that deals with content. They ported that to PHP and called it <a href="https://github.com/phpcr/" title="PHPCR Github">PHPCR</a>;
 PHP Content Repository. With PHPCR, there is an API to interface with your content repository.</p>
 
-<h4>What is doesn't solve</h4>
+<h4 id="what-is-doesn%27t-solve">What is doesn't solve</h4>
 
 <p>Althought Symfony CMF does provide some basic admin interfaces (with Sonata Admin), it isn't meant as an end product.
 For most customers and editors, those screens just won't be enough. But there is nothing to stop you from developing
@@ -842,7 +842,7 @@ content management to your Symfony2 application.</p>
 
 <p>For more information about Symfony CMF, check the <a href="http://cmf.symfony.com/slides/bigpicture.html">bigger picture slides</a></p>
 ]]></description>
-            <pubDate>Tue, 05 Nov 2013 00:00:00 +0100</pubDate>
+            <pubDate>Tue, 05 Nov 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/11/05/symfony-cmf</guid>
             <link>http://blog.willem-jan.net/2013/11/05/symfony-cmf</link>
         </item>
@@ -872,7 +872,7 @@ So I try to put some time in a JAVA project I started 6 months ago, at least I'm
 <p>Any tips how to deal with such a time would be greatly appreciated! Sometimes I have the feeling I'm just not patient enough,
 that I should just wait, and be grateful I have a job.</p>
 ]]></description>
-            <pubDate>Fri, 04 Oct 2013 00:00:00 +0200</pubDate>
+            <pubDate>Fri, 04 Oct 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/10/04/so-little-time</guid>
             <link>http://blog.willem-jan.net/2013/10/04/so-little-time</link>
         </item>
@@ -914,7 +914,7 @@ that have no clue about it. On a sidenote: you can still comment on my talk, so 
 <p>All with all was it a great experience and I'm certain I will do it again. Maybe I'll even submit a actual talk to a conference
 next year.</p>
 ]]></description>
-            <pubDate>Sun, 15 Sep 2013 00:00:00 +0200</pubDate>
+            <pubDate>Sun, 15 Sep 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk</guid>
             <link>http://blog.willem-jan.net/2013/09/15/my-first-uncon-talk</link>
         </item>
@@ -955,7 +955,7 @@ bugfixes. But the documentation still needs lots of work.</p>
 and focus on writing more tests. The combination is probably a good way
 to learn Vespolina better and hopefully lead to better documentation and tests.</p>
 ]]></description>
-            <pubDate>Fri, 16 Aug 2013 00:00:00 +0200</pubDate>
+            <pubDate>Fri, 16 Aug 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend</guid>
             <link>http://blog.willem-jan.net/2013/08/16/vespolina-hackweekend</link>
         </item>
@@ -985,7 +985,7 @@ in exploring the possibilities of new techniques and implementing those
 techniques. And if that includes working on and with OpenSource, that would
 be awesome!</p>
 ]]></description>
-            <pubDate>Fri, 02 Aug 2013 00:00:00 +0200</pubDate>
+            <pubDate>Fri, 02 Aug 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/08/02/keep-improving</guid>
             <link>http://blog.willem-jan.net/2013/08/02/keep-improving</link>
         </item>
@@ -1035,7 +1035,7 @@ Sculpin supports Markdown Extra, so I can do the following:</p>
 
 <p>I only haven't figured out how I can use the <a href="http://prismjs.com/plugins/line-numbers/">line-numbers</a> plugin within Markdown.</p>
 ]]></description>
-            <pubDate>Fri, 26 Jul 2013 00:00:00 +0200</pubDate>
+            <pubDate>Fri, 26 Jul 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/07/26/new-blog</guid>
             <link>http://blog.willem-jan.net/2013/07/26/new-blog</link>
         </item>
@@ -1057,7 +1057,7 @@ It was a nice little project, got to know Composer a bit better, got some more e
 <p>Github: <a href="https://github.com/wjzijderveld/CheckBundles">https://github.com/wjzijderveld/CheckBundles</a><br />
 Packagist: <a href="https://packagist.org/packages/wjzijderveld/check-bundles">https://packagist.org/packages/wjzijderveld/check-bundles</a></p>
 ]]></description>
-            <pubDate>Tue, 26 Feb 2013 00:00:00 +0100</pubDate>
+            <pubDate>Tue, 26 Feb 2013 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2013/02/26/created-a-little-bundle-check-library</guid>
             <link>http://blog.willem-jan.net/2013/02/26/created-a-little-bundle-check-library</link>
         </item>
@@ -1094,7 +1094,7 @@ wanted to help with an Open Source project.</p>
 
 <p>I hope to create some time in the coming weeks. Really need to get going on the forms.</p>
 ]]></description>
-            <pubDate>Sat, 02 Jun 2012 00:00:00 +0200</pubDate>
+            <pubDate>Sat, 02 Jun 2012 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2012/06/02/working-on-opensource</guid>
             <link>http://blog.willem-jan.net/2012/06/02/working-on-opensource</link>
         </item>
@@ -1138,7 +1138,7 @@ Thanks RumpledElf and damiankloip (and some others that made a suggestion)!</p>
 
 <p>Join <a href="irc://irc.freenode.org/drupal">#drupal</a> on <a href="http://www.freenode.org">freenode.org</a></p>
 ]]></description>
-            <pubDate>Sat, 11 Jun 2011 00:00:00 +0200</pubDate>
+            <pubDate>Sat, 11 Jun 2011 00:00:00 +0000</pubDate>
             <guid>http://blog.willem-jan.net/2011/06/11/drupal-combined-views</guid>
             <link>http://blog.willem-jan.net/2011/06/11/drupal-combined-views</link>
         </item>

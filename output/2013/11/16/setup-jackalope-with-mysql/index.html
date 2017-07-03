@@ -66,17 +66,6 @@
                     <h3>Short intro</h3>
                     <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
                 </div>
-
-                <div class="block no-padding textads">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Sidebar -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-6473304659214282"
-     data-ad-slot="6183414453"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>                </div>
             </div>
 
                 <article class="content long">
@@ -88,7 +77,7 @@
 <p>In this post I will walk through the first steps, setting up your Content Repository using Jackalope. In this case we
 will use MySQL as storage, but in a future post, we will migrate our data to a Jackrabbit server.</p>
 
-<h3>Install Jackalope</h3>
+<h3 id="install-jackalope">Install Jackalope</h3>
 
 <p>First we will install Jackalope DoctrineDBAL. In this serie I will use <a href="http://getcomposer.org">composer</a>, and in the examples I assume it's
 installed system wide, so the <code>composer</code> command is available.</p>
@@ -108,7 +97,7 @@ easily later on. For this I installed symfony/yaml to parse the Yaml file.</p>
 
 <p>The next step is to create your database and configure Jackalope with the correct transport layer.</p>
 
-<h3>Configure jackalope</h3>
+<h3 id="configure-jackalope">Configure jackalope</h3>
 
 <p>Jackalope provides a file that gives us some powerfull CLI commands. For this to work, we need to tell Jackalope what
 repository connection we are using. Jackalope requires a cli-config.php file for that in the root of your project.
@@ -161,7 +150,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 
 <p>Jackalope will tell you it has initialized the database tables.</p>
 
-<h3>Testing your repository</h3>
+<h3 id="testing-your-repository">Testing your repository</h3>
 
 <p>You should now have a working repository. We can test this by executing our first query, which should return the rootNode</p>
 

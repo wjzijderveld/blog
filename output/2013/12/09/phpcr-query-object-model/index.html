@@ -66,17 +66,6 @@
                     <h3>Short intro</h3>
                     <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
                 </div>
-
-                <div class="block no-padding textads">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Sidebar -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-6473304659214282"
-     data-ad-slot="6183414453"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>                </div>
             </div>
 
                 <article class="content long">
@@ -127,7 +116,7 @@ $queryBuilder
     -&gt;execute();
 </code></pre>
 
-<h2>Basic conditions</h2>
+<h2 id="basic-conditions">Basic conditions</h2>
 
 <p>In the fixture file, I created some news items which we are going to query. The items have the nodeType <code>nt:unstructured</code>
 so that's the what we are quering for. For the first example we are just retrieving all items, which are placed under
@@ -204,7 +193,7 @@ if the nodes are descendants of a specific node, or if the node is a direct chil
 need to query nodes that have a specific property. Now everything is an object, it's way easier to walk the query to be
 able toe execute it.</p>
 
-<h2>More operands</h2>
+<h2 id="more-operands">More operands</h2>
 
 <p>The next queries have a bit more constraints, and a constraint that you might expected to work differently.
 We are going to query for nodes under <code>/queryExamples/news</code>, where the author is <strong>NOT</strong> <code>bar</code> <strong>AND</strong> where the node
@@ -247,13 +236,13 @@ on NodeName in descending order.</p>
 
 <p>We now receive 2 rows, <code>item2</code> and <code>item1</code> in that order.</p>
 
-<h4>To keep in mind</h4>
+<h4 id="to-keep-in-mind">To keep in mind</h4>
 
 <p>Especially with Doctrine DBAL there are a few limitations with querying. So is comparing dates a bit tricky because the
 properties are stored in XML. A workaround would be to store the date as a numeric format, so it becomes a lot easier to
 compare and order it.</p>
 
-<h2>JCR-SQL2</h2>
+<h2 id="jcr-sql2">JCR-SQL2</h2>
 
 <p>Now let's have a quick look at the JCR-SQL2 variant of above query. We can just generate that from the above code with
 <code>$qom-&gt;getStatement();</code></p>
@@ -275,7 +264,7 @@ ORDER BY NAME(news) DESC
 <p>As you can see, is that a lot shorter and probably more more readable then the QOM Factory version. But a JCR-SQL2 can
 get hard to read when you build it dynamicly, so it definitely isn't always the better solution.</p>
 
-<h2>Other constraints</h2>
+<h2 id="other-constraints">Other constraints</h2>
 
 <p>We already saw quit a few constraints and I named a few others. Here is a quick overview of all the constraints that
 PHPCR defines.</p>
@@ -298,7 +287,7 @@ implemented.</p>
 
 <p>We might see some of these constraints begin used in future posts. But I guess most are pretty obvious in what they do.</p>
 
-<h2>Next post</h2>
+<h2 id="next-post">Next post</h2>
 
 <p>In the next post, I'll tell more nodeTypes and mixins. I'll do that by using versionable as an example.</p>
 

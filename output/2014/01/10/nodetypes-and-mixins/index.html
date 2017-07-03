@@ -66,17 +66,6 @@
                     <h3>Short intro</h3>
                     <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
                 </div>
-
-                <div class="block no-padding textads">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Sidebar -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-6473304659214282"
-     data-ad-slot="6183414453"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>                </div>
             </div>
 
                 <article class="content long">
@@ -89,7 +78,7 @@ QOM and wrote our first queries.</p>
 <p>In this post, we will be digging a bit deeper into PHPCR. We'll see how NodeTypes work and how you can combine some
 properties with the use of Mixins.</p>
 
-<h2>Introduction to NodeTypes</h2>
+<h2 id="introduction-to-nodetypes">Introduction to NodeTypes</h2>
 
 <p>What are NodeTypes? The JCR specification defines it like this:</p>
 
@@ -139,7 +128,7 @@ PropertyDefinitions and ChildNodeDefinitions. That way we can get a better under
 Besides that, it can also define if and which childNodes it can contain. As an example, NodeType <code>nt:activity</code> doesn't
 support any ChildNodes, <code>nt:folder</code> can contain any NodeType and <code>nt:file</code> has a required ChildNode <code>jcr:content</code>.</p>
 
-<h2>Mixin example</h2>
+<h2 id="mixin-example">Mixin example</h2>
 
 <p>For an example with Mixins, I planned to use some versioning code examples to demonstrate how mixins can be used. But
 that was until I found out Versioning is not yet supported by Jackalope Doctrine DBAL. So I'm just going to explain what

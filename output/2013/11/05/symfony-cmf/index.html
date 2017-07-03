@@ -39,17 +39,6 @@
                     <h3>Short intro</h3>
                     <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
                 </div>
-
-                <div class="block no-padding textads">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Sidebar -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-6473304659214282"
-     data-ad-slot="6183414453"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>                </div>
             </div>
 
                 <article class="content long">
@@ -60,20 +49,20 @@ to create a solution for a problem that doesn't exists. That person thought CMF 
 couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
 he had seen the admin interfaces that come with Symfony CMF and saw that it was... less from perfect (to put it nice).</p>
 
-<h4>Goals of Symfony CMF</h4>
+<h4 id="goals-of-symfony-cmf">Goals of Symfony CMF</h4>
 
 <p>Symfony CMF aims to provide a toolbox to create your own custom CMS, not by reinventing the wheel, but by reusing
 existing code and sharing the produced code (parts of it will be used in Drupal 8). It aims to make it easier for
 developers to add CMS functionality to applications built on Symfony 2.</p>
 
-<h4>PHPCR</h4>
+<h4 id="phpcr">PHPCR</h4>
 
 <p>To do that, they looked at other solutions, solutions not limited to PHP, to structure content. This because a CMS has
 mostly unstructured data, and forcing this into a RDBMS isn't always a good fit. <a href="https://en.wikipedia.org/wiki/Graph_database">Graph database</a> are a better
 fit. They found <a href="http://jcp.org/en/jsr/detail?id=283">JCR</a>, a Java specification that deals with content. They ported that to PHP and called it <a href="https://github.com/phpcr/" title="PHPCR Github">PHPCR</a>;
 PHP Content Repository. With PHPCR, there is an API to interface with your content repository.</p>
 
-<h4>What is doesn't solve</h4>
+<h4 id="what-is-doesn%27t-solve">What is doesn't solve</h4>
 
 <p>Althought Symfony CMF does provide some basic admin interfaces (with Sonata Admin), it isn't meant as an end product.
 For most customers and editors, those screens just won't be enough. But there is nothing to stop you from developing

@@ -66,17 +66,6 @@
                     <h3>Short intro</h3>
                     <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
                 </div>
-
-                <div class="block no-padding textads">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Sidebar -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-6473304659214282"
-     data-ad-slot="6183414453"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>                </div>
             </div>
 
                 <article class="content long">
@@ -88,7 +77,7 @@ QueryObjectModel and in the <a href="http://blog.willem-jan.net/2014/01/10/nodet
 
 <p>In this post we'll be creating our own NodeType.</p>
 
-<h2>Defining the NodeType</h2>
+<h2 id="defining-the-nodetype">Defining the NodeType</h2>
 
 <p>As we saw in the <a href="http://blog.willem-jan.net/2014/01/10/nodetypes-and-mixins">previous post</a>, NodeTypes have certain properties that define how a NodeType behaves and property
 definitions that define what values are stored in the NodeType. To create our own NodeType, we need to tell our
@@ -154,7 +143,7 @@ use it without the need for PHP.</p>
 <p>The definition above gives us a acme:product NodeType with 2 properties. Beside that, we also defined that it has 3
 supertypes: <code>nt:base</code>, <code>mix:title</code> and <code>mix:reference</code>. For the acme:media property, we also added a valueConstraint.</p>
 
-<h2>Registering the NodeType</h2>
+<h2 id="registering-the-nodetype">Registering the NodeType</h2>
 
 <p>To actually register the nodeType, we only need a few lines of code as seen in the <a href="https://github.com/wjzijderveld/phpcr-blog-serie/blob/part5-creating-a-nodetype/src/Wjzijderveld/Command/CreateNodeTypeCommand.php">CreateNodeTypeCommand</a></p>
 
@@ -176,7 +165,7 @@ $session-&gt;save();
 
 <p><strong>Sidenote</strong>: above code won't work correctly untill <a href="https://github.com/jackalope/jackalope/pull/203">PR 203</a> has been merged.</p>
 
-<h2>Using the newly created NodeType</h2>
+<h2 id="using-the-newly-created-nodetype">Using the newly created NodeType</h2>
 
 <p>To use the new NodeType, we need to create a Node with the new NodeType as primaryType.</p>
 

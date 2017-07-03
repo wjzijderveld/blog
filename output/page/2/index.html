@@ -39,17 +39,6 @@
                     <h3>Short intro</h3>
                     <p>I'm Willem-Jan. My GitHub and IRC handles are <a href="http://github.com/wjzijderveld">wjzijderveld</a> and my Twitter handle is <a href="http://twitter.com/willemjanz">@willemjanz</a>.</p>
                 </div>
-
-                <div class="block no-padding textads">
-                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Sidebar -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:300px;height:250px"
-     data-ad-client="ca-pub-6473304659214282"
-     data-ad-slot="6183414453"></ins>
-<script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-</script>                </div>
             </div>
 
                             <div class="content">
@@ -66,7 +55,7 @@
 <p>In the <a href="http://blog.willem-jan.net/2013/11/16/setup-jackalope-with-mysql">previous post</a>, I talked about setting up your repository. In this post we will start playing with some actual
 content.</p>
 
-<h3>Insert data</h3>
+<h3 id="insert-data">Insert data</h3>
 
 <p>To show the basic usage of PHPCR, we are going to load some data into our repository. For this I used <a href="https://github.com/fzaninotto/Faker">Faker</a>.</p>
 
@@ -111,7 +100,7 @@ type</a> based on given value.</p>
 <p>Because nodeNames need to be unique, Jackalope will throw a ItemExists Exception when we try to create 2 nodes with the
 same name. As that might happen with random date, we just catch the exception and try again.</p>
 
-<h3>Reading the data</h3>
+<h3 id="reading-the-data">Reading the data</h3>
 
 <p>Now we have some fake data, we can try to query it again. We start with simply iterating over all the childNodes.
 Because every Node implements <code>Traversable</code>, we can simply loop over a node to get its children.</p>
@@ -146,7 +135,7 @@ value to the desired type.</p>
 <pre><code class="language-php">$dummyNode-&gt;getPropertyValue('floatProperty', \PHPCR\PropertyType::STRING); // string(6) "3.1415"
 </code></pre>
 
-<h3>Finding nodes</h3>
+<h3 id="finding-nodes">Finding nodes</h3>
 
 <p>You can also retrieve a node by it's path or multiple nodes by an array with paths</p>
 
@@ -178,7 +167,7 @@ explained. If you want to learn more about the possibilities, you might want to 
 <p>In this post I will walk through the first steps, setting up your Content Repository using Jackalope. In this case we
 will use MySQL as storage, but in a future post, we will migrate our data to a Jackrabbit server.</p>
 
-<h3>Install Jackalope</h3>
+<h3 id="install-jackalope">Install Jackalope</h3>
 
 <p>First we will install Jackalope DoctrineDBAL. In this serie I will use <a href="http://getcomposer.org">composer</a>, and in the examples I assume it's
 installed system wide, so the <code>composer</code> command is available.</p>
@@ -198,7 +187,7 @@ easily later on. For this I installed symfony/yaml to parse the Yaml file.</p>
 
 <p>The next step is to create your database and configure Jackalope with the correct transport layer.</p>
 
-<h3>Configure jackalope</h3>
+<h3 id="configure-jackalope">Configure jackalope</h3>
 
 <p>Jackalope provides a file that gives us some powerfull CLI commands. For this to work, we need to tell Jackalope what
 repository connection we are using. Jackalope requires a cli-config.php file for that in the root of your project.
@@ -251,7 +240,7 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 
 <p>Jackalope will tell you it has initialized the database tables.</p>
 
-<h3>Testing your repository</h3>
+<h3 id="testing-your-repository">Testing your repository</h3>
 
 <p>You should now have a working repository. We can test this by executing our first query, which should return the rootNode</p>
 
@@ -269,20 +258,20 @@ to create a solution for a problem that doesn't exists. That person thought CMF 
 couldn't solve the problems for front-end developers or editors (or even added more problems). It came down to it, that
 he had seen the admin interfaces that come with Symfony CMF and saw that it was... less from perfect (to put it nice).</p>
 
-<h4>Goals of Symfony CMF</h4>
+<h4 id="goals-of-symfony-cmf">Goals of Symfony CMF</h4>
 
 <p>Symfony CMF aims to provide a toolbox to create your own custom CMS, not by reinventing the wheel, but by reusing
 existing code and sharing the produced code (parts of it will be used in Drupal 8). It aims to make it easier for
 developers to add CMS functionality to applications built on Symfony 2.</p>
 
-<h4>PHPCR</h4>
+<h4 id="phpcr">PHPCR</h4>
 
 <p>To do that, they looked at other solutions, solutions not limited to PHP, to structure content. This because a CMS has
 mostly unstructured data, and forcing this into a RDBMS isn't always a good fit. <a href="https://en.wikipedia.org/wiki/Graph_database">Graph database</a> are a better
 fit. They found <a href="http://jcp.org/en/jsr/detail?id=283">JCR</a>, a Java specification that deals with content. They ported that to PHP and called it <a href="https://github.com/phpcr/" title="PHPCR Github">PHPCR</a>;
 PHP Content Repository. With PHPCR, there is an API to interface with your content repository.</p>
 
-<h4>What is doesn't solve</h4>
+<h4 id="what-is-doesn%27t-solve">What is doesn't solve</h4>
 
 <p>Althought Symfony CMF does provide some basic admin interfaces (with Sonata Admin), it isn't meant as an end product.
 For most customers and editors, those screens just won't be enough. But there is nothing to stop you from developing
@@ -360,7 +349,7 @@ next year.</p>
 
         <hr class="rule rule--ornament" />
             <div>
-                    <a href="http://blog.willem-jan.net/" class="previous">Previous page</a>
+                    <a href="http://blog.willem-jan.net/." class="previous">Previous page</a>
                             <a href="http://blog.willem-jan.net/page/3" class="next">Next page</a>
             </div>
     </div>            
